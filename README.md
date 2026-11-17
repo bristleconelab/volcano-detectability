@@ -18,7 +18,8 @@ at least one component. The criterion follows USGS SIR 2024-5062-D and SIR 2026-
 - 484 have no active open station within 100 km.
 - A 1e6 m3 change is detectable at 173; a 1e7 m3 change at 376. With the noise of 30-day means instead of daily
   noise (coloured noise included): 193 and 406, so the picture does not depend on the averaging window.
-- Of 383 that erupted since 1900, 256 cannot detect 1e7 m3 and 171 have no station within 100 km.
+- Of 380 with a confirmed eruption that started in 1900 or later (GVP eruption list), 253 cannot detect 1e7 m3 and
+  168 have no station within 100 km.
 - Benchmark: the USGS Mount Shasta to Medicine Lake map is reproduced in pattern (2-5e5 m3 at the edifices, about
   2e6 m3 between them; USGS reports more than 1e6 m3 could go undetected there).
 
@@ -27,15 +28,19 @@ Sentinel-1 layer (global seasonal 12-day coherence, Kellndorfer et al. 2022; LOS
 
 - With 5.9 cm, a 1e7 m3 change at 5 km is visible at 849 volcanoes in their best season but only 470 in their worst
   (snow, vegetation); 95 have no coherent pixel within 20 km in any season.
-- Sentinel-1 never reaches 1e6 m3 at 5 km; below about 6e6 m3 only GNSS can see.
+- Sentinel-1 never reaches 1e6 m3 at 5 km: its floor (coherent pixel at the summit, 5.9 cm, cos 39 deg line of sight)
+  is 7.95e6 m3, so smaller changes are visible only to ground GNSS.
 - GNSS or Sentinel-1 combined: 920 of 1,100 can see 1e7 m3; 69 see nothing (mostly remote ocean islands).
 
 Threat x blindness (`scripts/ranking.py`; population within 30 km and eruptions from GVP):
 
 - 380 volcanoes erupted since 1900; 118 of them have at least 100,000 people within 30 km.
-- 70 of those 118 (59 %) have no open GNSS station that would see a 1e7 m3 change at 5 km; 72 M people live within
+- 70 of those 118 (59 %) have no open GNSS station that would see a 1e7 m3 change at 5 km; 72 M people (an upper bound: overlapping 30 km circles are counted more than once) live within
   30 km of them. Most are in Indonesia (36 volcanoes, 40 M people), the Philippines, Mexico and Central America.
 - Sentinel-1 sees about 8e6 m3 at best at these volcanoes, so smaller changes are visible only to ground GNSS.
+- Threat does not bring open coverage: the GNSS-blind share is 59 % for these 118, against 66 % for all subaerial
+  volcanoes, and stays at 63-73 % across bands of eruption count and population. Japan's 21 active and exposed
+  volcanoes are all visible; without Japan, 70 of 97 (72 %) are blind.
 - Source model (`scripts/source_sensitivity.py`): moving the Mogi source 5 km from the summit changes little (70 of
   118 at the median and worst azimuth). A horizontal sill (Okada point source) decays faster with distance, so open
   stations see it worse: 85 of 118 blind, 93 M people. The Mogi numbers are the optimistic case.

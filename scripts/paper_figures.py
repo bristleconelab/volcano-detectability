@@ -261,6 +261,17 @@ def main():
     print(f"  Mogi/sill dV ratio: median {r.median():.3f}, 5-95 % {r.quantile(.05):.3f}-{r.quantile(.95):.2f} "
           f"(n {len(r)})")
 
+    nn_path = V.DATA / "national_networks.csv"
+    if nn_path.exists():
+        nn = pd.read_csv(nn_path).merge(rk[["vnum", "pop30"]], on="vnum", how="left")
+        g = nn.groupby("category").agg(n=("vnum", "size"), pop=("pop30", "sum"))
+        print(f"== National networks at the {len(nn)} GNSS-blind active and exposed volcanoes (national_networks.csv)")
+        for c, r in g.iterrows():
+            print(f"  {c:28s} {int(r.n):3d} volcanoes, {r["pop"] / 1e6:.1f} M people within 30 km")
+        print(f"  GVMID GNSS site within 30 km: {(nn.gvmid_gnss_n > 0).sum()}; Indonesian with no GVMID deformation "
+              f"station: {((nn.country == 'Indonesia') & (nn.gvmid_gnss_n == 0) & (nn.gvmid_other_deformation_n == 0)).sum()}"
+              f" of {(nn.country == 'Indonesia').sum()}")
+
     print("== Benchmark, Mount Shasta to Medicine Lake (5 km, 1 sigma)")
     benchmark_check()
 
