@@ -1,0 +1,106 @@
+"""Daily white-noise sigma for every active NGL station within MAX_KM of a GVP Holocene volcano.
+
+Only the last ~260 kB of each .tenv3 file is fetched (HTTP Range), which holds about three years of daily solutions;
+the newest 730 days are used. Results are appended to docs/data/station_noise.csv, so the run can be resumed.
+    python scripts/station_noise.py [--workers 6]
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import sys
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+import numpy as np
+import requests
+
+import vdlib as V
+
+MAX_KM = 100.0          # Mogi signals beyond ~100 km are negligible for sources shallower than 10 km
+ACTIVE_SINCE = "2026-08-01"  # station must have solutions in the last few months of the NGL archive
+TAIL_BYTES = 260_000
+WINDOW_DAYS = 730
+OUT = V.DATA / "station_noise.csv"
+FIELDS = ["site", "lat", "lon", "start", "end", "first_mjd", "last_mjd", "ndays", "npairs",
+          "sig_e_mm", "sig_n_mm", "sig_u_mm", "status"]
+
+
+def candidate_stations():
+    vol = V.load_volcanoes()
+    st = V.load_holdings()
+    st = st[st["end"] >= ACTIVE_SINCE].reset_index(drop=True)
+    keep = np.zeros(len(st), bool)
+    for _, v in vol.iterrows():
+        near = (np.abs(st["lat"] - v.lat) < 1.0) & (np.abs(((st["lon"] - v.lon + 180) % 360) - 180) < 2.5)
+        if not near.any():
+            continue
+        idx = np.flatnonzero(near.to_numpy())
+        _, _, d = V.GEOD.inv(np.full(idx.size, v.lon), np.full(idx.size, v.lat),
+                             st.loc[idx, "lon"].to_numpy(), st.loc[idx, "lat"].to_numpy())
+        keep[idx[np.asarray(d) / 1e3 <= MAX_KM]] = True
+    return st[keep].reset_index(drop=True)
+
+
+def fetch(site: str, session: requests.Session) -> str:
+    for attempt in range(4):
+        try:
+            r = session.get(V.NGL_TENV3.format(site=site), headers={"Range": f"bytes=-{TAIL_BYTES}"}, timeout=60)
+            if r.status_code in (200, 206):
+                return r.text
+            if r.status_code == 404:
+                return ""
+        except requests.RequestException:
+            pass
+        time.sleep(2 * (attempt + 1))
+    raise RuntimeError(f"{site}: download failed")
+
+
+def process(row, session):
+    text = fetch(row.site, session)
+    base = dict(site=row.site, lat=row.lat, lon=row.lon, start=row.start, end=row.end)
+    if not text:
+        return {**base, "status": "missing"}
+    df = V.parse_tenv3_tail(text)
+    if df.empty:
+        return {**base, "status": "unparsed"}
+    df = df[df["mjd"] > df["mjd"].max() - WINDOW_DAYS]
+    sig, npairs = V.white_noise_sigma(df)
+    return {**base, "first_mjd": int(df["mjd"].min()), "last_mjd": int(df["mjd"].max()), "ndays": len(df),
+            "npairs": npairs, "sig_e_mm": round(sig[0] * 1e3, 3), "sig_n_mm": round(sig[1] * 1e3, 3),
+            "sig_u_mm": round(sig[2] * 1e3, 3), "status": "ok" if np.isfinite(sig).all() else "short"}
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--workers", type=int, default=6)
+    ap.add_argument("--limit", type=int, default=0)
+    a = ap.parse_args()
+    st = candidate_stations()
+    done = set()
+    if OUT.exists():
+        with OUT.open() as f:
+            done = {r["site"] for r in csv.DictReader(f)}
+    todo = st[~st["site"].isin(done)]
+    if a.limit:
+        todo = todo.head(a.limit)
+    print(f"{len(st)} candidate stations, {len(done)} done, {len(todo)} to fetch", flush=True)
+    new = not OUT.exists()
+    with OUT.open("a", newline="") as f, requests.Session() as s:
+        w = csv.DictWriter(f, fieldnames=FIELDS)
+        if new:
+            w.writeheader()
+        with ThreadPoolExecutor(a.workers) as ex:
+            futs = {ex.submit(process, r, s): r.site for r in todo.itertuples()}
+            for i, fu in enumerate(as_completed(futs), 1):
+                try:
+                    w.writerow(fu.result())
+                except Exception as e:  # keep going; the site is retried on the next run
+                    print(f"  {futs[fu]}: {e}", file=sys.stderr, flush=True)
+                if i % 100 == 0:
+                    f.flush()
+                    print(f"  {i}/{len(todo)}", flush=True)
+
+
+if __name__ == "__main__":
+    main()
