@@ -46,7 +46,7 @@ def cumulative(ax, v, n, **kw):
 
 
 def fig2(rk: pd.DataFrame, ae: pd.DataFrame):
-    fig, axs = plt.subplots(1, 2, figsize=(7.2, 3.0), sharex=True)
+    fig, axs = plt.subplots(1, 2, figsize=(7.2, 3.3), sharex=True)
     for ax, d, title in ((axs[0], rk, f"(a) All subaerial Holocene volcanoes (n = {len(rk):,})"),
                          (axs[1], ae, f"(b) Active and exposed volcanoes (n = {len(ae)})")):
         cumulative(ax, d["dv_d5_k1"].to_numpy(), len(d), color=GNSS_C, lw=1.6, label="GNSS, daily noise, 1$\\sigma$")
@@ -68,8 +68,9 @@ def fig2(rk: pd.DataFrame, ae: pd.DataFrame):
     axs[0].set_ylabel("Volcanoes with $\\Delta V_{min} \\leq \\Delta V$")
     axs[0].text(1.15e5, len(rk) * 0.97, "below the Sentinel-1\nfloor: GNSS only", va="top", fontsize=6.5, color=MUTED)
     axs[0].text(1.05e7, 25, "10$^7$ m$^3$", fontsize=6.5, color=MUTED)
-    axs[0].legend(loc="lower right", frameon=False)
-    fig.tight_layout()
+    h, lab = axs[0].get_legend_handles_labels()
+    fig.legend(h, lab, loc="lower center", ncol=4, frameon=False)
+    fig.tight_layout(rect=(0, 0.07, 1, 1))
     for ext in ("png", "pdf"):
         fig.savefig(OUT / f"fig2_cumulative.{ext}")
     plt.close(fig)
@@ -184,6 +185,8 @@ def main():
           f"5 km {FLOOR_5KM:.3g}, 10 km {V.insar_min_volume(1.0, 10.0, 0.059).item():.3g}; "
           f"1 cm at 5 km {V.insar_min_volume(1.0, 5.0, 0.01).item():.3g} m^3")
     print(f"  smallest S1 value in the table at 5 km: {rk['ins_d5_t59_best'].min():.4g}")
+    print("  floor at 5 km for other published thresholds (linear in the threshold): " + ", ".join(
+        f"{t * 100:.1f} cm {V.insar_min_volume(1.0, 5.0, t).item():.3g}" for t in (0.018, 0.039, 0.05, 0.063)))
     g, ib = rk["dv_d5_k1"], rk["ins_d5_t59_best"]
     print(f"  GNSS dV_min below the S1 floor: {(g < FLOOR_5KM).sum()}; seen at 1e7 by GNSS only "
           f"{((g <= DV) & (ib > DV)).sum()}, by S1 only {((g > DV) & (ib <= DV)).sum()}, by both "
@@ -238,9 +241,15 @@ def main():
         print(f"    {c}: {r.n} volcanoes, {r['pop'] / 1e6:.2f} M, {r.er} eruptions since 1900")
 
     print("== Robustness (active and exposed, blind at 1e7 m^3, 5 km)")
-    print(f"  30-day noise, 1 sigma: {(ae.dv30_d5_k1 > DV).sum()}; 30-day 2 sigma: {(ae.dv30_d5_k2 > DV).sum()}; "
-          f"daily 3 sigma: {(ae.dv_d5_k3 > DV).sum()}; 2 km: {(ae.dv_d2_k1 > DV).sum()}; 10 km: "
-          f"{(ae.dv_d10_k1 > DV).sum()}")
+    for col, lab in (("dv_d5_k1", "daily noise, 1 sigma (main)"), ("dv30_d5_k1", "30-day noise, 1 sigma"),
+                     ("dv30_d5_k2", "30-day noise, 2 sigma"), ("dv_d5_k3", "daily noise, 3 sigma"),
+                     ("dv_d2_k1", "depth 2 km"), ("dv_d10_k1", "depth 10 km")):
+        b = ae[ae[col] > DV]
+        print(f"  {lab:34s} blind {len(b):3d} of {len(ae)} ({b.pop30.sum() / 1e6:.1f} M); all subaerial seen at "
+              f"1e7 {(rk[col] <= DV).sum()}")
+    up = ok["sig_u_mm"].median() / 1e3
+    print(f"  one station above a 5 km source with median vertical noise ({up * 1e3:.2f} mm) sees "
+          f"{up / V.mogi_greens(0.0, 0.0, 5.0)[2]:.3g} m^3 (1 sigma)")
     sae = src[src.active & src.exposed]
     for col, lab in (("dv_mogi", "Mogi below summit"), ("dv_off_med", "Mogi 5 km offset, median azimuth"),
                      ("dv_off_max", "Mogi 5 km offset, worst azimuth"), ("dv_sill", "horizontal point sill")):

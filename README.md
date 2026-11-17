@@ -40,6 +40,11 @@ Threat x blindness (`scripts/ranking.py`; population within 30 km and eruptions 
   118 at the median and worst azimuth). A horizontal sill (Okada point source) decays faster with distance, so open
   stations see it worse: 85 of 118 blind, 93 M people. The Mogi numbers are the optimistic case.
 - Many of these countries run national GNSS networks that are not in NGL: read this as "not visible in open data".
+  A check of the 70 against GVMID (Widiwijayanti et al. 2024) and the literature (`docs/data/national_networks.csv`,
+  `scripts/national_networks/`): 20 have documented continuous observatory GNSS whose data are not open (a data-access
+  gap), 14 had open GNSS sites that are no longer active, 5 only campaign GPS, and 31 have no ground GNSS found (an
+  upper bound; Indonesian observatory reports were not searched volcano by volcano). Evidence items marked
+  `search-summary` still need to be read in full before citation.
 
 ![World map](docs/img/world_d5.png)
 
