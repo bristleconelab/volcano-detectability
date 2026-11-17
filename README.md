@@ -5,6 +5,10 @@ For every Smithsonian GVP Holocene volcano, this repository computes the smalles
 depth that would exceed the daily white noise of at least one open Nevada Geodetic Laboratory (NGL) GNSS station on
 at least one component. The criterion follows USGS SIR 2024-5062-D and SIR 2026-5117-A, applied globally.
 
+**Interactive globe:** https://ismoilovdevml.github.io/volcano-detectability/atlas/
+
+![Globe](docs/img/atlas_globe.png)
+
 > Work in progress (first pass, 2026-11-17). This measures what **open** data can see, not what volcano observatories
 > see: many national networks are not in NGL.
 
@@ -50,6 +54,7 @@ curl -o data/raw/DataHoldings.txt https://geodesy.unr.edu/NGLStationPages/DataHo
 .venv/bin/python scripts/insar_coherence.py    # windowed reads of the public coherence COGs
 .venv/bin/python scripts/combine.py
 .venv/bin/python scripts/ranking.py
+.venv/bin/python scripts/export_web.py        # data for docs/atlas (MapLibre globe)
 ```
 
 Prior work and what is new: [docs/prior-work.md](docs/prior-work.md).
