@@ -25,6 +25,14 @@ Sentinel-1 layer (global seasonal 12-day coherence, Kellndorfer et al. 2022; LOS
 - Sentinel-1 never reaches 1e6 m3 at 5 km; below about 6e6 m3 only GNSS can see.
 - GNSS or Sentinel-1 combined: 920 of 1,100 can see 1e7 m3; 69 see nothing (mostly remote ocean islands).
 
+Threat x blindness (`scripts/ranking.py`; population within 30 km and eruptions from GVP):
+
+- 380 volcanoes erupted since 1900; 118 of them have at least 100,000 people within 30 km.
+- 70 of those 118 (59 %) have no open GNSS station that would see a 1e7 m3 change at 5 km; 72 M people live within
+  30 km of them. Most are in Indonesia (36 volcanoes, 40 M people), the Philippines, Mexico and Central America.
+- Sentinel-1 sees about 8e6 m3 at best at these volcanoes, so smaller changes are visible only to ground GNSS.
+- Many of these countries run national GNSS networks that are not in NGL: read this as "not visible in open data".
+
 ![World map](docs/img/world_d5.png)
 
 ![Benchmark](docs/img/benchmark_shasta_medicine.png)
@@ -41,6 +49,7 @@ curl -o data/raw/DataHoldings.txt https://geodesy.unr.edu/NGLStationPages/DataHo
 .venv/bin/python scripts/benchmark_usgs.py
 .venv/bin/python scripts/insar_coherence.py    # windowed reads of the public coherence COGs
 .venv/bin/python scripts/combine.py
+.venv/bin/python scripts/ranking.py
 ```
 
 Prior work and what is new: [docs/prior-work.md](docs/prior-work.md).
