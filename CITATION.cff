@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite it as below."
+title: "volcano-detectability: open-data geodetic detectability of Holocene volcanoes (GNSS, Sentinel-1)"
+type: software
+authors:
+  - family-names: Ismoilov
+    given-names: Otabek
+    orcid: "https://orcid.org/0009-0008-2785-3691"
+repository-code: "https://github.com/ismoilovdevml/volcano-detectability"
+url: "https://ismoilovdevml.github.io/volcano-detectability/atlas/"
+license: MIT
+version: 1.0.0
+date-released: 2026-11-17
+keywords:
+  - volcano monitoring
+  - geodetic detectability
+  - GNSS
+  - InSAR
+  - Sentinel-1
+  - open data
+abstract: >-
+  Smallest volume change beneath every GVP Holocene volcano that open GNSS and Sentinel-1 data would detect, with
+  threat, exposure and country-stratified statistics, national-network classes and an interactive globe atlas.

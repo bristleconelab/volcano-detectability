@@ -1,0 +1,13 @@
+{
+  "title": "volcano-detectability: open-data geodetic detectability of Holocene volcanoes (GNSS, Sentinel-1)",
+  "upload_type": "software",
+  "description": "For every Smithsonian GVP Holocene volcano, the smallest volume change of a source at 2, 5 and 10 km depth that open GNSS (Nevada Geodetic Laboratory, network matched filter at signal-to-noise 5 on seasonally cleaned 30-day means) and open Sentinel-1 coherence (5.9 cm, coherent-area rule) would detect; threat, exposure and country-stratified statistics; national-network classes; an interactive globe atlas; all derived tables, figures and unit tests. Measures what open data can see, not what observatories see. Retrospective sensitivity only; no forecasts.",
+  "creators": [{"name": "Ismoilov, Otabek", "orcid": "0009-0008-2785-3691"}],
+  "license": "MIT",
+  "keywords": ["volcano monitoring", "geodetic detectability", "GNSS", "InSAR", "Sentinel-1", "magma accumulation", "open data", "volcanic risk"],
+  "related_identifiers": [
+    {"identifier": "10.3133/sir20265117A", "relation": "references", "scheme": "doi"},
+    {"identifier": "10.1038/s41597-022-01189-6", "relation": "references", "scheme": "doi"},
+    {"identifier": "10.3389/feart.2024.1284889", "relation": "references", "scheme": "doi"}
+  ]
+}
