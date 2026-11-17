@@ -86,7 +86,8 @@ Method, assumptions and limitations: [docs/method.md](docs/method.md). Correctio
 
 Inputs: GVP Volcanoes of the World (Smithsonian; terms of use page could not be read automatically, treated as
 non-commercial), NGL GNSS (Blewitt, Hammond & Kreemer 2018, Eos 99), Sentinel-1 global seasonal coherence (Kellndorfer
-et al. 2022, AWS open data), GVMID (Widiwijayanti et al. 2024; free and open for non-commercial use), Natural Earth.
+et al. 2022, AWS open data), GVMID (Widiwijayanti et al. 2024; WOVOdat data policy: free non-commercial research use, cite the data owners, no
+redistribution; this repository publishes only per-volcano counts and classes derived from it, not station lists), Natural Earth.
 Licences of this repository: code MIT; the values computed here (detectable volumes, noise estimates, coherence
 summaries, rankings, keyed by GVP volcano number and NGL site) CC BY 4.0. Columns copied from GVP (names, coordinates,
-population, eruptions) and GVMID (station counts) remain under their providers' terms.
+population, eruptions) remain under GVP's terms; GVMID-derived counts are credited to the contributing observatories.

@@ -37,9 +37,10 @@ for v,c in cl.items():
     other=c['other'] - len(set(gn) & set())  # other already excludes typed GNSS
     ev=[]
     if gn:
-        ev.append('GVMID<=30km GNSS: %s'%','.join(gn))
-        if c['gnss_open']: ev.append('open-archive (NGL/UNAVCO) sites %s, none active in current NGL list'%','.join(c['gnss_open']))
-        if c['gnss_nat']: ev.append('observatory GNSS (%s): %s'%('/'.join(natsrc),','.join(c['gnss_nat'])))
+        # station codes and locations from GVMID are not redistributed (WOVOdat data policy); counts only
+        ev.append('GVMID<=30km GNSS stations: %d'%len(gn))
+        if c['gnss_open']: ev.append('of which open-archive (NGL/UNAVCO) sites: %d, none active in current NGL list'%len(c['gnss_open']))
+        if c['gnss_nat']: ev.append('of which observatory GNSS (%s): %d'%('/'.join(natsrc),len(c['gnss_nat'])))
     if c['other']: ev.append('GVMID other deformation %d (%s; %s)'%(c['other'],'/'.join(t[5:] for t in c['other_types']),'/'.join(c['other_src'])))
     if not gn and not c['other']: ev.append('GVMID: no deformation station <=30 km')
     lit=L.get(v)

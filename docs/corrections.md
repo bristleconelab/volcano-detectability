@@ -15,3 +15,6 @@
   (`vdlib.lon_window_deg`, unit-tested). Changes: stations 2,477 -> 2,480; volcanoes without a station 484 -> 483;
   fully blind (GNSS and Sentinel-1) 69 -> 68. No change to 173, 376, 118, 70, 72.3 M or the sill case. Found by the
   independent verification (notes/verification-2026-11-17.md, PASS on all other items).
+- 2026-11-17: `docs/data/national_networks.csv` listed GVMID station codes in its evidence column. The WOVOdat data
+  policy does not allow redistribution of GVMID data, so the table now gives counts and classes only (the category of
+  every volcano is unchanged). Earlier commits in the history still contain the codes (no history rewrite).
