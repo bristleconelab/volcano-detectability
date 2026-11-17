@@ -54,6 +54,24 @@ class TestDetectability(unittest.TestCase):
         self.assertEqual(i, -1)
 
 
+class TestInsar(unittest.TestCase):
+    def test_summit_pixel(self):
+        # coherent at the summit (f = 1), 5 km, 5.9 cm, LOS factor 1: dV = 0.059 pi 25e6 / 0.75 = 6.18e6 m^3
+        dv = V.insar_min_volume(1.0, 5.0, 0.059, los=1.0)
+        self.assertAlmostEqual(float(dv), 0.059 * np.pi * 25e6 / 0.75, delta=1)
+
+    def test_consistent_with_mogi(self):
+        # the returned volume must produce exactly the threshold LOS uplift at a pixel 3 km from the summit
+        d, r, thr = 5.0, 3.0, 0.01
+        f = (1 + (r / d) ** 2) ** -1.5
+        dv = float(V.insar_min_volume(f, d, thr))
+        _, _, uz = V.mogi_greens(r, 0.0, d)
+        self.assertAlmostEqual(uz * dv * V.LOS_VERT, thr, places=12)
+
+    def test_no_coherence_is_blind(self):
+        self.assertTrue(np.isinf(V.insar_min_volume(0.0, 5.0, 0.01)))
+
+
 class TestNoise(unittest.TestCase):
     def test_white_noise_recovered(self):
         rng = np.random.default_rng(1)

@@ -90,6 +90,20 @@ def min_detectable_volume(x_km, y_km, sig_m, depth_km: float, k: float = 1.0, nu
     return float(dv.flat[i]), i // 3, i % 3
 
 
+LOS_VERT = float(np.cos(np.radians(39.0)))  # Sentinel-1 IW mid-swath incidence ~39 deg; vertical-only LOS
+
+
+def insar_min_volume(f, depth_km: float, threshold_m: float, los: float = LOS_VERT, nu: float = NU):
+    """Smallest Mogi volume change (m^3) whose LOS uplift reaches threshold_m at the best coherent pixel.
+
+    Peak uplift per m^3 is (1 - nu) / (pi d^2); a pixel at distance r sees the fraction f = (1 + (r/d)^2)^-1.5 of it,
+    and the line of sight sees los times the vertical (horizontal motion ignored). f = 0 (no coherent pixel) -> inf."""
+    f = np.asarray(f, float)
+    peak = (1 - nu) / (np.pi * (depth_km * 1e3) ** 2)
+    with np.errstate(divide="ignore"):
+        return np.where(f > 0, threshold_m / (peak * los * f), np.inf)
+
+
 # ------------------------------------------------------------------------------------------------ noise
 def parse_tenv3_tail(text: str) -> pd.DataFrame:
     """Parse the rows of a (possibly byte-range-truncated) NGL .tenv3 file; displacements in metres."""

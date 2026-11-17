@@ -17,6 +17,16 @@ at least one component. The criterion follows USGS SIR 2024-5062-D and SIR 2026-
 - Benchmark: the USGS Mount Shasta to Medicine Lake map is reproduced in pattern (2-5e5 m3 at the edifices, about
   2e6 m3 between them; USGS reports more than 1e6 m3 could go undetected there).
 
+Sentinel-1 layer (global seasonal 12-day coherence, Kellndorfer et al. 2022; LOS threshold 5.9 cm after Biggs et al.
+2022, or 1 cm for careful time series; best and worst season):
+
+- With 5.9 cm, a 1e7 m3 change at 5 km is visible at 849 volcanoes in their best season but only 470 in their worst
+  (snow, vegetation); 95 have no coherent pixel within 20 km in any season.
+- Sentinel-1 never reaches 1e6 m3 at 5 km; below about 6e6 m3 only GNSS can see.
+- GNSS or Sentinel-1 combined: 920 of 1,100 can see 1e7 m3; 69 see nothing (mostly remote ocean islands).
+
+![World map](docs/img/world_d5.png)
+
 ![Benchmark](docs/img/benchmark_shasta_medicine.png)
 
 ## Run
@@ -29,6 +39,8 @@ curl -o data/raw/DataHoldings.txt https://geodesy.unr.edu/NGLStationPages/DataHo
 .venv/bin/python scripts/station_noise.py      # ~250 kB per station via HTTP Range, resumable
 .venv/bin/python scripts/detectability.py
 .venv/bin/python scripts/benchmark_usgs.py
+.venv/bin/python scripts/insar_coherence.py    # windowed reads of the public coherence COGs
+.venv/bin/python scripts/combine.py
 ```
 
 Prior work and what is new: [docs/prior-work.md](docs/prior-work.md).
