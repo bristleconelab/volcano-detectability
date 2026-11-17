@@ -30,12 +30,13 @@ def main():
         p = {"n": r.name, "c": r.country, "v": int(r.vnum), "p30": num(r.pop30), "p100": num(r.pop100),
              "e19": int(r.n_erupt_1900), "vei": num(r.vei_max, 2), "s20": int(r.n_20km), "s50": int(r.n_50km),
              "bs": r.best_site_d5 if isinstance(r.best_site_d5, str) else None, "bk": num(r.best_km_d5),
-             "act": bool(r.active), "exp": bool(r.exposed), "nn": nn.get(int(r.vnum))}
+             "act": bool(r.active), "exp": bool(r.exposed), "fld": bool(r.field), "nn": nn.get(int(r.vnum))}
         for d in (2, 5, 10):
-            p[f"g{d}"] = num(getattr(r, f"dv_d{d}_k1"))
-            p[f"gs{d}"] = num(getattr(r, f"dvsill_d{d}_k1"))
-            p[f"ib{d}"] = num(getattr(r, f"ins_d{d}_t59_best"))
-            p[f"iw{d}"] = num(getattr(r, f"ins_d{d}_t59_worst"))
+            p[f"g{d}"] = num(getattr(r, f"net_d{d}"))          # main: network SNR 5, 30-day means
+            p[f"gs{d}"] = num(getattr(r, f"netsill_d{d}"))
+            p[f"g1s{d}"] = num(getattr(r, f"dv_d{d}_k1"))       # first pass: USGS-style 1 sigma daily
+            p[f"ib{d}"] = num(getattr(r, f"insA_d{d}_t59_best"))  # Sentinel-1 with coherent-area requirement
+            p[f"iw{d}"] = num(getattr(r, f"insA_d{d}_t59_worst"))
             p[f"it{d}"] = num(getattr(r, f"ins_d{d}_t10_best"))
         feats.append({"type": "Feature", "geometry": {"type": "Point", "coordinates": [round(r.lon, 4), round(r.lat, 4)]},
                       "properties": p})

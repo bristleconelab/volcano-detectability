@@ -23,6 +23,7 @@ from matplotlib.colors import LogNorm  # noqa: E402
 import vdlib as V  # noqa: E402
 
 THRESH = {"t59": 0.059, "t10": 0.010}
+AREA_MIN = 0.10  # minimum coherent share of pixels within 5 km for a usable season
 DEPTHS = (2, 5, 10)
 LAND = V.RAW / "ne_110m_land.geojson"
 
@@ -40,6 +41,11 @@ def insar_table() -> pd.DataFrame:
                 dv = V.insar_min_volume(f, d, t)
                 row[f"ins_d{d}_{name}_best"] = float(dv.min())
                 row[f"ins_d{d}_{name}_worst"] = float(dv.max()) if len(g) == 4 else np.inf
+                # after review: a deformation pattern needs coherent area, not one pixel; a season counts only when
+                # at least AREA_MIN of the pixels within 5 km of the summit are coherent
+                dva = np.where(g["frac_coh_5km"].to_numpy() >= AREA_MIN, dv, np.inf)
+                row[f"insA_d{d}_{name}_best"] = float(dva.min())
+                row[f"insA_d{d}_{name}_worst"] = float(dva.max()) if len(g) == 4 else np.inf
         rows.append(row)
     return pd.DataFrame(rows)
 
@@ -65,7 +71,7 @@ def world_map(df: pd.DataFrame, col: str, path):
     ax.set_aspect("equal")
     ax.legend(loc="lower left", fontsize=8)
     ax.set_title("Open-data geodetic detectability of Holocene volcanoes: Mogi source at 5 km, "
-                 "best of GNSS (1$\\sigma$ daily) and Sentinel-1 (5.9 cm, best season)", fontsize=9)
+                 "best of open GNSS (network SNR 5, 30-day) and Sentinel-1 (5.9 cm, coherent area, best season)", fontsize=9)
     fig.tight_layout()
     fig.savefig(path, dpi=200)
 
@@ -77,17 +83,22 @@ def main():
     for d in DEPTHS:
         for name in THRESH:
             for s in ("best", "worst"):
-                c = f"ins_d{d}_{name}_{s}"
-                df[c] = df[c].fillna(np.inf)
+                for pre in ("ins", "insA"):
+                    c = f"{pre}_d{d}_{name}_{s}"
+                    df[c] = df[c].fillna(np.inf)
+        # first-pass combination (USGS-style 1 sigma, single coherent pixel) and the reviewed main combination
+        # (network SNR 5 on 30-day means; Sentinel-1 with coherent area)
         df[f"comb_d{d}"] = np.minimum(df[f"dv_d{d}_k1"], df[f"ins_d{d}_t59_best"])
+        df[f"main_d{d}"] = np.minimum(df[f"net_d{d}"].fillna(np.inf), df[f"insA_d{d}_t59_best"])
     df.to_csv(V.DATA / "volcano_detectability_combined.csv", index=False, float_format="%.7g")
     sub = df[df["elev_m"] >= 0]
     print(f"{len(sub)} subaerial volcanoes; InSAR rows {sub['n_seasons'].notna().sum()}")
-    for col in ("dv_d5_k1", "ins_d5_t59_best", "ins_d5_t59_worst", "ins_d5_t10_best", "comb_d5"):
+    for col in ("net_d5", "dv_d5_k1", "insA_d5_t59_best", "insA_d5_t59_worst", "ins_d5_t59_best", "ins_d5_t59_worst",
+                "ins_d5_t10_best", "main_d5", "comb_d5"):
         v = sub[col]
         print(f"{col:18s} inf {np.isinf(v).sum():4d}  <=1e6 {(v <= 1e6).sum():4d}  <=1e7 {(v <= 1e7).sum():4d}  "
               f"<=1e8 {(v <= 1e8).sum():4d}  median {np.median(v[np.isfinite(v)]):.3g}")
-    world_map(sub, "comb_d5", V.ROOT / "docs" / "img" / "world_d5.png")
+    world_map(sub, "main_d5", V.ROOT / "docs" / "img" / "world_d5.png")
 
 
 if __name__ == "__main__":

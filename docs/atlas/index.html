@@ -50,6 +50,7 @@
     <button data-v="comb" aria-pressed="true">GNSS or Sentinel-1</button>
     <button data-v="g">Open GNSS</button>
     <button data-v="gs">Open GNSS, sill source</button>
+    <button data-v="g1s">Open GNSS, USGS-style 1σ</button>
     <button data-v="ib">Sentinel-1, best season</button>
     <button data-v="iw">Sentinel-1, worst season</button>
   </div>
@@ -71,10 +72,13 @@
 </div>
 <div class="panel" id="pAbout">
   <h2>About</h2>
-  <p>For every Smithsonian GVP Holocene volcano: the smallest Mogi point-source volume change at 2, 5 or 10 km depth that would
-  exceed the daily white noise (1σ) of at least one open Nevada Geodetic Laboratory GNSS station, after USGS SIR 2024-5062-D and
-  2026-5117-A; and the change whose line-of-sight uplift reaches 5.9 cm (Biggs et al. 2022) at the nearest coherent Sentinel-1
-  pixel (seasonal 12-day coherence, Kellndorfer et al. 2022).</p>
+  <p>For every Smithsonian GVP Holocene volcano: the smallest Mogi point-source volume change at 2, 5 or 10 km depth that a
+  matched filter over all open Nevada Geodetic Laboratory GNSS stations within 100 km would detect at signal-to-noise 5,
+  comparing two 30-day mean positions (noise estimated per station, seasonal motion removed); and the change whose
+  line-of-sight uplift reaches 5.9 cm (Biggs et al. 2022) at a coherent Sentinel-1 pixel near the summit, counted only in
+  seasons when at least 10 % of the pixels within 5 km are coherent (seasonal 12-day coherence, Kellndorfer et al. 2022).
+  The first-pass criterion of USGS SIR 2024-5062-D and 2026-5117-A (1σ daily noise at one station) is kept as an option.
+  Volcanic fields have no single summit reservoir, so a point source below the GVP coordinate is only indicative there.</p>
   <p>This is what <b>open</b> data can see. Many observatories run GNSS networks that are not public, so "blind" here means
   "not visible in open data", not "unmonitored".</p>
   <p>Retrospective sensitivity only; no eruption forecasts. Code and tables:
@@ -135,7 +139,7 @@ function paint() {
   map.setPaintProperty('volc', 'circle-stroke-width', ['case', ['==', v, null], 1.6, 0.5]);
   const filt = state.set === 'act' ? ['==', ['get', 'act'], true] : state.set === 'ae' ? ['all', ['==', ['get', 'act'], true], ['==', ['get', 'exp'], true]] : null;
   map.setFilter('volc', filt);
-  const names = { comb: 'GNSS or Sentinel-1', g: 'open GNSS', gs: 'open GNSS, horizontal sill', ib: 'Sentinel-1, best season', iw: 'Sentinel-1, worst season' };
+  const names = { comb: 'GNSS or Sentinel-1', g: 'open GNSS', gs: 'open GNSS, horizontal sill', g1s: 'open GNSS, 1σ daily (USGS style)', ib: 'Sentinel-1, best season', iw: 'Sentinel-1, worst season' };
   document.getElementById('legTitle').textContent = `Smallest detectable volume change, ${state.depth} km (${names[state.sensor]})`;
 }
 
@@ -168,7 +172,7 @@ map.on('click', 'volc', e => {
     <span class="k">People within 30 km</span> ${fmtPop(p.p30)} · <span class="k">eruptions since 1900</span> ${p.e19}${p.vei != null ? ' · <span class="k">max VEI</span> ' + p.vei : ''}<br>
     <span class="k">Open GNSS stations ≤20 km</span> ${p.s20} · <span class="k">≤50 km</span> ${p.s50}${p.bs ? ' · <span class="k">deciding</span> ' + p.bs + ' (' + p.bk + ' km)' : ''}<br>
     <span class="k">Detectable at ${d} km:</span> GNSS ${fmt(g)} m³ (sill ${fmt(p['gs' + d])}) · Sentinel-1 ${fmt(ib)} (best) / ${fmt(iw)} (worst season) m³
-    <div class="verdict">${verdict}${p.nn ? '<br><span class="k">Ground networks (GVMID + literature):</span> ' + NN[p.nn] : ''}</div>`;
+    <div class="verdict">${p.fld ? 'Volcanic field: a point source below one coordinate is only indicative. ' : ''}${verdict}${p.nn ? '<br><span class="k">Ground networks (GVMID + literature):</span> ' + NN[p.nn] : ''}</div>`;
   new maplibregl.Popup({ closeButton: true, maxWidth: '300px' }).setLngLat(e.features[0].geometry.coordinates).setHTML(html).addTo(map);
 });
 map.on('mouseenter', 'volc', () => map.getCanvas().style.cursor = 'pointer');
@@ -179,7 +183,7 @@ function buildRank() {
     .sort((a, b) => (b.properties.p30 || 0) - (a.properties.p30 || 0));
   const all = features.filter(f => f.properties.act && f.properties.exp).length;
   const ppl = rows.reduce((s, f) => s + (f.properties.p30 || 0), 0);
-  document.getElementById('rankNote').textContent = `${rows.length} of ${all} volcanoes that erupted since 1900 and have ≥100,000 people within 30 km: no open GNSS station would see a 10⁷ m³ change at 5 km. ${(ppl/1e6).toFixed(0)} M people live within 30 km of them. Click a row to fly there.`;
+  document.getElementById('rankNote').textContent = `${rows.length} of ${all} volcanoes that erupted since 1900 and have ≥100,000 people within 30 km: open GNSS would not detect a 10⁷ m³ change at 5 km (network, signal-to-noise 5). Up to ${(ppl/1e6).toFixed(0)} M people live within 30 km of them (circles overlap, so this is an upper bound). Click a row to fly there.`;
   const body = document.getElementById('rankBody');
   body.innerHTML = rows.map((f, i) => `<tr class="row" data-i="${i}"><td>${f.properties.n}<br><span class="k">${f.properties.c}</span></td><td>${fmtPop(f.properties.p30)}</td><td>${f.properties.bs ? f.properties.bk + ' km' : 'none ≤100 km'}</td></tr>`).join('');
   body.querySelectorAll('tr').forEach(tr => tr.onclick = () => {

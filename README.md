@@ -1,55 +1,61 @@
 # Volcano geodetic detectability (open data)
 
-How much magma can collect beneath each of the world's Holocene volcanoes before open GNSS data would notice?
-For every Smithsonian GVP Holocene volcano, this repository computes the smallest Mogi volume change at 2, 5 and 10 km
-depth that would exceed the daily white noise of at least one open Nevada Geodetic Laboratory (NGL) GNSS station on
-at least one component. The criterion follows USGS SIR 2024-5062-D and SIR 2026-5117-A, applied globally.
+How much magma can collect beneath each of the world's Holocene volcanoes before open geodetic data would notice?
+For every Smithsonian GVP Holocene volcano this repository computes the smallest volume change of a source at 2, 5 and
+10 km depth that open GNSS (Nevada Geodetic Laboratory, NGL) and open Sentinel-1 coherence would detect.
 
 **Interactive globe:** https://ismoilovdevml.github.io/volcano-detectability/atlas/
 
 ![Globe](docs/img/atlas_globe.png)
 
-> Work in progress (first pass, 2026-11-17). This measures what **open** data can see, not what volcano observatories
-> see: many national networks are not in NGL.
+> Work in progress (revised after two internal reviews, 2026-11-17; see docs/review-responses.md). This measures what
+> **open** data can see, not what volcano observatories see: many national networks are not in NGL.
 
-## First numbers (5 km depth, 1 sigma, daily noise)
+## Criteria
 
-- 1,100 GVP Holocene volcanoes at or above sea level; 2,480 active NGL stations within 100 km of one.
-- 483 have no active open station within 100 km.
-- A 1e6 m3 change is detectable at 173; a 1e7 m3 change at 376. With the noise of 30-day means instead of daily
-  noise (coloured noise included): 193 and 406, so the picture does not depend on the averaging window.
-- Of 380 with a confirmed eruption that started in 1900 or later (GVP eruption list), 253 cannot detect 1e7 m3 and
-  168 have no station within 100 km.
-- Benchmark: the USGS Mount Shasta to Medicine Lake map is reproduced in pattern (2-5e5 m3 at the edifices, about
-  2e6 m3 between them; USGS reports more than 1e6 m3 could go undetected there).
+- **GNSS (main):** a matched filter over all open NGL stations within 100 km detects the source at signal-to-noise 5
+  when two 30-day mean positions are compared (noise per station and component, seasonal motion and velocity removed;
+  displacement noise = sqrt(2) x 30-day noise). False-alarm probability about 3e-7 per test.
+- **GNSS (first pass, for comparison with USGS):** 1 sigma daily noise exceeded on one component of one station
+  (USGS SIR 2024-5062-D, SIR 2026-5117-A). It has no false-alarm control.
+- **Sentinel-1:** line-of-sight uplift of 5.9 cm (Biggs et al. 2022) at a coherent pixel near the summit, counted only
+  in seasons when at least 10 % of the pixels within 5 km are coherent (Kellndorfer et al. 2022 seasonal coherence).
 
-Sentinel-1 layer (global seasonal 12-day coherence, Kellndorfer et al. 2022; LOS threshold 5.9 cm after Biggs et al.
-2022, or 1 cm for careful time series; best and worst season):
+## Results (Mogi source at 5 km, 1,100 subaerial volcanoes)
 
-- With 5.9 cm, a 1e7 m3 change at 5 km is visible at 849 volcanoes in their best season but only 470 in their worst
-  (snow, vegetation); 95 have no coherent pixel within 20 km in any season.
-- Sentinel-1 never reaches 1e6 m3 at 5 km: its floor (coherent pixel at the summit, 5.9 cm, cos 39 deg line of sight)
-  is 7.95e6 m3, so smaller changes are visible only to ground GNSS.
-- GNSS or Sentinel-1 combined: 920 of 1,100 can see 1e7 m3; 68 see nothing (mostly remote ocean islands).
+| | Main criteria | First pass |
+|---|---|---|
+| Active NGL stations used | 2,480 | 2,480 |
+| No open GNSS station within 100 km | 501 | 483 |
+| GNSS detects 1e6 / 1e7 m3 | 70 / 286 | 173 / 376 |
+| Sentinel-1 detects 1e7 m3, best / worst season | 602 / 276 | 849 / 470 (single pixel) |
+| Sentinel-1 floor at 5 km | 7.95e6 m3 | 7.95e6 m3 |
+| GNSS or Sentinel-1 detects 1e7 m3 (best season) | 729 | 920 |
 
-Threat x blindness (`scripts/ranking.py`; population within 30 km and eruptions from GVP):
+Threat, exposure and blindness (`scripts/ranking.py`; GVP population within 30 km and eruption list):
 
-- 380 volcanoes erupted since 1900; 118 of them have at least 100,000 people within 30 km.
-- 70 of those 118 (59 %) have no open GNSS station that would see a 1e7 m3 change at 5 km; 72 M people (an upper bound: overlapping 30 km circles are counted more than once) live within
-  30 km of them. Most are in Indonesia (36 volcanoes, 40 M people), the Philippines, Mexico and Central America.
-- Sentinel-1 sees about 8e6 m3 at best at these volcanoes, so smaller changes are visible only to ground GNSS.
-- Threat does not bring open coverage: the GNSS-blind share is 59 % for these 118, against 66 % for all subaerial
-  volcanoes, and stays at 63-73 % across bands of eruption count and population. Japan's 21 active and exposed
-  volcanoes are all visible; without Japan, 70 of 97 (72 %) are blind.
-- Source model (`scripts/source_sensitivity.py`): moving the Mogi source 5 km from the summit changes little (70 of
-  118 at the median and worst azimuth). A horizontal sill (Okada point source) decays faster with distance, so open
-  stations see it worse: 85 of 118 blind, 93 M people. The Mogi numbers are the optimistic case.
-- Many of these countries run national GNSS networks that are not in NGL: read this as "not visible in open data".
-  A check of the 70 against GVMID (Widiwijayanti et al. 2024) and the literature (`docs/data/national_networks.csv`,
-  `scripts/national_networks/`): 20 have documented continuous observatory GNSS whose data are not open (a data-access
-  gap), 14 had open GNSS sites that are no longer active, 5 only campaign GPS, and 31 have no ground GNSS found (an
-  upper bound; Indonesian observatory reports were not searched volcano by volcano). Evidence items marked
-  `search-summary` still need to be read in full before citation.
+- 380 volcanoes had a confirmed eruption starting in 1900 or later; 118 of them have at least 100,000 people within
+  30 km ("active and exposed").
+- Open GNSS cannot detect 1e7 m3 at 75 of the 118 (64 %, 95 % CI 55-72); 58-79 M people live within 30 km of them
+  (lower bound: volcanoes more than 60 km apart; upper bound: sum over volcanoes). Neither GNSS nor Sentinel-1 in its
+  worst season detects 1e7 m3 at 53 (45 %, CI 36-54; 48-62 M people).
+- Coverage follows people within countries and data policy between countries. Stratified by country, active and
+  exposed volcanoes are much better covered than the rest (Mantel-Haenszel odds ratio of being blind 0.05,
+  p < 1e-4); population drives this (OR 0.06), eruption frequency does not (OR 0.98, p = 0.99). Pooled over the world
+  the difference is small (64 % against 75 %, Fisher p = 0.008) and vanishes without Japan (77 % against 80 %,
+  p = 0.51), whose 21 active and exposed volcanoes are all covered.
+- Most of the 75 are in Indonesia (39 volcanoes, 45 M people by sum), Mexico, the Philippines and Central America.
+- Source model (`scripts/source_sensitivity.py`): a source 5 km off the summit gives 76-78 of 118; a horizontal sill
+  (Okada point source, signal decays as R^-5) gives 93 of 118. The Mogi numbers are the optimistic case.
+- National networks (`docs/data/national_networks.csv`, GVMID + literature): of the 75, 21 have documented continuous
+  observatory GNSS whose data are not open, 17 had open sites that are no longer active, 5 only campaign GPS, 2 tilt
+  or levelling only, and 30 have no ground deformation network found (upper bound; Indonesian reports not searched
+  volcano by volcano; 5 volcanoes new in the revision are classified from GVMID only). Items tagged `search-summary`
+  must be read in full before citation.
+- Two of the 75 are volcanic fields (Michoacan-Guanajuato, Hainan) where a point source below one coordinate is only
+  indicative; without them 73 of 116.
+- Benchmark (first-pass criterion, as USGS): the USGS Mount Shasta to Medicine Lake pattern is reproduced (2-5e5 m3 at
+  the edifices, about 2e6 m3 between them).
 
 ![World map](docs/img/world_d5.png)
 
@@ -69,6 +75,7 @@ curl -o data/raw/DataHoldings.txt https://geodesy.unr.edu/NGLStationPages/DataHo
 .venv/bin/python scripts/combine.py
 .venv/bin/python scripts/ranking.py
 .venv/bin/python scripts/source_sensitivity.py
+.venv/bin/python scripts/national_networks/fetch_gvmid.py && .venv/bin/python scripts/national_networks/classify.py data/raw/gvmid data/raw/gvmid/classified.json && .venv/bin/python scripts/national_networks/build.py data/raw/gvmid docs/data/national_networks.csv
 .venv/bin/python scripts/export_web.py        # data for docs/atlas (MapLibre globe)
 ```
 
@@ -77,5 +84,9 @@ Method, assumptions and limitations: [docs/method.md](docs/method.md). Correctio
 
 ## Data and licences
 
-GVP Volcanoes of the World (Smithsonian, non-commercial terms), NGL GNSS (Blewitt, Hammond & Kreemer 2018, Eos 99).
-Derived tables: CC BY-NC 4.0 because of the GVP terms. Code: MIT.
+Inputs: GVP Volcanoes of the World (Smithsonian; terms of use page could not be read automatically, treated as
+non-commercial), NGL GNSS (Blewitt, Hammond & Kreemer 2018, Eos 99), Sentinel-1 global seasonal coherence (Kellndorfer
+et al. 2022, AWS open data), GVMID (Widiwijayanti et al. 2024; free and open for non-commercial use), Natural Earth.
+Licences of this repository: code MIT; the values computed here (detectable volumes, noise estimates, coherence
+summaries, rankings, keyed by GVP volcano number and NGL site) CC BY 4.0. Columns copied from GVP (names, coordinates,
+population, eruptions) and GVMID (station counts) remain under their providers' terms.

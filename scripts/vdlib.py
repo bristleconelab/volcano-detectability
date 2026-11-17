@@ -111,6 +111,25 @@ def min_detectable_volume(x_km, y_km, sig_m, depth_km: float, k: float = 1.0, nu
 LOS_VERT = float(np.cos(np.radians(39.0)))  # Sentinel-1 IW mid-swath incidence ~39 deg; vertical-only LOS
 
 
+def network_min_volume(x_km, y_km, sig_m, depth_km: float, snr: float = 5.0, nu: float = NU,
+                       source: str = "mogi") -> float:
+    """Smallest |dV| (m^3) that a matched filter over all stations and components detects at the given SNR.
+
+    The template is the known source; with independent Gaussian noise sigma_d on each displacement estimate the
+    optimal statistic has SNR = |dV| * sqrt(sum (G / sigma_d)^2), so dV_min = snr / sqrt(sum (G / sigma_d)^2).
+    Pass sig_m as the noise of a displacement (difference of two epoch estimates, i.e. sqrt(2) x the epoch sigma).
+    SNR 5 corresponds to a one-sided Gaussian false-alarm probability of about 3e-7 per test. inf without stations."""
+    x_km, y_km = np.atleast_1d(x_km), np.atleast_1d(y_km)
+    if x_km.size == 0:
+        return np.inf
+    greens = sill_greens(x_km, y_km, depth_km) if source == "sill" else mogi_greens(x_km, y_km, depth_km, nu)
+    g = np.column_stack(greens)
+    s = np.asarray(sig_m, float)
+    ok = np.isfinite(s) & (s > 0)
+    q = np.sum((g[ok] / s[ok]) ** 2)
+    return float(snr / np.sqrt(q)) if q > 0 else np.inf
+
+
 def insar_min_volume(f, depth_km: float, threshold_m: float, los: float = LOS_VERT, nu: float = NU):
     """Smallest Mogi volume change (m^3) whose LOS uplift reaches threshold_m at the best coherent pixel.
 
@@ -139,7 +158,8 @@ def parse_tenv3_tail(text: str) -> pd.DataFrame:
     return df.reset_index(drop=True)
 
 
-def block_noise_sigma(df: pd.DataFrame, w: int = 30, min_cover: float = 0.7, min_pairs: int = 8):
+def block_noise_sigma(df: pd.DataFrame, w: int = 30, min_cover: float = 0.7, min_pairs: int = 8,
+                      seasonal: bool = True):
     """Scatter (m) of a w-day mean position, from differences of consecutive non-overlapping w-day block means.
 
     Unlike the daily estimate this includes coloured (flicker, random-walk) noise at the w-day scale, which is what
@@ -156,10 +176,26 @@ def block_noise_sigma(df: pd.DataFrame, w: int = 30, min_cover: float = 0.7, min
     npairs = int(ok.sum())
     if npairs < min_pairs:
         return np.full(3, np.nan), npairs
+    # regress block-mean differences on a constant (velocity) and on the differences of annual and semi-annual
+    # sinusoids, so that seasonal motion does not count as noise; differencing keeps the fit insensitive to steps
+    tmid = g["mjd"].mean()[cnt >= min_cover * w].to_numpy() / 365.25
+    t0, t1 = tmid[:-1][ok], tmid[1:][ok]
+    cols = [np.ones_like(t0)]
+    if npairs >= 2 * min_pairs and seasonal:
+        for f in (1.0, 2.0):
+            w_ = 2 * np.pi * f
+            cols += [np.sin(w_ * t1) - np.sin(w_ * t0), np.cos(w_ * t1) - np.cos(w_ * t0)]
+    A = np.column_stack(cols)
     out = []
     for c in ("e", "n", "u"):
         d = np.diff(means[c].to_numpy())[ok]
-        out.append(1.4826 * np.median(np.abs(d - np.median(d))) / np.sqrt(2))
+        keep = np.ones(d.size, bool)
+        for _ in range(3):  # least squares with 3-MAD outlier rejection (steps, transients)
+            coef, *_ = np.linalg.lstsq(A[keep], d[keep], rcond=None)
+            r = d - A @ coef
+            mad = np.median(np.abs(r[keep] - np.median(r[keep])))
+            keep = np.abs(r - np.median(r[keep])) <= 3 * 1.4826 * max(mad, 1e-9)
+        out.append(1.4826 * np.median(np.abs(r[keep] - np.median(r[keep]))) / np.sqrt(2))
     return np.array(out), npairs
 
 

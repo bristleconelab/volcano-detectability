@@ -1,6 +1,6 @@
 """How much do the GNSS results depend on the source model?
 
-For every subaerial volcano (5 km depth, daily noise, K = 1):
+For every subaerial volcano (5 km depth, network matched filter SNR 5 on 30-day means):
   dv_mogi      Mogi below the summit (the main case)
   dv_sill      horizontal point sill below the summit (Okada 1985, dip 0)
   dv_off_med   Mogi offset 5 km from the summit, median over 8 azimuths
@@ -15,14 +15,15 @@ import numpy as np
 import pandas as pd
 
 import vdlib as V
-from detectability import MAX_KM, load_noise
+from detectability import MAX_KM, SNR, load_noise
 
 DEPTH, OFFSET_KM, AZ = 5.0, 5.0, np.radians(np.arange(0, 360, 45))
 
 
 def main():
     noise = load_noise()
-    sig = noise[["sig_e_mm", "sig_n_mm", "sig_u_mm"]].to_numpy() / 1e3
+    # main criterion: network matched filter, SNR 5, difference of two 30-day means (sqrt 2 x sigma30)
+    sig = np.sqrt(2) * noise[["sig30_e_mm", "sig30_n_mm", "sig30_u_mm"]].to_numpy() / 1e3
     slat, slon = noise["lat"].to_numpy(), noise["lon"].to_numpy()
     rk = pd.read_csv(V.DATA / "ranking.csv")
     rows = []
@@ -31,22 +32,22 @@ def main():
         idx = np.flatnonzero(near)
         x, y = V.local_km(slon[idx], slat[idx], v.lon, v.lat) if idx.size else (np.zeros(0), np.zeros(0))
         row = dict(vnum=v.vnum)
-        ok = np.hypot(x, y) <= MAX_KM
-        row["dv_mogi"] = V.min_detectable_volume(x[ok], y[ok], sig[idx][ok], DEPTH)[0]
-        row["dv_sill"] = V.min_detectable_volume(x[ok], y[ok], sig[idx][ok], DEPTH, source="sill")[0]
+        ok = (np.hypot(x, y) <= MAX_KM) & np.isfinite(sig[idx]).all(axis=1)
+        row["dv_mogi"] = V.network_min_volume(x[ok], y[ok], sig[idx][ok], DEPTH, snr=SNR)
+        row["dv_sill"] = V.network_min_volume(x[ok], y[ok], sig[idx][ok], DEPTH, snr=SNR, source="sill")
         offs = []
         for a in AZ:
             xs, ys = x - OFFSET_KM * np.sin(a), y - OFFSET_KM * np.cos(a)
-            okk = np.hypot(xs, ys) <= MAX_KM
-            offs.append(V.min_detectable_volume(xs[okk], ys[okk], sig[idx][okk], DEPTH)[0])
+            okk = (np.hypot(xs, ys) <= MAX_KM) & np.isfinite(sig[idx]).all(axis=1)
+            offs.append(V.network_min_volume(xs[okk], ys[okk], sig[idx][okk], DEPTH, snr=SNR))
         row["dv_off_med"] = float(np.median(offs))
         row["dv_off_max"] = float(np.max(offs))
         rows.append(row)
     s = pd.DataFrame(rows)
     out = rk[["vnum", "name", "country", "active", "exposed", "pop30"]].merge(s, on="vnum")
     out.to_csv(V.DATA / "source_sensitivity.csv", index=False, float_format="%.7g")
-    chk = np.allclose(out["dv_mogi"].replace(np.inf, -1), rk["dv_d5_k1"].replace(np.inf, -1), rtol=1e-3)
-    print(f"Mogi column reproduces dv_d5_k1: {chk}")
+    chk = np.allclose(out["dv_mogi"].replace(np.inf, -1), rk["net_d5"].fillna(np.inf).replace(np.inf, -1), rtol=1e-3)
+    print(f"Mogi column reproduces net_d5: {chk}")
     ae = out[out["active"] & out["exposed"]]
     for col in ("dv_mogi", "dv_sill", "dv_off_med", "dv_off_max"):
         b = ae[ae[col] > 1e7]

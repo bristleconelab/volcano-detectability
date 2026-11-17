@@ -211,7 +211,7 @@ def main():
     print(f"  ... Sentinel-1 sees 1e7 in best season {(blind.ins_d5_t59_best <= DV).sum()}, worst "
           f"{(blind.ins_d5_t59_worst <= DV).sum()}; median S1 dV_min (best) "
           f"{np.median(blind.ins_d5_t59_best[np.isfinite(blind.ins_d5_t59_best)]):.3g}; fully blind "
-          f"{blind.fully_blind.sum()} ({blind[blind.fully_blind].pop30.sum() / 1e6:.1f} M); coherent share within 5 km: "
+          f"{blind.both_blind.sum()} ({blind[blind.both_blind].pop30.sum() / 1e6:.1f} M); coherent share within 5 km: "
           f"median {blind.frac_coh_5km_best.median():.1%} best, {blind.frac_coh_5km_worst.median():.1%} worst season")
     print(f"  eruptions since 1900: at all subaerial {rk.n_erupt_1900.sum()}, at GNSS-blind volcanoes "
           f"{rk[rk.gnss_blind].n_erupt_1900.sum()}; at active-exposed {ae.n_erupt_1900.sum()}, at the blind ones "

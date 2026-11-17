@@ -67,6 +67,20 @@ class TestDetectability(unittest.TestCase):
         dv, i, _ = V.min_detectable_volume(x, y, [[1e-3] * 3, [1e-3] * 3], 5.0)
         self.assertEqual(i, 1)
 
+    def test_network_single_station_vertical(self):
+        # one station overhead, only the vertical informative: dV = snr * sigma / Gz
+        _, _, gz = V.mogi_greens(0.0, 0.0, 5.0)
+        dv = V.network_min_volume([0.0], [0.0], [[1e9, 1e9, 0.002]], 5.0, snr=5)
+        self.assertAlmostEqual(dv, 5 * 0.002 / gz, delta=dv * 1e-9)
+
+    def test_network_more_stations_better(self):
+        one = V.network_min_volume([3.0], [0.0], [[1e-3] * 3], 5.0)
+        four = V.network_min_volume([3.0, -3.0, 0.0, 0.0], [0.0, 0.0, 3.0, -3.0], [[1e-3] * 3] * 4, 5.0)
+        self.assertAlmostEqual(one / four, 2.0, places=9)  # sqrt(4) identical stations
+
+    def test_network_empty(self):
+        self.assertTrue(np.isinf(V.network_min_volume([], [], np.zeros((0, 3)), 5.0)))
+
     def test_no_station_is_blind(self):
         dv, i, c = V.min_detectable_volume([], [], np.zeros((0, 3)), 5.0)
         self.assertTrue(np.isinf(dv))
@@ -121,6 +135,18 @@ class TestNoise(unittest.TestCase):
         sig, npairs = V.block_noise_sigma(df, w=30)
         self.assertEqual(npairs, 23)
         np.testing.assert_allclose(sig, 0.003 / np.sqrt(30), rtol=0.45)
+
+    def test_block_noise_removes_seasonal(self):
+        # 4 mm annual vertical cycle on top of 2 mm white noise: the seasonal fit must keep it out of the 30-day sigma
+        rng = np.random.default_rng(4)
+        n = 730
+        t = np.arange(n)
+        u = 0.004 * np.sin(2 * np.pi * t / 365.25) + rng.normal(0, 0.002, n)
+        df = pd.DataFrame({"mjd": 60000 + t, "e": rng.normal(0, 0.002, n), "n": rng.normal(0, 0.002, n), "u": u})
+        with_fit, _ = V.block_noise_sigma(df, w=30)
+        without, _ = V.block_noise_sigma(df, w=30, seasonal=False)
+        self.assertLess(with_fit[2], 0.6 * without[2])
+        self.assertLess(with_fit[2], 3 * 0.002 / np.sqrt(30))
 
     def test_block_noise_random_walk_larger(self):
         rng = np.random.default_rng(3)

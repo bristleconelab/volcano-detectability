@@ -17,6 +17,7 @@ import vdlib as V
 MAX_KM = 100.0
 DEPTHS = (2.0, 5.0, 10.0)
 KS = (1.0, 3.0)
+SNR = 5.0  # network matched-filter threshold (one-sided false-alarm ~3e-7)
 
 
 def load_noise() -> pd.DataFrame:
@@ -56,6 +57,11 @@ def per_volcano(vol: pd.DataFrame, noise: pd.DataFrame) -> pd.DataFrame:
             if sig30 is not None:
                 s30 = sig30[idx]
                 good = np.isfinite(s30).all(axis=1)
+                # main criterion after review: network matched filter, SNR 5, displacement = difference of two
+                # 30-day means (noise sqrt(2) x sigma30, seasonal terms removed)
+                sd = np.sqrt(2) * s30[good]
+                row[f"net_d{int(d)}"] = V.network_min_volume(x[good], y[good], sd, d, snr=SNR)
+                row[f"netsill_d{int(d)}"] = V.network_min_volume(x[good], y[good], sd, d, snr=SNR, source="sill")
                 for k in (1.0, 2.0):
                     row[f"dv30_d{int(d)}_k{int(k)}"] = V.min_detectable_volume(
                         x[good], y[good], s30[good], d, k=k)[0]
@@ -70,7 +76,7 @@ def main():
     out.to_csv(V.DATA / "volcano_detectability.csv", index=False, float_format="%.7g")
     sub = out[out["elev_m"] >= 0]
     print(f"{len(noise)} stations with noise; {len(out)} volcanoes ({len(sub)} with elevation >= 0 m)")
-    for col in [c for c in ("dv_d5_k1", "dv_d5_k3", "dv30_d5_k1", "dv30_d5_k2") if c in sub]:
+    for col in [c for c in ("net_d5", "netsill_d5", "dv_d5_k1", "dv_d5_k3", "dv30_d5_k1", "dv30_d5_k2") if c in sub]:
         dv = sub[col]
         print(f"{col}: no station within {MAX_KM:.0f} km {np.isinf(dv).sum()}; "
               f"<=1e5 {(dv <= 1e5).sum()}, <=1e6 {(dv <= 1e6).sum()}, <=1e7 {(dv <= 1e7).sum()}, "
