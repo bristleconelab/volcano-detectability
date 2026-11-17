@@ -32,7 +32,11 @@ needed, used because it matches the USGS maps and is easy to reproduce.
 - The best usable pixel within 20 km of the summit sees the fraction f = (1 + (r/d)^2)^-1.5 of the peak uplift.
 - Line of sight = cos(39 deg) x vertical (mid-swath incidence; horizontal motion ignored).
 - Threshold on cumulative LOS displacement: 5.9 cm (global threshold of the automated COMET/LiCSAR system, Biggs et al.
-  2022) or 1 cm (careful time-series analysis; optimistic).
+  2022) or 1 cm (careful time-series analysis; optimistic). Published automated thresholds range from about 3.9 cm
+  (signal only) to 6.3 cm (with atmosphere; Anantrasirichai et al. 2019), and Biggs et al. (2026) call ~5 cm a
+  "mid-range" value: the true threshold differs by volcano. Volumes scale linearly with the threshold.
+- This layer is an a-priori estimate from coherence and geometry. Per-volcano measured noise from global time-series
+  efforts (COMET/LiCSAR; NASA MEaSUREs) can replace the constant threshold once released.
 - Not modelled: atmospheric noise per site, the need for a stable reference area, layover and shadow, the
   2021-2024 revisit gap after the loss of Sentinel-1B, and coherence change since 2020.
 

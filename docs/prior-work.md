@@ -14,7 +14,12 @@ A gap below means "not found in these searches", not proof of absence.
 | Lee 2023, NTU undergraduate project (supervisor Taisne) | Continuous-GPS network sensitivity at 184 volcanoes | Unpublished; full text not read (CAPTCHA) |
 | Poland et al. 2026 (Bull. Volcanol. 88:74), GVEWERS | Satellite monitoring programme history | No per-volcano detectability (full text searched) |
 | Pritchard et al. 2026 (Bull. Volcanol. 88:75) | Where daily high-resolution satellite imaging is needed, by threat and volcano type | Tasking priority, not geodetic detectability |
+| Biggs et al. 2026 (RSE 339:115377), Sentinel-1 decade review | States that detection thresholds differ by volcano and that there is no simple mapping from threshold to rate; uses ~5 cm as "mid-range" | No per-volcano threshold table or map (full text checked) |
+| Ebmeier et al. 2013 (JGR, doi:10.1002/jgrb.50195) | Per-volcano minimum detectable InSAR rates at 20 Central American volcanoes (L-band, mean 2.4 cm/yr) | Regional; rates, not volumes |
+| Anantrasirichai et al. 2019 (GRL) | Detection thresholds for automated InSAR: about 3.9 cm (signal only) to 6.3 cm (with atmosphere) | Global numbers, not per volcano |
+| Espín Bedón et al. 2026 (SSRN, doi:10.2139/ssrn.7052099) | Coherence-guided Sentinel-1 time series at ~230 volcanic systems, 2014-2026 (abstract via Crossref) | No thresholds or volumes in the abstract; full text not read (403) |
+| Hooper et al. EGU26-18724; Shkreli, Zebker et al. AGU25 G13C-0277 (NASA MEaSUREs) | Global InSAR processing at ~1,300 / ~1,600 volcanoes; MEaSUREs ~2 cm RMS vs GPS at 10 test volcanoes | No per-volcano detection limits announced; their measured noise could replace our a-priori constants once released |
 | Meredith et al. 2025 (NHESS 25:2731), 2026 (npj Nat. Hazards) | Urban exposure per Holocene volcano | No monitoring |
 
 This repository differs by: global scope (all GVP Holocene volcanoes), open NGL stations with per-station noise estimated
-from the data, a Sentinel-1 layer (planned), and a threat x geodetic-blindness ranking (planned).
+from the data, an a-priori Sentinel-1 layer expressed as volume on the same scale as GNSS, and a threat x geodetic-blindness ranking.
