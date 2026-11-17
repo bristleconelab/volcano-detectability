@@ -3,7 +3,8 @@
 USGS: Mogi sources on a grid at 5 km depth are inflated until the predicted displacement exceeds the GNSS white noise
 at one station; between Mount Shasta and Medicine Lake a large area allows > 0.001 km^3 (1e6 m^3) to intrude undetected.
 Here the same map is rebuilt from open NGL stations and our own per-station noise.
-Outputs: docs/data/benchmark_shasta_medicine.csv (grid), docs/img/benchmark_shasta_medicine.png, printed summary.
+Outputs: docs/data/benchmark_shasta_medicine.csv (grid), docs/img/benchmark_shasta_medicine.{png,pdf} (the PDF is
+Figure S1 of the paper), printed summary.
     python scripts/benchmark_usgs.py
 """
 from __future__ import annotations
@@ -80,7 +81,10 @@ def main():
     ax.legend(loc="lower left", fontsize=7)
     ax.set_title("Open NGL GNSS detectability, Mount Shasta to Medicine Lake (contour: 10$^6$ m$^3$)", fontsize=9)
     fig.tight_layout()
-    fig.savefig(V.ROOT / "docs" / "img" / "benchmark_shasta_medicine.png", dpi=200)
+    img = V.ROOT / "docs" / "img"
+    fig.savefig(img / "benchmark_shasta_medicine.png", dpi=200)
+    # vector copy for the Supporting Information (Figure S1); no creation date, so reruns give identical files
+    fig.savefig(img / "benchmark_shasta_medicine.pdf", metadata={"CreationDate": None})
 
 
 if __name__ == "__main__":
