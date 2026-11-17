@@ -6,6 +6,7 @@
   "license": "MIT",
   "keywords": ["volcano monitoring", "geodetic detectability", "GNSS", "InSAR", "Sentinel-1", "magma accumulation", "open data", "volcanic risk"],
   "related_identifiers": [
+    {"identifier": "10.31223/X5C23N", "relation": "isSupplementTo", "scheme": "doi", "resource_type": "publication-preprint"},
     {"identifier": "10.3133/sir20265117A", "relation": "references", "scheme": "doi"},
     {"identifier": "10.1038/s41597-022-01189-6", "relation": "references", "scheme": "doi"},
     {"identifier": "10.3389/feart.2024.1284889", "relation": "references", "scheme": "doi"}

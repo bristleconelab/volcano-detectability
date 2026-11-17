@@ -1,6 +1,7 @@
 # Volcano geodetic detectability (open data)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24308318.svg)](https://doi.org/10.5281/zenodo.24308318)
+[![Preprint](https://img.shields.io/badge/EarthArXiv-10.31223%2FX5C23N-blue)](https://doi.org/10.31223/X5C23N)
 
 How much magma can collect beneath each of the world's Holocene volcanoes before open geodetic data would notice?
 For every Smithsonian GVP Holocene volcano this repository computes the smallest volume change of a source at 2, 5 and
@@ -95,6 +96,13 @@ summaries, rankings, keyed by GVP volcano number and NGL site) CC BY 4.0. Column
 population, eruptions) remain under GVP's terms; GVMID-derived counts are credited to the contributing observatories.
 
 ## How to cite
+
+The paper (non-peer-reviewed preprint, under review at Geophysical Research Letters):
+
+Ismoilov, O. (2026). Where open geodetic data cannot check for magma accumulation beneath populated active
+volcanoes. EarthArXiv preprint, submitted to Geophysical Research Letters. https://doi.org/10.31223/X5C23N
+
+The code and derived data:
 
 Ismoilov, O. (2026). volcano-detectability: open-data geodetic detectability of Holocene volcanoes (GNSS,
 Sentinel-1), version 1.0.0. Zenodo. https://doi.org/10.5281/zenodo.24308319

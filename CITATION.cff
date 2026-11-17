@@ -22,3 +22,14 @@ keywords:
 abstract: >-
   Smallest volume change beneath every GVP Holocene volcano that open GNSS and Sentinel-1 data would detect, with
   threat, exposure and country-stratified statistics, national-network classes and an interactive globe atlas.
+preferred-citation:
+  type: article
+  title: "Where open geodetic data cannot check for magma accumulation beneath populated active volcanoes"
+  authors:
+    - family-names: Ismoilov
+      given-names: Otabek
+      orcid: "https://orcid.org/0009-0008-2785-3691"
+  year: 2026
+  journal: "EarthArXiv (preprint, submitted to Geophysical Research Letters)"
+  doi: "10.31223/X5C23N"
+  url: "https://doi.org/10.31223/X5C23N"
