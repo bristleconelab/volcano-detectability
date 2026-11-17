@@ -65,6 +65,11 @@ def local_km(lon, lat, lon0: float, lat0: float):
     return d * np.sin(az), d * np.cos(az)
 
 
+def lon_window_deg(lat: float, km: float) -> float:
+    """Longitude half-width (deg) that contains every point within km of latitude lat (prefilter, generous)."""
+    return min(180.0, km / (111.0 * max(np.cos(np.radians(abs(lat) + km / 111.0)), 0.01)) + 0.1)
+
+
 def mogi_greens(x_km, y_km, depth_km: float, nu: float = NU):
     """Surface displacement (m) per 1 m^3 of Mogi volume change at (0, 0, -depth): (ue, un, uu).
 

@@ -1065,12 +1065,12 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 390013,"Pleiades, The",Antarctica,False,False,0,inf,inf,inf,inf
 390015,Melbourne,Antarctica,False,False,0,inf,inf,inf,inf
 390010,Buckle Island,Antarctica,False,False,0,inf,inf,inf,inf
-390017,Morning,Antarctica,False,False,0,6.473774e+07,9.404129e+09,6.507007e+07,7.273851e+07
+390017,Morning,Antarctica,False,False,0,6.473774e+07,9.404129e+09,6.507007e+07,7.104324e+07
 390021,Royal Society Range,Antarctica,False,False,0,3.295019e+07,2.263952e+09,3.336865e+07,3.906896e+07
 390022,Berlin,Antarctica,False,False,0,inf,inf,inf,inf
 390023,Andrus,Antarctica,False,False,0,inf,inf,inf,inf
 390027,Takahe,Antarctica,False,False,0,2007926,1.618468e+07,2204911,3020921
-390028,Hudson Mountains,Antarctica,False,False,0,inf,inf,inf,inf
+390028,Hudson Mountains,Antarctica,False,False,0,3.228768e+07,5.55564e+09,3.243152e+07,3.57761e+07
 390020,Erebus,Antarctica,True,False,0,512076.8,344553.9,538482.6,759823.5
 390031,Penguin Island,Antarctica,True,False,0,1.022609e+07,6.024646e+08,1.035742e+07,1.206407e+07
 390030,Deception Island,Antarctica,True,False,0,inf,inf,inf,inf

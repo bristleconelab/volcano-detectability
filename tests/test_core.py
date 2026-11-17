@@ -91,6 +91,16 @@ class TestInsar(unittest.TestCase):
         self.assertTrue(np.isinf(V.insar_min_volume(0.0, 5.0, 0.01)))
 
 
+class TestPrefilter(unittest.TestCase):
+    def test_window_contains_100km_at_high_latitude(self):
+        for lat in (0, 45, 70, 78, -78, 85):
+            w = V.lon_window_deg(lat, 100.0)
+            for la in (lat - 0.9, lat, lat + 0.9):
+                la = max(min(la, 89.9), -89.9)
+                _, _, d = V.GEOD.inv(0.0, lat, w, la)
+                self.assertGreater(d / 1e3, 100.0, f"lat {lat}")
+
+
 class TestNoise(unittest.TestCase):
     def test_white_noise_recovered(self):
         rng = np.random.default_rng(1)

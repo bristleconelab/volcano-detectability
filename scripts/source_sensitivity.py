@@ -27,7 +27,7 @@ def main():
     rk = pd.read_csv(V.DATA / "ranking.csv")
     rows = []
     for v in rk.itertuples():
-        near = (np.abs(slat - v.lat) < 1.2) & (np.abs(((slon - v.lon + 180) % 360) - 180) < 3.0)
+        near = (np.abs(slat - v.lat) < 1.2) & (np.abs(((slon - v.lon + 180) % 360) - 180) < V.lon_window_deg(v.lat, MAX_KM + 10))
         idx = np.flatnonzero(near)
         x, y = V.local_km(slon[idx], slat[idx], v.lon, v.lat) if idx.size else (np.zeros(0), np.zeros(0))
         row = dict(vnum=v.vnum)

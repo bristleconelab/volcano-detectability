@@ -14,8 +14,8 @@ at least one component. The criterion follows USGS SIR 2024-5062-D and SIR 2026-
 
 ## First numbers (5 km depth, 1 sigma, daily noise)
 
-- 1,100 GVP Holocene volcanoes at or above sea level; 2,477 active NGL stations within 100 km of one.
-- 484 have no active open station within 100 km.
+- 1,100 GVP Holocene volcanoes at or above sea level; 2,480 active NGL stations within 100 km of one.
+- 483 have no active open station within 100 km.
 - A 1e6 m3 change is detectable at 173; a 1e7 m3 change at 376. With the noise of 30-day means instead of daily
   noise (coloured noise included): 193 and 406, so the picture does not depend on the averaging window.
 - Of 380 with a confirmed eruption that started in 1900 or later (GVP eruption list), 253 cannot detect 1e7 m3 and
@@ -30,7 +30,7 @@ Sentinel-1 layer (global seasonal 12-day coherence, Kellndorfer et al. 2022; LOS
   (snow, vegetation); 95 have no coherent pixel within 20 km in any season.
 - Sentinel-1 never reaches 1e6 m3 at 5 km: its floor (coherent pixel at the summit, 5.9 cm, cos 39 deg line of sight)
   is 7.95e6 m3, so smaller changes are visible only to ground GNSS.
-- GNSS or Sentinel-1 combined: 920 of 1,100 can see 1e7 m3; 69 see nothing (mostly remote ocean islands).
+- GNSS or Sentinel-1 combined: 920 of 1,100 can see 1e7 m3; 68 see nothing (mostly remote ocean islands).
 
 Threat x blindness (`scripts/ranking.py`; population within 30 km and eruptions from GVP):
 

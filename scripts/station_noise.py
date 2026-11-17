@@ -33,7 +33,7 @@ def candidate_stations():
     st = st[st["end"] >= ACTIVE_SINCE].reset_index(drop=True)
     keep = np.zeros(len(st), bool)
     for _, v in vol.iterrows():
-        near = (np.abs(st["lat"] - v.lat) < 1.0) & (np.abs(((st["lon"] - v.lon + 180) % 360) - 180) < 2.5)
+        near = (np.abs(st["lat"] - v.lat) < 1.0) & (np.abs(((st["lon"] - v.lon + 180) % 360) - 180) < V.lon_window_deg(v.lat, MAX_KM))
         if not near.any():
             continue
         idx = np.flatnonzero(near.to_numpy())

@@ -32,7 +32,7 @@ def per_volcano(vol: pd.DataFrame, noise: pd.DataFrame) -> pd.DataFrame:
     slat, slon = noise["lat"].to_numpy(), noise["lon"].to_numpy()
     rows = []
     for v in vol.itertuples():
-        near = (np.abs(slat - v.lat) < 1.0) & (np.abs(((slon - v.lon + 180) % 360) - 180) < 2.5)
+        near = (np.abs(slat - v.lat) < 1.0) & (np.abs(((slon - v.lon + 180) % 360) - 180) < V.lon_window_deg(v.lat, MAX_KM))
         idx = np.flatnonzero(near)
         row = dict(vnum=v.vnum, name=v.name, country=v.country, lat=v.lat, lon=v.lon, elev_m=v.elev_m,
                    last_eruption=v.last_eruption)
