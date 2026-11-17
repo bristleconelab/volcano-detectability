@@ -1,7 +1,7 @@
 """Daily white-noise sigma for every active NGL station within MAX_KM of a GVP Holocene volcano.
 
 Only the last ~260 kB of each .tenv3 file is fetched (HTTP Range), which holds about three years of daily solutions;
-the newest 730 days are used. Results are appended to docs/data/station_noise.csv, so the run can be resumed.
+the newest 730 days are used. Two noise levels: daily white noise and the scatter of 30-day means. Results are appended to docs/data/station_noise.csv, so the run can be resumed.
     python scripts/station_noise.py [--workers 6]
 """
 from __future__ import annotations
@@ -23,7 +23,8 @@ TAIL_BYTES = 260_000
 WINDOW_DAYS = 730
 OUT = V.DATA / "station_noise.csv"
 FIELDS = ["site", "lat", "lon", "start", "end", "first_mjd", "last_mjd", "ndays", "npairs",
-          "sig_e_mm", "sig_n_mm", "sig_u_mm", "status"]
+          "sig_e_mm", "sig_n_mm", "sig_u_mm", "npairs30", "sig30_e_mm", "sig30_n_mm", "sig30_u_mm",
+          "status"]
 
 
 def candidate_stations():
@@ -66,9 +67,11 @@ def process(row, session):
         return {**base, "status": "unparsed"}
     df = df[df["mjd"] > df["mjd"].max() - WINDOW_DAYS]
     sig, npairs = V.white_noise_sigma(df)
+    s30, n30 = V.block_noise_sigma(df, w=30)
     return {**base, "first_mjd": int(df["mjd"].min()), "last_mjd": int(df["mjd"].max()), "ndays": len(df),
             "npairs": npairs, "sig_e_mm": round(sig[0] * 1e3, 3), "sig_n_mm": round(sig[1] * 1e3, 3),
-            "sig_u_mm": round(sig[2] * 1e3, 3), "status": "ok" if np.isfinite(sig).all() else "short"}
+            "sig_u_mm": round(sig[2] * 1e3, 3), "npairs30": n30, "sig30_e_mm": round(s30[0] * 1e3, 3),
+            "sig30_n_mm": round(s30[1] * 1e3, 3), "sig30_u_mm": round(s30[2] * 1e3, 3), "status": "ok" if np.isfinite(sig).all() else "short"}
 
 
 def main():

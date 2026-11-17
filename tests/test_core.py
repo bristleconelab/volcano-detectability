@@ -83,6 +83,24 @@ class TestNoise(unittest.TestCase):
         self.assertEqual(npairs, n - 1)
         np.testing.assert_allclose(sig, [0.0015, 0.0012, 0.005], rtol=0.08)
 
+    def test_block_noise_white(self):
+        # pure white noise: a 30-day mean has sigma / sqrt(30)
+        rng = np.random.default_rng(2)
+        n = 720
+        df = pd.DataFrame({"mjd": np.arange(n), "e": rng.normal(0, 0.003, n), "n": rng.normal(0, 0.003, n),
+                           "u": 0.02 * np.arange(n) / 365 + rng.normal(0, 0.003, n)})
+        sig, npairs = V.block_noise_sigma(df, w=30)
+        self.assertEqual(npairs, 23)
+        np.testing.assert_allclose(sig, 0.003 / np.sqrt(30), rtol=0.45)
+
+    def test_block_noise_random_walk_larger(self):
+        rng = np.random.default_rng(3)
+        n = 720
+        rw = np.cumsum(rng.normal(0, 0.0005, n))
+        df = pd.DataFrame({"mjd": np.arange(n), "e": rw, "n": rw, "u": rw})
+        sig, _ = V.block_noise_sigma(df, w=30)
+        self.assertGreater(sig[0], 0.0005 / np.sqrt(30) * 3)
+
     def test_gaps_not_paired(self):
         df = pd.DataFrame({"mjd": [1, 2, 4, 5, 9], "e": [0, 1, 0, 1, 0], "n": 0, "u": 0})
         _, npairs = V.white_noise_sigma(df, min_pairs=1)

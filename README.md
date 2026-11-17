@@ -16,7 +16,8 @@ at least one component. The criterion follows USGS SIR 2024-5062-D and SIR 2026-
 
 - 1,100 GVP Holocene volcanoes at or above sea level; 2,477 active NGL stations within 100 km of one.
 - 484 have no active open station within 100 km.
-- A 1e6 m3 change is detectable at 173; a 1e7 m3 change at 376.
+- A 1e6 m3 change is detectable at 173; a 1e7 m3 change at 376. With the noise of 30-day means instead of daily
+  noise (coloured noise included): 193 and 406, so the picture does not depend on the averaging window.
 - Of 383 that erupted since 1900, 256 cannot detect 1e7 m3 and 171 have no station within 100 km.
 - Benchmark: the USGS Mount Shasta to Medicine Lake map is reproduced in pattern (2-5e5 m3 at the edifices, about
   2e6 m3 between them; USGS reports more than 1e6 m3 could go undetected there).
@@ -57,7 +58,8 @@ curl -o data/raw/DataHoldings.txt https://geodesy.unr.edu/NGLStationPages/DataHo
 .venv/bin/python scripts/export_web.py        # data for docs/atlas (MapLibre globe)
 ```
 
-Prior work and what is new: [docs/prior-work.md](docs/prior-work.md).
+Method, assumptions and limitations: [docs/method.md](docs/method.md). Prior work and what is new:
+[docs/prior-work.md](docs/prior-work.md).
 
 ## Data and licences
 

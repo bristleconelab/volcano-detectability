@@ -121,6 +121,30 @@ def parse_tenv3_tail(text: str) -> pd.DataFrame:
     return df.reset_index(drop=True)
 
 
+def block_noise_sigma(df: pd.DataFrame, w: int = 30, min_cover: float = 0.7, min_pairs: int = 8):
+    """Scatter (m) of a w-day mean position, from differences of consecutive non-overlapping w-day block means.
+
+    Unlike the daily estimate this includes coloured (flicker, random-walk) noise at the w-day scale, which is what
+    limits detection of slow inflation. Blocks need >= min_cover of their days; the median difference (a constant
+    velocity) is removed by the robust scale. Returns (sigma[3], number of block pairs); NaN when too few."""
+    mjd = df["mjd"].to_numpy()
+    blk = ((mjd - mjd.min()) // w).astype(int)
+    g = df.assign(blk=blk).groupby("blk")
+    means = g[["e", "n", "u"]].mean()
+    cnt = g.size()
+    means = means[cnt >= min_cover * w]
+    idx = means.index.to_numpy()
+    ok = np.diff(idx) == 1
+    npairs = int(ok.sum())
+    if npairs < min_pairs:
+        return np.full(3, np.nan), npairs
+    out = []
+    for c in ("e", "n", "u"):
+        d = np.diff(means[c].to_numpy())[ok]
+        out.append(1.4826 * np.median(np.abs(d - np.median(d))) / np.sqrt(2))
+    return np.array(out), npairs
+
+
 def white_noise_sigma(df: pd.DataFrame, min_pairs: int = 100) -> tuple[np.ndarray, int]:
     """Daily white-noise sigma (m) for e, n, u from consecutive-day differences.
 

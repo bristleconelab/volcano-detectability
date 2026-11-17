@@ -27,6 +27,8 @@ def load_noise() -> pd.DataFrame:
 
 def per_volcano(vol: pd.DataFrame, noise: pd.DataFrame) -> pd.DataFrame:
     sig = noise[["sig_e_mm", "sig_n_mm", "sig_u_mm"]].to_numpy() / 1e3
+    cols30 = ["sig30_e_mm", "sig30_n_mm", "sig30_u_mm"]
+    sig30 = noise[cols30].to_numpy() / 1e3 if set(cols30) <= set(noise.columns) else None
     slat, slon = noise["lat"].to_numpy(), noise["lon"].to_numpy()
     rows = []
     for v in vol.itertuples():
@@ -50,6 +52,12 @@ def per_volcano(vol: pd.DataFrame, noise: pd.DataFrame) -> pd.DataFrame:
                 if d == 5.0 and k == 1.0:
                     row["best_site_d5"] = noise.loc[idx[i], "site"] if i >= 0 else ""
                     row["best_km_d5"] = round(float(dist[i]), 2) if i >= 0 else np.nan
+            if sig30 is not None:
+                s30 = sig30[idx]
+                good = np.isfinite(s30).all(axis=1)
+                for k in (1.0, 2.0):
+                    row[f"dv30_d{int(d)}_k{int(k)}"] = V.min_detectable_volume(
+                        x[good], y[good], s30[good], d, k=k)[0]
         rows.append(row)
     return pd.DataFrame(rows)
 
@@ -61,7 +69,7 @@ def main():
     out.to_csv(V.DATA / "volcano_detectability.csv", index=False, float_format="%.4g")
     sub = out[out["elev_m"] >= 0]
     print(f"{len(noise)} stations with noise; {len(out)} volcanoes ({len(sub)} with elevation >= 0 m)")
-    for col in ("dv_d5_k1", "dv_d5_k3"):
+    for col in [c for c in ("dv_d5_k1", "dv_d5_k3", "dv30_d5_k1", "dv30_d5_k2") if c in sub]:
         dv = sub[col]
         print(f"{col}: no station within {MAX_KM:.0f} km {np.isinf(dv).sum()}; "
               f"<=1e5 {(dv <= 1e5).sum()}, <=1e6 {(dv <= 1e6).sum()}, <=1e7 {(dv <= 1e7).sum()}, "
