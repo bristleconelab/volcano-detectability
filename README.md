@@ -36,6 +36,9 @@ Threat x blindness (`scripts/ranking.py`; population within 30 km and eruptions 
 - 70 of those 118 (59 %) have no open GNSS station that would see a 1e7 m3 change at 5 km; 72 M people live within
   30 km of them. Most are in Indonesia (36 volcanoes, 40 M people), the Philippines, Mexico and Central America.
 - Sentinel-1 sees about 8e6 m3 at best at these volcanoes, so smaller changes are visible only to ground GNSS.
+- Source model (`scripts/source_sensitivity.py`): moving the Mogi source 5 km from the summit changes little (70 of
+  118 at the median and worst azimuth). A horizontal sill (Okada point source) decays faster with distance, so open
+  stations see it worse: 85 of 118 blind, 93 M people. The Mogi numbers are the optimistic case.
 - Many of these countries run national GNSS networks that are not in NGL: read this as "not visible in open data".
 
 ![World map](docs/img/world_d5.png)
@@ -55,10 +58,11 @@ curl -o data/raw/DataHoldings.txt https://geodesy.unr.edu/NGLStationPages/DataHo
 .venv/bin/python scripts/insar_coherence.py    # windowed reads of the public coherence COGs
 .venv/bin/python scripts/combine.py
 .venv/bin/python scripts/ranking.py
+.venv/bin/python scripts/source_sensitivity.py
 .venv/bin/python scripts/export_web.py        # data for docs/atlas (MapLibre globe)
 ```
 
-Method, assumptions and limitations: [docs/method.md](docs/method.md). Prior work and what is new:
+Method, assumptions and limitations: [docs/method.md](docs/method.md). Corrections: [docs/corrections.md](docs/corrections.md). Prior work and what is new:
 [docs/prior-work.md](docs/prior-work.md).
 
 ## Data and licences

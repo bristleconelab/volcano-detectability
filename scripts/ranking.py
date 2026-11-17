@@ -47,7 +47,7 @@ def main():
     df["exposed"] = df["pop30"].fillna(0) >= POP30
     df["gnss_blind"] = df["dv_d5_k1"] > DV
     df["fully_blind"] = df["gnss_blind"] & (df["ins_d5_t59_worst"] > DV)
-    df.to_csv(V.DATA / "ranking.csv", index=False, float_format="%.4g")
+    df.to_csv(V.DATA / "ranking.csv", index=False, float_format="%.7g")
 
     pop_missing = df["pop30"].isna().sum()
     print(f"{len(df)} subaerial volcanoes; population missing for {pop_missing}")

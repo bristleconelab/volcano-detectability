@@ -80,7 +80,7 @@ def main():
                 c = f"ins_d{d}_{name}_{s}"
                 df[c] = df[c].fillna(np.inf)
         df[f"comb_d{d}"] = np.minimum(df[f"dv_d{d}_k1"], df[f"ins_d{d}_t59_best"])
-    df.to_csv(V.DATA / "volcano_detectability_combined.csv", index=False, float_format="%.4g")
+    df.to_csv(V.DATA / "volcano_detectability_combined.csv", index=False, float_format="%.7g")
     sub = df[df["elev_m"] >= 0]
     print(f"{len(sub)} subaerial volcanoes; InSAR rows {sub['n_seasons'].notna().sum()}")
     for col in ("dv_d5_k1", "ins_d5_t59_best", "ins_d5_t59_worst", "ins_d5_t10_best", "comb_d5"):

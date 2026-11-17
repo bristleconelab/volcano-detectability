@@ -75,7 +75,19 @@ def mogi_greens(x_km, y_km, depth_km: float, nu: float = NU):
     return c * x / r3, c * y / r3, c * d / r3
 
 
-def min_detectable_volume(x_km, y_km, sig_m, depth_km: float, k: float = 1.0, nu: float = NU):
+def sill_greens(x_km, y_km, depth_km: float):
+    """Surface displacement (m) per 1 m^3 of opening of a horizontal point crack (sill) at depth d.
+
+    Okada (1985) point tensile source with dip 0: the nu-dependent I-terms carry sin^2(dip) and vanish, leaving
+    u = 3 dV d^2 / (2 pi R^5) * (x, y, d). Peak uplift is twice the Mogi value and the uplift volume equals dV."""
+    x, y, d = np.asarray(x_km) * 1e3, np.asarray(y_km) * 1e3, depth_km * 1e3
+    r5 = (x ** 2 + y ** 2 + d ** 2) ** 2.5
+    c = 3 * d ** 2 / (2 * np.pi)
+    return c * x / r5, c * y / r5, c * d / r5
+
+
+def min_detectable_volume(x_km, y_km, sig_m, depth_km: float, k: float = 1.0, nu: float = NU,
+                          source: str = "mogi"):
     """Smallest |dV| (m^3) detected by >= 1 component of >= 1 station; also index of the deciding station.
 
     x_km, y_km: station positions relative to the source (arrays, n). sig_m: (n, 3) white-noise sigma in metres
@@ -83,7 +95,8 @@ def min_detectable_volume(x_km, y_km, sig_m, depth_km: float, k: float = 1.0, nu
     x_km, y_km = np.atleast_1d(x_km), np.atleast_1d(y_km)
     if x_km.size == 0:
         return np.inf, -1, -1
-    g = np.abs(np.column_stack(mogi_greens(x_km, y_km, depth_km, nu)))  # (n, 3) m per m^3
+    greens = sill_greens(x_km, y_km, depth_km) if source == "sill" else mogi_greens(x_km, y_km, depth_km, nu)
+    g = np.abs(np.column_stack(greens))  # (n, 3) m per m^3
     with np.errstate(divide="ignore"):
         dv = np.where(g > 0, k * np.asarray(sig_m, float) / g, np.inf)
     i = int(np.argmin(dv))

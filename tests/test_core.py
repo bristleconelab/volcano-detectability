@@ -31,6 +31,25 @@ class TestMogi(unittest.TestCase):
         self.assertAlmostEqual(vol, 1.5 * (1 - d / np.hypot(R, d)), places=5)
 
 
+class TestSill(unittest.TestCase):
+    def test_peak_twice_mogi(self):
+        _, _, us = V.sill_greens(0.0, 0.0, 5.0)
+        _, _, um = V.mogi_greens(0.0, 0.0, 5.0)
+        self.assertAlmostEqual(us / um, 1.5 / 0.75, places=9)
+
+    def test_uplift_volume_equals_dv(self):
+        R, d = 400.0, 5.0
+        r = np.linspace(0, R, 400001)
+        _, _, uz = V.sill_greens(r, 0 * r, d)
+        vol = np.trapezoid(uz * 2 * np.pi * r * 1e3, r * 1e3)
+        self.assertAlmostEqual(vol, 1 - (d / np.hypot(R, d)) ** 3, places=5)
+
+    def test_sill_option_used(self):
+        dvm, *_ = V.min_detectable_volume([0.0], [0.0], [[1.0, 1.0, 0.002]], 5.0)
+        dvs, *_ = V.min_detectable_volume([0.0], [0.0], [[1.0, 1.0, 0.002]], 5.0, source="sill")
+        self.assertAlmostEqual(dvm / dvs, 2.0, places=9)
+
+
 class TestDetectability(unittest.TestCase):
     def test_single_station_overhead(self):
         # 2 mm vertical noise at the epicentre, K = 1: dV_min = 2e-3 / (0.75 / (pi * 25e6)) = 2.094e5 m^3

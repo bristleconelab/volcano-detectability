@@ -66,7 +66,7 @@ def main():
     vol = V.load_volcanoes()
     noise = load_noise()
     out = per_volcano(vol, noise)
-    out.to_csv(V.DATA / "volcano_detectability.csv", index=False, float_format="%.4g")
+    out.to_csv(V.DATA / "volcano_detectability.csv", index=False, float_format="%.7g")
     sub = out[out["elev_m"] >= 0]
     print(f"{len(noise)} stations with noise; {len(out)} volcanoes ({len(sub)} with elevation >= 0 m)")
     for col in [c for c in ("dv_d5_k1", "dv_d5_k3", "dv30_d5_k1", "dv30_d5_k2") if c in sub]:

@@ -44,7 +44,7 @@ def main():
             grid[i, j] = V.min_detectable_volume(x[ok], y[ok], sig[ok], DEPTH_KM, k=K)[0]
     LO, LA = np.meshgrid(lons, lats)
     pd.DataFrame({"lon": LO.ravel(), "lat": LA.ravel(), "dv_m3": grid.ravel()}).to_csv(
-        V.DATA / "benchmark_shasta_medicine.csv", index=False, float_format="%.5g")
+        V.DATA / "benchmark_shasta_medicine.csv", index=False, float_format="%.7g")
 
     print(f"{len(near)} NGL stations with noise in/near the box; grid {lats.size} x {lons.size} at {STEP_KM} km")
     print(f"grid dv (m^3): min {grid.min():.3g}, median {np.median(grid):.3g}, max {grid.max():.3g}; "
