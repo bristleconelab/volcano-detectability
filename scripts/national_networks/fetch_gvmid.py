@@ -5,7 +5,7 @@ GVMID web app JSON APIs (no login; non-commercial terms, cite the paper):
   https://wovodat.org/gvmid/php/api.php?vd_num=<GVP volcano number>   per-volcano instruments
 Writes data/raw/gvmid/{dl_def.json, vol/<vnum>.json, the70.csv}. Then:
   python scripts/national_networks/classify.py data/raw/gvmid data/raw/gvmid/classified.json
-  python scripts/national_networks/build.py data/raw/gvmid docs/data/national_networks.csv
+  python scripts/national_networks/build.py data/raw/gvmid docs/data/national_networks.csv docs/data/station_noise.csv
 build.py also holds the hand-checked literature evidence (each item tagged page-read or search-summary).
 """
 import json

@@ -30,6 +30,15 @@ L={
 '275001':('camp','Hainan Earthquake Agency volcano network since 2007; 7 GNSS networks incl. multi-period mobile GNSS (campaign) in Qiongbei area','no','https://www.dzdz.ac.cn/CN/Y2022/V44/I5/1128','page-read'),
 '342030':('oth','INSIVUMEH Santiaguito: electronic tiltmeter, dry tilt, levelling lines (WOVO directory); no GNSS found','unknown','https://wovo.iavceivolcano.org/members-observatories-directory/guatemala-observatorio-vulcanologica-del-volcan-santiaguito-insivumeh/','search-summary'),
 }
+import math as _m
+import pandas as _pd
+_st=_pd.read_csv(sys.argv[3]) if len(sys.argv)>3 else None
+def _ngl_ctx(lat,lon):
+    if _st is None: return ''
+    d=[(s.status=='ok' and s.sig30_u_mm==s.sig30_u_mm,6371*2*_m.asin(_m.sqrt(_m.sin(_m.radians(s.lat-lat)/2)**2+_m.cos(_m.radians(lat))*_m.cos(_m.radians(s.lat))*_m.sin(_m.radians(s.lon-lon)/2)**2))) for s in _st.itertuples()]
+    near=[x for x in d if x[1]<=30]
+    ok=sum(1 for x in near if x[0]); short=len(near)-ok
+    return 'active NGL stations within 30 km: %d with a 30-day noise estimate, %d with too short a record'%(ok,short)
 rows=[]; summ={'any_gnss':[], 'cont_nat':[], 'only_hist_open':[], 'camp_only':[], 'oth_only':[], 'none':[]}
 for v,c in cl.items():
     gn=sorted(set(c['gnss_open'])|set(c['gnss_nat']))
@@ -39,7 +48,7 @@ for v,c in cl.items():
     if gn:
         # station codes and locations from GVMID are not redistributed (WOVOdat data policy); counts only
         ev.append('GVMID<=30km GNSS stations: %d'%len(gn))
-        if c['gnss_open']: ev.append('of which open-archive (NGL/UNAVCO) sites: %d, none active in current NGL list'%len(c['gnss_open']))
+        if c['gnss_open']: ev.append('of which open-archive (NGL/UNAVCO) sites: %d'%len(c['gnss_open']))
         if c['gnss_nat']: ev.append('of which observatory GNSS (%s): %d'%('/'.join(natsrc),len(c['gnss_nat'])))
     if c['other']: ev.append('GVMID other deformation %d (%s; %s)'%(c['other'],'/'.join(t[5:] for t in c['other_types']),'/'.join(c['other_src'])))
     if not gn and not c['other']: ev.append('GVMID: no deformation station <=30 km')
@@ -63,6 +72,8 @@ for v,c in cl.items():
     cat=('observatory_cgnss_not_open' if has_cont_nat else 'open_sites_inactive' if gn and not (lit and lit[0]=='camp')
          else 'campaign_gps_only' if lit and lit[0]=='camp' else 'other_deformation_only' if c['other'] or (lit and lit[0]=='oth')
          else 'none_found')
+    ctx=_ngl_ctx(float(c.get('lat',0) or 0),float(c.get('lon',0) or 0)) if 'lat' in c else ''
+    if ctx: ev.append(ctx)
     rows.append(dict(vnum=v,name=c['name'],country=c['country'],category=cat,gvmid_gnss_n=len(gn),gvmid_other_deformation_n=c['other'],
         evidence='; '.join(ev),data_public=pub,source_url=url))
 with open(OUT,'w',newline='') as f:

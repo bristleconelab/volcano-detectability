@@ -42,7 +42,7 @@ for r in rows:
             (g_open if src<=OPEN or src&{'NGL','UNAVCO'} and not src-OPEN-{'SNET'} else g_nat)[k]|=src
         else:
             oth[k]|=src|{'type:'+'/'.join(sorted(ty)) if ty else 'type:unrecorded'}
-    out.append(dict(vnum=r['vnum'],name=r['name'],country=r['country'],
+    out.append(dict(vnum=r['vnum'],name=r['name'],country=r['country'],lat=la,lon=lo,
         gnss_open=sorted(g_open),gnss_nat=sorted(g_nat),
         nat_src=sorted(set().union(*g_nat.values())) if g_nat else [],
         other=len(oth),other_types=sorted(set(x for v in oth.values() for x in v if x.startswith('type:'))),

@@ -75,7 +75,7 @@ curl -o data/raw/DataHoldings.txt https://geodesy.unr.edu/NGLStationPages/DataHo
 .venv/bin/python scripts/combine.py
 .venv/bin/python scripts/ranking.py
 .venv/bin/python scripts/source_sensitivity.py
-.venv/bin/python scripts/national_networks/fetch_gvmid.py && .venv/bin/python scripts/national_networks/classify.py data/raw/gvmid data/raw/gvmid/classified.json && .venv/bin/python scripts/national_networks/build.py data/raw/gvmid docs/data/national_networks.csv
+.venv/bin/python scripts/national_networks/fetch_gvmid.py && .venv/bin/python scripts/national_networks/classify.py data/raw/gvmid data/raw/gvmid/classified.json && .venv/bin/python scripts/national_networks/build.py data/raw/gvmid docs/data/national_networks.csv docs/data/station_noise.csv
 .venv/bin/python scripts/export_web.py        # data for docs/atlas (MapLibre globe)
 ```
 
