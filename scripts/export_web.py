@@ -32,6 +32,7 @@ def main():
              "act": bool(r.active), "exp": bool(r.exposed)}
         for d in (2, 5, 10):
             p[f"g{d}"] = num(getattr(r, f"dv_d{d}_k1"))
+            p[f"gs{d}"] = num(getattr(r, f"dvsill_d{d}_k1"))
             p[f"ib{d}"] = num(getattr(r, f"ins_d{d}_t59_best"))
             p[f"iw{d}"] = num(getattr(r, f"ins_d{d}_t59_worst"))
             p[f"it{d}"] = num(getattr(r, f"ins_d{d}_t10_best"))

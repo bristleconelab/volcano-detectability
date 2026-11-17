@@ -49,6 +49,7 @@
   <div class="seg" id="segSensor">
     <button data-v="comb" aria-pressed="true">GNSS or Sentinel-1</button>
     <button data-v="g">Open GNSS</button>
+    <button data-v="gs">Open GNSS, sill source</button>
     <button data-v="ib">Sentinel-1, best season</button>
     <button data-v="iw">Sentinel-1, worst season</button>
   </div>
@@ -127,7 +128,7 @@ function paint() {
   map.setPaintProperty('volc', 'circle-stroke-width', ['case', ['==', v, null], 1.6, 0.5]);
   const filt = state.set === 'act' ? ['==', ['get', 'act'], true] : state.set === 'ae' ? ['all', ['==', ['get', 'act'], true], ['==', ['get', 'exp'], true]] : null;
   map.setFilter('volc', filt);
-  const names = { comb: 'GNSS or Sentinel-1', g: 'open GNSS', ib: 'Sentinel-1, best season', iw: 'Sentinel-1, worst season' };
+  const names = { comb: 'GNSS or Sentinel-1', g: 'open GNSS', gs: 'open GNSS, horizontal sill', ib: 'Sentinel-1, best season', iw: 'Sentinel-1, worst season' };
   document.getElementById('legTitle').textContent = `Smallest detectable volume change, ${state.depth} km (${names[state.sensor]})`;
 }
 
@@ -159,7 +160,7 @@ map.on('click', 'volc', e => {
   const html = `<b>${p.n}</b> <span class="k">${p.c}</span><br>
     <span class="k">People within 30 km</span> ${fmtPop(p.p30)} · <span class="k">eruptions since 1900</span> ${p.e19}${p.vei != null ? ' · <span class="k">max VEI</span> ' + p.vei : ''}<br>
     <span class="k">Open GNSS stations ≤20 km</span> ${p.s20} · <span class="k">≤50 km</span> ${p.s50}${p.bs ? ' · <span class="k">deciding</span> ' + p.bs + ' (' + p.bk + ' km)' : ''}<br>
-    <span class="k">Detectable at ${d} km:</span> GNSS ${fmt(g)} m³ · Sentinel-1 ${fmt(ib)} (best) / ${fmt(iw)} (worst season) m³
+    <span class="k">Detectable at ${d} km:</span> GNSS ${fmt(g)} m³ (sill ${fmt(p['gs' + d])}) · Sentinel-1 ${fmt(ib)} (best) / ${fmt(iw)} (worst season) m³
     <div class="verdict">${verdict}</div>`;
   new maplibregl.Popup({ closeButton: true, maxWidth: '300px' }).setLngLat(e.features[0].geometry.coordinates).setHTML(html).addTo(map);
 });

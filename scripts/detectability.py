@@ -52,6 +52,7 @@ def per_volcano(vol: pd.DataFrame, noise: pd.DataFrame) -> pd.DataFrame:
                 if d == 5.0 and k == 1.0:
                     row["best_site_d5"] = noise.loc[idx[i], "site"] if i >= 0 else ""
                     row["best_km_d5"] = round(float(dist[i]), 2) if i >= 0 else np.nan
+            row[f"dvsill_d{int(d)}_k1"] = V.min_detectable_volume(x, y, sig[idx], d, k=1.0, source="sill")[0]
             if sig30 is not None:
                 s30 = sig30[idx]
                 good = np.isfinite(s30).all(axis=1)
