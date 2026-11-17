@@ -59,7 +59,10 @@ for v,c in cl.items():
     elif lit and lit[0]=='camp': summ['camp_only'].append(c['name'])
     elif c['other'] or (lit and lit[0]=='oth'): summ['oth_only'].append(c['name'])
     else: summ['none'].append(c['name'])
-    rows.append(dict(vnum=v,name=c['name'],country=c['country'],gvmid_gnss_n=len(gn),gvmid_other_deformation_n=c['other'],
+    cat=('observatory_cgnss_not_open' if has_cont_nat else 'open_sites_inactive' if gn and not (lit and lit[0]=='camp')
+         else 'campaign_gps_only' if lit and lit[0]=='camp' else 'other_deformation_only' if c['other'] or (lit and lit[0]=='oth')
+         else 'none_found')
+    rows.append(dict(vnum=v,name=c['name'],country=c['country'],category=cat,gvmid_gnss_n=len(gn),gvmid_other_deformation_n=c['other'],
         evidence='; '.join(ev),data_public=pub,source_url=url))
 with open(OUT,'w',newline='') as f:
     w=csv.DictWriter(f,fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)

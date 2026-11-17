@@ -94,6 +94,13 @@ const state ={ sensor: 'comb', depth: 5, set: 'all', stations: false };
 const fmt = v => v == null ? '—' : (v >= 1e9 ? (v/1e9).toFixed(1)+'×10⁹' : v >= 1e6 ? (v/1e6).toFixed(v < 1e7 ? 1 : 0)+'×10⁶' : (v/1e5).toFixed(1)+'×10⁵') ;
 const fmtPop = v => v == null ? '—' : v >= 1e6 ? (v/1e6).toFixed(1)+' M' : v >= 1e3 ? Math.round(v/1e3)+' k' : String(v);
 const field = () => state.sensor + state.depth;
+const NN = {
+  observatory_cgnss_not_open: 'observatory runs continuous GNSS, data not open',
+  open_sites_inactive: 'open GNSS sites existed but are no longer active',
+  campaign_gps_only: 'campaign GPS only',
+  other_deformation_only: 'tilt or levelling only, no GNSS found',
+  none_found: 'no ground deformation network found'
+};
 
 const style = {
   version: 8,
@@ -161,7 +168,7 @@ map.on('click', 'volc', e => {
     <span class="k">People within 30 km</span> ${fmtPop(p.p30)} · <span class="k">eruptions since 1900</span> ${p.e19}${p.vei != null ? ' · <span class="k">max VEI</span> ' + p.vei : ''}<br>
     <span class="k">Open GNSS stations ≤20 km</span> ${p.s20} · <span class="k">≤50 km</span> ${p.s50}${p.bs ? ' · <span class="k">deciding</span> ' + p.bs + ' (' + p.bk + ' km)' : ''}<br>
     <span class="k">Detectable at ${d} km:</span> GNSS ${fmt(g)} m³ (sill ${fmt(p['gs' + d])}) · Sentinel-1 ${fmt(ib)} (best) / ${fmt(iw)} (worst season) m³
-    <div class="verdict">${verdict}</div>`;
+    <div class="verdict">${verdict}${p.nn ? '<br><span class="k">Ground networks (GVMID + literature):</span> ' + NN[p.nn] : ''}</div>`;
   new maplibregl.Popup({ closeButton: true, maxWidth: '300px' }).setLngLat(e.features[0].geometry.coordinates).setHTML(html).addTo(map);
 });
 map.on('mouseenter', 'volc', () => map.getCanvas().style.cursor = 'pointer');

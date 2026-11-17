@@ -24,12 +24,13 @@ def num(x, nd=3):
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     df = pd.read_csv(V.DATA / "ranking.csv")
+    nn = pd.read_csv(V.DATA / "national_networks.csv").set_index("vnum")["category"].to_dict()
     feats = []
     for r in df.itertuples():
         p = {"n": r.name, "c": r.country, "v": int(r.vnum), "p30": num(r.pop30), "p100": num(r.pop100),
              "e19": int(r.n_erupt_1900), "vei": num(r.vei_max, 2), "s20": int(r.n_20km), "s50": int(r.n_50km),
              "bs": r.best_site_d5 if isinstance(r.best_site_d5, str) else None, "bk": num(r.best_km_d5),
-             "act": bool(r.active), "exp": bool(r.exposed)}
+             "act": bool(r.active), "exp": bool(r.exposed), "nn": nn.get(int(r.vnum))}
         for d in (2, 5, 10):
             p[f"g{d}"] = num(getattr(r, f"dv_d{d}_k1"))
             p[f"gs{d}"] = num(getattr(r, f"dvsill_d{d}_k1"))
