@@ -14,33 +14,19 @@ summit are not modelled; for a sill or an elongated source the visible signal di
 
 ## GNSS layer
 
-- Stations: Nevada Geodetic Laboratory (NGL) IGS20 daily solutions; active = solutions after 2026-08-01; within 100 km.
+- Stations: Nevada Geodetic Laboratory (NGL) IGS20 daily solutions; active = solutions after 2026-08-01; within 100 km (`2,480` active stations with usable daily noise, `2,386` with ≥ 8 consecutive 30-day block pairs).
 - Noise per station and component (east, north, up), from the newest 730 days:
-  - daily white noise = 1.4826 MAD of consecutive-day differences / sqrt(2) (robust to offsets and outliers);
-  - 30-day noise = same estimator on consecutive non-overlapping 30-day means (includes coloured noise).
-- Detection: predicted displacement > K sigma on at least one component of at least one station, after USGS SIR
-  2024-5062-D and SIR 2026-5117-A. dV_min = min over stations and components of K sigma / |G|.
-- Main numbers use daily noise and K = 1, as USGS; K = 3 and 30-day noise with K = 1, 2 are given for sensitivity.
-
-A single station passing 1 sigma would not trigger an alarm in practice; the criterion is a lower bound on what is
-needed, used because it matches the USGS maps and is easy to reproduce.
-
-## Main GNSS criterion (after review)
-
-- Noise per station and component from the newest 730 days: the 30-day noise is the robust scatter of differences of
-  consecutive non-overlapping 30-day means after a least-squares fit (with 3-MAD rejection) of a constant velocity and
-  annual and semi-annual terms to those differences, so seasonal motion is not counted as noise.
-- A displacement is the difference of two 30-day means, so its noise is sqrt(2) x the 30-day sigma.
-- Detection: a matched filter for the known source over all stations within 100 km and all components reaches
-  signal-to-noise 5: dV_min = 5 / sqrt(sum (G / sigma_d)^2). SNR 5 corresponds to a one-sided Gaussian false-alarm
-  probability of about 3e-7 per test, and to roughly one false alarm in several thousand station-years of monthly tests.
-- Limits: the noise model is white at the 30-day scale after the seasonal fit (flicker noise at longer periods would
-  make slow, multi-year accumulation harder to see); the template assumes the source location and depth are known.
+  - daily white noise = `1.4826 * MAD` of consecutive-day differences / `sqrt(2)` (robust to offsets and outliers);
+  - 30-day noise (`block_noise_sigma`): `_ant(m)` antenna-height switches and isolated >5-MAD daily spikes inside each 30-day block are rejected before averaging; then differences of consecutive non-overlapping 30-day means are regressed on a constant velocity and annual and semi-annual terms using a guarded 3-MAD outlier loop (`keep >= max(p + 4, ceil(0.6 * n))`), scaled by `sqrt(k / (k - p)) / sqrt(2)`, and floored at the physical white-noise lower bound `sig_daily / sqrt(30)`.
+- Main criterion: a matched filter for the known source over all stations within 100 km having 30-day noise (`2,386` stations) and all components reaches signal-to-noise 5 for the difference of two 30-day means (displacement noise `sigma_d = sqrt(2) * sigma_30`):
+  `dV_min = 5 / sqrt(sum (G / sigma_d)^2)`.
+  SNR 5 corresponds to a one-sided Gaussian false-alarm probability of about `2.9e-7` per test (~`0.004` false alarms per year for monthly tests at all 1,100 volcanoes under Gaussian white noise).
+- Benchmark / first-pass criterion (USGS SIR 2024-5062-D and SIR 2026-5117-A): predicted displacement > `K` sigma (`K = 1` daily white noise) on at least one component of at least one active station within 100 km (`dV_min = min over stations s and components k of K sigma / |G|`). Kept for the Shasta–Medicine Lake benchmark and sensitivity table; a single station passing 1 sigma has no false-alarm control (68% per day across 3 components).
+- Limits: the noise model is white at the 30-day scale after the seasonal fit (flicker noise at longer periods makes slow, multi-year accumulation harder to see); real deformation episodes at actively deforming edifices (e.g., Svartsengi, Iwo Jima, Etna) inflate estimated `sigma_30` as apparent noise; the template assumes known source location and depth.
 
 ## Sentinel-1 layer
 
-- Coherence: global seasonal 12-day VV coherence, Dec 2019 to Nov 2020 (Kellndorfer et al. 2022), 3 arcsec; a pixel is
-  usable when its 5 x 5 mean coherence is at least 0.35. Seasons are kept separately (snow, vegetation).
+- Coherence: global seasonal 12-day coherence, Dec 2019 to Nov 2020 (Kellndorfer et al. 2022), 3 arcsec (`VV` globally, with automatic `HH` fallback where `VV` tiles are absent such as Antarctica down to 79°S; antimeridian windows across ±180° stitched seamlessly); a pixel is usable when its 5 × 5 mean coherence is at least `0.35`. Seasons are kept separately (snow, vegetation).
 - The best usable pixel within 20 km of the summit sees the fraction f = (1 + (r/d)^2)^-1.5 of the peak uplift.
 - Main criterion (after review): a season counts only when at least 10 % of the pixels within 5 km of the summit are
   coherent, so that a deformation pattern, not one pixel, can be seen. The single-pixel version is kept for comparison.

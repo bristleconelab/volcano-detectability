@@ -44,8 +44,18 @@ def per_volcano(vol: pd.DataFrame, noise: pd.DataFrame) -> pd.DataFrame:
             idx, x, y, dist = idx[ok], x[ok], y[ok], dist[ok]
         else:
             x = y = dist = np.zeros(0)
-        for r in (10, 20, 50):
+        for r in (10, 20, 50, 100):
             row[f"n_{r}km"] = int((dist <= r).sum())
+        if idx.size:
+            ni = int(np.argmin(dist))
+            row["nearest_site"] = str(noise.loc[idx[ni], "site"])
+            row["nearest_km"] = round(float(dist[ni]), 2)
+        else:
+            row["nearest_site"] = ""
+            row["nearest_km"] = np.nan
+        good30 = np.isfinite(sig30[idx]).all(axis=1) if sig30 is not None else np.zeros(idx.size, dtype=bool)
+        for r in (10, 20, 50, 100):
+            row[f"n30_{r}km"] = int(((dist <= r) & good30).sum())
         for d in DEPTHS:
             for k in KS:
                 dv, i, _ = V.min_detectable_volume(x, y, sig[idx], d, k=k)
@@ -60,11 +70,27 @@ def per_volcano(vol: pd.DataFrame, noise: pd.DataFrame) -> pd.DataFrame:
                 # main criterion after review: network matched filter, SNR 5, displacement = difference of two
                 # 30-day means (noise sqrt(2) x sigma30, seasonal terms removed)
                 sd = np.sqrt(2) * s30[good]
-                row[f"net_d{int(d)}"] = V.network_min_volume(x[good], y[good], sd, d, snr=SNR)
-                row[f"netsill_d{int(d)}"] = V.network_min_volume(x[good], y[good], sd, d, snr=SNR, source="sill")
+                xg, yg, dg, idxg = x[good], y[good], dist[good], idx[good]
+                row[f"net_d{int(d)}"] = V.network_min_volume(xg, yg, sd, d, snr=SNR)
+                row[f"netsill_d{int(d)}"] = V.network_min_volume(xg, yg, sd, d, snr=SNR, source="sill")
+                if d == 5.0:
+                    if xg.size:
+                        g = np.column_stack(V.mogi_greens(xg, yg, d))
+                        with np.errstate(divide="ignore", invalid="ignore"):
+                            w_sta = np.sum(np.where(sd > 0, (g / sd) ** 2, 0.0), axis=1)
+                        bi = int(np.argmax(w_sta))
+                        if w_sta[bi] > 0:
+                            row["net_best_site_d5"] = str(noise.loc[idxg[bi], "site"])
+                            row["net_best_km_d5"] = round(float(dg[bi]), 2)
+                        else:
+                            row["net_best_site_d5"] = ""
+                            row["net_best_km_d5"] = np.nan
+                    else:
+                        row["net_best_site_d5"] = ""
+                        row["net_best_km_d5"] = np.nan
                 for k in (1.0, 2.0):
                     row[f"dv30_d{int(d)}_k{int(k)}"] = V.min_detectable_volume(
-                        x[good], y[good], s30[good], d, k=k)[0]
+                        xg, yg, s30[good], d, k=k)[0]
         rows.append(row)
     return pd.DataFrame(rows)
 

@@ -21,13 +21,13 @@ import vdlib as V  # noqa: E402
 D = V.RAW / "gvmid"
 (D / "vol").mkdir(parents=True, exist_ok=True)
 rk = pd.read_csv(V.DATA / "ranking.csv")
-the70 = rk[rk["active"] & rk["exposed"] & rk["gnss_blind"]][["vnum", "name", "country", "lat", "lon"]]
-the70.to_csv(D / "the70.csv", index=False)
+blind = rk[rk["active"] & rk["exposed"] & rk["gnss_blind"]][["vnum", "name", "country", "lat", "lon"]]
+blind.to_csv(D / "blind_ae.csv", index=False)
 s = requests.Session()
 r = s.get("https://wovodat.org/gvmid/php/download_api.php", params={"type[]": "deformation"}, timeout=120)
 (D / "dl_def.json").write_text(r.text)
-for v in the70["vnum"]:
+for v in blind["vnum"]:
     p = D / "vol" / f"{v}.json"
     if not p.exists():
         p.write_text(s.get("https://wovodat.org/gvmid/php/api.php", params={"vd_num": v}, timeout=60).text)
-print(len(the70), "volcanoes")
+print(len(blind), "volcanoes")

@@ -151,11 +151,34 @@ def parse_tenv3_tail(text: str) -> pd.DataFrame:
             continue
         try:
             rows.append((float(t[3]), float(t[7]) + float(t[8]), float(t[9]) + float(t[10]),
-                         float(t[11]) + float(t[12])))
+                         float(t[11]) + float(t[12]), float(t[13])))
         except ValueError:
             continue  # first line of a byte range is usually cut
-    df = pd.DataFrame(rows, columns=["mjd", "e", "n", "u"]).drop_duplicates("mjd").sort_values("mjd")
+    df = pd.DataFrame(rows, columns=["mjd", "e", "n", "u", "ant"]).drop_duplicates("mjd").sort_values("mjd")
     return df.reset_index(drop=True)
+
+
+def _clean_block_rows(sub: pd.DataFrame, min_days: float, has_ant: bool) -> pd.DataFrame | None:
+    """Drop intra-block antenna-height toggles and isolated daily spikes before averaging a block."""
+    if len(sub) < min_days:
+        return None
+    if has_ant:
+        ants = sub["ant"].to_numpy(float)
+        if np.ptp(ants) > 1e-4:
+            vals, counts = np.unique(np.round(ants, 4), return_counts=True)
+            best = int(np.argmax(counts))
+            if counts[best] < min_days:
+                return None  # mixed antenna heights across >30% of the block
+            sub = sub[np.round(ants, 4) == vals[best]]
+    keep = np.ones(len(sub), dtype=bool)
+    for c in ("e", "n", "u"):
+        vals = sub[c].to_numpy(float)
+        med = np.median(vals)
+        mad = np.median(np.abs(vals - med))
+        keep &= np.abs(vals - med) <= 5.0 * max(1.4826 * mad, 0.002)
+    if int(keep.sum()) < min_days:
+        return None
+    return sub.iloc[keep]
 
 
 def block_noise_sigma(df: pd.DataFrame, w: int = 30, min_cover: float = 0.7, min_pairs: int = 8,
@@ -163,22 +186,32 @@ def block_noise_sigma(df: pd.DataFrame, w: int = 30, min_cover: float = 0.7, min
     """Scatter (m) of a w-day mean position, from differences of consecutive non-overlapping w-day block means.
 
     Unlike the daily estimate this includes coloured (flicker, random-walk) noise at the w-day scale, which is what
-    limits detection of slow inflation. Blocks need >= min_cover of their days; the median difference (a constant
-    velocity) is removed by the robust scale. Returns (sigma[3], number of block pairs); NaN when too few."""
+    limits detection of slow inflation. Blocks need >= min_cover of their days (after rejecting intra-block antenna
+    height switches and >5-MAD daily spikes); differences regress out velocity and seasonal terms with an inlier guard,
+    degrees-of-freedom correction, and the physical white-noise lower bound sig_daily / sqrt(w).
+    Returns (sigma[3], number of block pairs); NaN when too few."""
+    if df.empty:
+        return np.full(3, np.nan), 0
     mjd = df["mjd"].to_numpy()
     blk = ((mjd - mjd.min()) // w).astype(int)
-    g = df.assign(blk=blk).groupby("blk")
-    means = g[["e", "n", "u"]].mean()
-    cnt = g.size()
-    means = means[cnt >= min_cover * w]
-    idx = means.index.to_numpy()
-    ok = np.diff(idx) == 1
+    has_ant = "ant" in df.columns
+    min_days = min_cover * w
+    blocks = []
+    for b, sub in df.assign(blk=blk).groupby("blk"):
+        clean = _clean_block_rows(sub, min_days, has_ant)
+        if clean is not None:
+            blocks.append((int(b), float(clean["mjd"].mean()), float(clean["e"].mean()),
+                           float(clean["n"].mean()), float(clean["u"].mean())))
+    if len(blocks) < 2:
+        return np.full(3, np.nan), 0
+    bdf = pd.DataFrame(blocks, columns=["blk", "tmid", "e", "n", "u"])
+    ok = np.diff(bdf["blk"].to_numpy()) == 1
     npairs = int(ok.sum())
     if npairs < min_pairs:
         return np.full(3, np.nan), npairs
     # regress block-mean differences on a constant (velocity) and on the differences of annual and semi-annual
     # sinusoids, so that seasonal motion does not count as noise; differencing keeps the fit insensitive to steps
-    tmid = g["mjd"].mean()[cnt >= min_cover * w].to_numpy() / 365.25
+    tmid = bdf["tmid"].to_numpy() / 365.25
     t0, t1 = tmid[:-1][ok], tmid[1:][ok]
     cols = [np.ones_like(t0)]
     if npairs >= 2 * min_pairs and seasonal:
@@ -186,16 +219,35 @@ def block_noise_sigma(df: pd.DataFrame, w: int = 30, min_cover: float = 0.7, min
             w_ = 2 * np.pi * f
             cols += [np.sin(w_ * t1) - np.sin(w_ * t0), np.cos(w_ * t1) - np.cos(w_ * t0)]
     A = np.column_stack(cols)
+    p = A.shape[1]
+    wn, _ = white_noise_sigma(df, min_pairs=min(50, max(10, len(df) // 4)))
     out = []
-    for c in ("e", "n", "u"):
-        d = np.diff(means[c].to_numpy())[ok]
+    for c_idx, c in enumerate(("e", "n", "u")):
+        d = np.diff(bdf[c].to_numpy())[ok]
         keep = np.ones(d.size, bool)
-        for _ in range(3):  # least squares with 3-MAD outlier rejection (steps, transients)
+        min_keep = min(d.size, max(p + 4, int(np.ceil(0.6 * d.size))))
+        if d.size > p:
+            for _ in range(3):  # least squares with guarded 3-MAD outlier rejection (steps, transients)
+                coef, *_ = np.linalg.lstsq(A[keep], d[keep], rcond=None)
+                r = d - A @ coef
+                rk = r[keep]
+                med_r = np.median(rk)
+                mad = np.median(np.abs(rk - med_r))
+                new_keep = np.abs(r - med_r) <= 3 * 1.4826 * max(mad, 1e-9)
+                if int(new_keep.sum()) < min_keep:
+                    break
+                keep = new_keep
             coef, *_ = np.linalg.lstsq(A[keep], d[keep], rcond=None)
             r = d - A @ coef
-            mad = np.median(np.abs(r[keep] - np.median(r[keep])))
-            keep = np.abs(r - np.median(r[keep])) <= 3 * 1.4826 * max(mad, 1e-9)
-        out.append(1.4826 * np.median(np.abs(r[keep] - np.median(r[keep]))) / np.sqrt(2))
+        else:
+            r = d
+        rk = r[keep]
+        k_eff = int(rk.size)
+        dof_corr = np.sqrt(k_eff / max(k_eff - p, 1))
+        est = 1.4826 * np.median(np.abs(rk - np.median(rk))) * dof_corr / np.sqrt(2)
+        if np.isfinite(wn[c_idx]):
+            est = max(est, wn[c_idx] / np.sqrt(w))
+        out.append(float(est))
     return np.array(out), npairs
 
 

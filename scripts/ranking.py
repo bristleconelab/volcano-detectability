@@ -49,22 +49,27 @@ def gvp_extra() -> pd.DataFrame:
 def mantel_haenszel(df: pd.DataFrame, group: str, outcome: str, strata: str) -> dict:
     """Mantel-Haenszel common odds ratio and CMH chi-square (with continuity correction) over 2x2 strata."""
     num = den = a_sum = e_sum = v_sum = 0.0
+    inf_strata = 0
     for _, s in df.groupby(strata):
-        a = ((s[group]) & (s[outcome])).sum()
-        b = ((s[group]) & (~s[outcome])).sum()
-        c = ((~s[group]) & (s[outcome])).sum()
-        d = ((~s[group]) & (~s[outcome])).sum()
+        a = int((s[group] & s[outcome]).sum())
+        b = int((s[group] & ~s[outcome]).sum())
+        c = int((~s[group] & s[outcome]).sum())
+        d = int((~s[group] & ~s[outcome]).sum())
         n = a + b + c + d
         if n < 2 or (a + b) == 0 or (c + d) == 0:
             continue
+        r1, c1 = a + b, a + c
+        v_i = r1 * (n - r1) * c1 * (n - c1) / (n ** 2 * (n - 1))
+        if v_i > 0:
+            inf_strata += 1
         num += a * d / n
         den += b * c / n
-        r1, c1 = a + b, a + c
         a_sum += a
         e_sum += r1 * c1 / n
-        v_sum += r1 * (n - r1) * c1 * (n - c1) / (n ** 2 * (n - 1))
+        v_sum += v_i
     chi = (abs(a_sum - e_sum) - 0.5) ** 2 / v_sum if v_sum > 0 else np.nan
-    return {"or_mh": num / den if den > 0 else np.nan, "chi2": chi, "p": float(stats.chi2.sf(chi, 1))}
+    return {"or_mh": num / den if den > 0 else np.nan, "chi2": chi, "p": float(stats.chi2.sf(chi, 1)),
+            "informative_strata": inf_strata}
 
 
 def pop_bounds(sub: pd.DataFrame, sep_km: float = 60.0) -> tuple[float, float]:
@@ -95,7 +100,7 @@ def main():
     df["exposed"] = df["pop30"].fillna(0) >= POP30
     df["ae"] = df["active"] & df["exposed"]
     df["gnss_blind"] = df["net_d5"].fillna(np.inf) > DV
-    df["gnss_blind_1s"] = df["dv_d5_k1"] > DV
+    df["gnss_blind_1s"] = df["dv_d5_k1"].fillna(np.inf) > DV
     df["s1_sees_best"] = df["insA_d5_t59_best"] <= DV
     df["s1_sees_worst"] = df["insA_d5_t59_worst"] <= DV
     df["both_blind"] = df["gnss_blind"] & ~df["s1_sees_worst"]
@@ -136,6 +141,15 @@ def main():
     print("\nby country (active, exposed, GNSS-blind):")
     print(top.groupby("country").agg(n=("name", "size"), pop30_M=("pop30", lambda s: round(s.sum() / 1e6, 1)))
           .sort_values("pop30_M", ascending=False).head(12).to_string())
+    eq = df["pop30"].notna() & df["pop100"].notna() & (df["pop30"] == df["pop100"])
+    eq_pos = eq & (df["pop30"] > 0)
+    out["pop_eq_summary"] = {
+        "total": int(eq.sum()),
+        "zero": int((eq & (df["pop30"] == 0)).sum()),
+        "positive": int(eq_pos.sum()),
+        "positive_volcanic_fields": int((eq_pos & df["field"]).sum()),
+        "positive_islands_or_other": int((eq_pos & ~df["field"]).sum()),
+    }
     (V.DATA / "ranking_stats.json").write_text(json.dumps(out, indent=1, default=float))
 
 

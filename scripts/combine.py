@@ -63,15 +63,15 @@ def world_map(df: pd.DataFrame, col: str, path):
     sc = ax.scatter(df.loc[~blind, "lon"], df.loc[~blind, "lat"], c=df.loc[~blind, col], s=10,
                     norm=LogNorm(1e5, 1e9), cmap="magma_r", edgecolors="k", linewidths=0.2, zorder=3)
     ax.scatter(df.loc[blind, "lon"], df.loc[blind, "lat"], marker="x", s=10, c="tab:blue", lw=0.7, zorder=3,
-               label=f"no open GNSS station within 100 km and no coherent Sentinel-1 pixel ({blind.sum()})")
-    cb = fig.colorbar(sc, ax=ax, extend="both", pad=0.01)
+               label=f"no 30-day open GNSS ≤100 km and no Sentinel-1 season with ≥10% coherent area ({blind.sum()})")
+    cb = fig.colorbar(sc, ax=ax, extend="both", pad=0.015, shrink=0.92)
     cb.set_label("Smallest detectable volume change (m$^3$)")
     ax.set_xlim(-180, 180)
-    ax.set_ylim(-60, 75)
+    ax.set_ylim(-80, 78)
     ax.set_aspect("equal")
-    ax.legend(loc="lower left", fontsize=8)
-    ax.set_title("Open-data geodetic detectability of Holocene volcanoes: Mogi source at 5 km, "
-                 "best of open GNSS (network SNR 5, 30-day) and Sentinel-1 (5.9 cm, coherent area, best season)", fontsize=9)
+    ax.legend(loc="lower left", fontsize=7.5)
+    ax.set_title("Open-data geodetic detectability of Holocene volcanoes (Mogi source at 5 km)\n"
+                 "Best of open GNSS (network SNR 5, 30-day) and Sentinel-1 (5.9 cm, ≥10% coherent area, best season)", fontsize=9)
     fig.tight_layout()
     fig.savefig(path, dpi=200)
 

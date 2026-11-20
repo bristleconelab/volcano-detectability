@@ -168,7 +168,137 @@ class TestNoise(unittest.TestCase):
         df = V.parse_tenv3_tail(text)
         self.assertEqual(len(df), 1)
         self.assertAlmostEqual(df.loc[0, "e"], 1155.635662)
+        self.assertAlmostEqual(df.loc[0, "ant"], 0.0083)
         self.assertEqual(df.loc[0, "mjd"], 60573)
+
+    def test_block_noise_never_collapses_below_white_noise_floor(self):
+        rng = np.random.default_rng(7)
+        for nd in (300, 510):
+            n_trials = 40
+            ests = []
+            for _ in range(n_trials):
+                df = pd.DataFrame({
+                    "mjd": 60000 + np.arange(nd),
+                    "e": rng.normal(0, 0.001, nd),
+                    "n": rng.normal(0, 0.001, nd),
+                    "u": rng.normal(0, 0.004, nd),
+                })
+                wn, _ = V.white_noise_sigma(df, min_pairs=50)
+                s30, _ = V.block_noise_sigma(df, w=30)
+                self.assertTrue(np.all(s30 >= wn / np.sqrt(30) - 1e-12))
+                ests.append(s30[2] / (0.004 / np.sqrt(30)))
+            self.assertGreater(np.median(ests), 0.90)
+
+    def test_block_noise_rejects_intrablock_antenna_toggle_and_spikes(self):
+        rng = np.random.default_rng(11)
+        n = 720
+        u = rng.normal(0, 0.004, n)
+        ant = np.zeros(n)
+        u[60:64] -= 0.500
+        ant[60:64] = 0.500
+        u[150] += 0.300  # isolated single-day glitch
+        df = pd.DataFrame({
+            "mjd": 60000 + np.arange(n),
+            "e": rng.normal(0, 0.001, n),
+            "n": rng.normal(0, 0.001, n),
+            "u": u,
+            "ant": ant,
+        })
+        s30, _ = V.block_noise_sigma(df, w=30)
+        self.assertLess(s30[2], 0.002)
+
+
+class TestPipelineHelpers(unittest.TestCase):
+    def test_insar_tile_name_and_antimeridian_intervals(self):
+        import insar_coherence as ic
+
+        self.assertEqual(ic.tile_name(0, 0), "N00E000")
+        self.assertEqual(ic.tile_name(-1, -78), "S01W078")
+        self.assertEqual(ic.tile_name(-16, -181), "S16E179")
+        self.assertEqual(ic.tile_name(52, 180), "N52W180")
+        self.assertEqual(ic._lon_intervals(-180.2, -179.8), [(179.8, 180.0), (-180.0, -179.8)])
+        self.assertEqual(ic._lon_intervals(179.8, 180.2), [(179.8, 180.0), (-180.0, -179.8)])
+
+    def test_mantel_haenszel_excludes_zero_variance_strata(self):
+        import ranking as R
+
+        df = pd.DataFrame([
+            # Country A: genuine variation in outcome & exposure
+            {"country": "A", "ae": True, "gnss_blind": True},
+            {"country": "A", "ae": True, "gnss_blind": False},
+            {"country": "A", "ae": False, "gnss_blind": True},
+            {"country": "A", "ae": False, "gnss_blind": True},
+            # Country B: has both ae and ~ae, but all blind -> v_i == 0 (non-informative)
+            {"country": "B", "ae": True, "gnss_blind": True},
+            {"country": "B", "ae": False, "gnss_blind": True},
+            {"country": "B", "ae": False, "gnss_blind": True},
+        ])
+        res = R.mantel_haenszel(df, "ae", "gnss_blind", "country")
+        self.assertEqual(res["informative_strata"], 1)
+
+    def test_pop_bounds_separation(self):
+        import ranking as R
+
+        df = pd.DataFrame([
+            {"lon": 0.0, "lat": 0.0, "pop30": 500_000.0},
+            {"lon": 0.2, "lat": 0.0, "pop30": 400_000.0},  # ~22 km away -> overlaps
+            {"lon": 2.0, "lat": 0.0, "pop30": 300_000.0},  # ~222 km away -> separate
+        ])
+        lo, up = R.pop_bounds(df, sep_km=60.0)
+        self.assertEqual(up, 1_200_000.0)
+        self.assertEqual(lo, 800_000.0)
+
+    def test_export_web_num(self):
+        import export_web as ew
+
+        self.assertIsNone(ew.num(None))
+        self.assertIsNone(ew.num(float("nan")))
+        self.assertIsNone(ew.num(float("inf")))
+        self.assertEqual(ew.num(12345.0, nd=3), 12300.0)
+
+    def test_combine_insar_table_area_and_missing_season(self):
+        from unittest.mock import patch
+        import combine as C
+
+        synth = pd.DataFrame([
+            # Volcano 1: 4 ok seasons, but 2 seasons have frac_coh_5km < 0.10 -> insA worst becomes inf
+            {"vnum": 1, "season": "winter", "status": "ok", "frac_coh_5km": 0.05, "nearest_coh_km": 0.1, "f_d2": 0.9, "f_d5": 0.99, "f_d10": 1.0},
+            {"vnum": 1, "season": "spring", "status": "ok", "frac_coh_5km": 0.25, "nearest_coh_km": 0.2, "f_d2": 0.8, "f_d5": 0.95, "f_d10": 0.99},
+            {"vnum": 1, "season": "summer", "status": "ok", "frac_coh_5km": 0.30, "nearest_coh_km": 0.3, "f_d2": 0.7, "f_d5": 0.90, "f_d10": 0.98},
+            {"vnum": 1, "season": "fall",   "status": "ok", "frac_coh_5km": 0.08, "nearest_coh_km": 0.1, "f_d2": 0.9, "f_d5": 0.99, "f_d10": 1.0},
+            # Volcano 2: only 3 ok seasons -> both ins & insA worst must be inf
+            {"vnum": 2, "season": "winter", "status": "no_tile", "frac_coh_5km": np.nan, "nearest_coh_km": np.nan, "f_d2": np.nan, "f_d5": np.nan, "f_d10": np.nan},
+            {"vnum": 2, "season": "spring", "status": "ok", "frac_coh_5km": 0.40, "nearest_coh_km": 0.5, "f_d2": 0.5, "f_d5": 0.8, "f_d10": 0.9},
+            {"vnum": 2, "season": "summer", "status": "ok", "frac_coh_5km": 0.50, "nearest_coh_km": 0.4, "f_d2": 0.6, "f_d5": 0.85, "f_d10": 0.95},
+            {"vnum": 2, "season": "fall",   "status": "ok", "frac_coh_5km": 0.60, "nearest_coh_km": 0.3, "f_d2": 0.7, "f_d5": 0.90, "f_d10": 0.97},
+        ])
+        with patch.object(C.pd, "read_csv", return_value=synth):
+            out = C.insar_table().set_index("vnum")
+        self.assertTrue(np.isfinite(out.loc[1, "insA_d5_t59_best"]))
+        self.assertTrue(np.isinf(out.loc[1, "insA_d5_t59_worst"]))
+        self.assertTrue(np.isfinite(out.loc[1, "ins_d5_t59_worst"]))
+        self.assertTrue(np.isinf(out.loc[2, "ins_d5_t59_worst"]))
+        self.assertTrue(np.isinf(out.loc[2, "insA_d5_t59_worst"]))
+
+    def test_exported_volcanoes_geojson_matches_ranking(self):
+        import json
+
+        rk = pd.read_csv(V.DATA / "ranking.csv").set_index("vnum")
+        vj = json.loads((V.ROOT / "docs" / "atlas" / "data" / "volcanoes.geojson").read_text())["features"]
+        self.assertEqual(len(vj), len(rk))
+        comb5_det = 0
+        merapi_f5b = None
+        for ft in vj:
+            p = ft["properties"]
+            a, b = p["g5"], p["ib5"]
+            comb = b if a is None else (a if b is None else min(a, b))
+            if comb is not None and comb <= 1e7:
+                comb5_det += 1
+            if p["n"] == "Merapi":
+                merapi_f5b = p["f5b"]
+        self.assertEqual(comb5_det, int((rk["main_d5"] <= 1e7).sum()))
+        self.assertIsNotNone(merapi_f5b)
+        self.assertLess(merapi_f5b, 0.10)
 
 
 if __name__ == "__main__":

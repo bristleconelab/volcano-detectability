@@ -3,221 +3,843 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Volcano Blind Spots</title>
-<meta name="description" content="How much magma can collect beneath each Holocene volcano before open GNSS or Sentinel-1 data would notice.">
-<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6.18.0/dist/maplibre-gl.css">
+<title>Volcano Blind Spots — Real-Earth Geodetic Atlas</title>
+<meta name="description" content="Explore where open GNSS and Sentinel-1 radar can detect underground magma accumulation across 1,100 Holocene volcanoes on real satellite and ocean terrain.">
+<meta property="og:title" content="Volcano Blind Spots — Open-Data Geodetic Atlas">
+<meta property="og:description" content="Smallest magma volume change detectable beneath 1,100 Holocene volcanoes using open NGL GNSS and Sentinel-1 coherence.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://volcano.bristleconelab.org/img/atlas_globe.png">
+<meta property="og:url" content="https://volcano.bristleconelab.org/atlas/">
+<link rel="canonical" href="https://volcano.bristleconelab.org/atlas/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230b1324' stroke='%23ffb35c' stroke-width='2'/%3E%3Cpath d='M8 23L14 11h4l6 12z' fill='%23f97316'/%3E%3Ccircle cx='16' cy='9' r='2.2' fill='%23facc15'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6.18.0/dist/maplibre-gl.css" crossorigin="anonymous">
 <style>
-  :root { --bg:#05070d; --panel:rgba(14,18,28,.92); --ink:#e8ecf3; --mute:#9aa4b5; --line:rgba(255,255,255,.12); --acc:#ffb35c; }
-  html,body { margin:0; height:100%; background:var(--bg); color:var(--ink); font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif; }
-  #map { position:absolute; inset:0; }
-  .bar { position:absolute; top:12px; right:12px; display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; max-width:calc(100% - 24px); z-index:2; }
-  .bar button, .seg button { background:var(--panel); color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:6px 10px; font:inherit; cursor:pointer; }
-  .bar button[aria-pressed="true"], .seg button[aria-pressed="true"] { border-color:var(--acc); color:var(--acc); }
-  .title { position:absolute; top:12px; left:12px; z-index:2; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:8px 12px; max-width:min(420px, calc(100% - 24px)); }
-  .title h1 { font-size:16px; margin:0; }
-  .title p { margin:2px 0 0; color:var(--mute); font-size:12px; }
-  .panel { position:absolute; top:60px; right:12px; width:min(420px, calc(100% - 24px)); max-height:calc(100% - 140px); overflow:auto; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px 14px; z-index:3; display:none; }
-  .panel.open { display:block; }
-  .panel h2 { font-size:15px; margin:0 0 8px; }
-  .panel table { width:100%; border-collapse:collapse; font-size:12px; }
-  .panel td, .panel th { padding:4px 4px; border-bottom:1px solid var(--line); text-align:left; }
-  .panel tr.row { cursor:pointer; } .panel tr.row:hover { background:rgba(255,255,255,.06); }
-  .seg { display:flex; gap:4px; flex-wrap:wrap; margin:4px 0 10px; }
-  .legend { position:absolute; left:12px; bottom:28px; z-index:2; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:8px 10px; font-size:12px; max-width:calc(100% - 24px); }
-  .ramp { width:220px; max-width:60vw; height:10px; border-radius:4px; background:linear-gradient(90deg,#fde7a8,#f99a5c,#d6456a,#8d2390,#3a0f6b,#0b0420); margin:4px 0 2px; }
-  .ticks { display:flex; justify-content:space-between; width:220px; max-width:60vw; color:var(--mute); }
-  .maplibregl-popup-content { background:var(--panel); color:var(--ink); border:1px solid var(--line); border-radius:10px; font-size:12.5px; max-width:300px; }
-  .maplibregl-popup-tip { display:none; }
-  .k { color:var(--mute); }
-  .verdict { margin-top:6px; padding-top:6px; border-top:1px solid var(--line); }
-  a { color:var(--acc); }
-  @media (max-width:640px){ .title p{display:none} .panel{top:auto; bottom:12px; max-height:55vh} }
+  :root {
+    --bg: #070b14;
+    --glass: rgba(11, 17, 30, .86);
+    --glass-solid: rgba(11, 17, 30, .96);
+    --card: rgba(255, 255, 255, .05);
+    --ink: #f1f5f9;
+    --mute: #94a3b8;
+    --line: rgba(255, 255, 255, .13);
+    --acc: #ffb35c;
+    --cyan: #38bdf8;
+    --green: #10b981;
+    --gold: #facc15;
+    --orange: #f97316;
+    --red: #ef4444;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 13.5px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; overflow: hidden; }
+  #map { position: fixed; inset: 0; }
+  button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+  a { color: var(--cyan); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Minimalist Top-Left HUD */
+  .hud-tl { position: fixed; top: 12px; left: 12px; z-index: 5; width: min(370px, calc(100vw - 24px)); display: flex; flex-direction: column; gap: 7px; pointer-events: none; }
+  .search-bar, .presets, .qlist { pointer-events: auto; }
+  .search-bar { display: flex; align-items: center; gap: 6px; background: var(--glass); border: 1px solid var(--line); border-radius: 12px; padding: 5px 6px 5px 10px; backdrop-filter: blur(12px); box-shadow: 0 8px 28px rgba(0,0,0,.45); }
+  .brand-dot { width: 10px; height: 10px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #facc15, #ef4444); flex: none; box-shadow: 0 0 8px rgba(249,115,22,.6); }
+  .search-wrap { position: relative; flex: 1; min-width: 0; }
+  .search-wrap input { width: 100%; background: transparent; border: 0; color: var(--ink); font: inherit; font-size: 13.5px; padding: 4px 2px; }
+  .search-wrap input::placeholder { color: var(--mute); }
+  .search-wrap input:focus { outline: none; }
+  .hud-btn { background: rgba(255,255,255,.06); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 5px 9px; font: inherit; font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: background .15s, border-color .15s; }
+  .hud-btn:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.28); }
+  .hud-btn[aria-expanded="true"], .hud-btn[aria-pressed="true"] { border-color: var(--acc); color: var(--acc); background: rgba(255,179,92,.14); }
+
+  .qlist { position: relative; background: var(--glass-solid); border: 1px solid var(--line); border-radius: 10px; max-height: 250px; overflow: auto; display: none; box-shadow: 0 12px 32px rgba(0,0,0,.6); }
+  .qlist.open { display: block; }
+  .qitem { padding: 8px 11px; cursor: pointer; font-size: 13px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .qitem:last-child { border-bottom: 0; }
+  .qitem:hover, .qitem.active { background: rgba(255,179,92,.16); }
+  .qitem .qc { color: var(--mute); font-size: 11.5px; text-align: right; }
+
+  .presets { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pill { background: var(--glass); color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; font: inherit; font-size: 12px; cursor: pointer; backdrop-filter: blur(10px); box-shadow: 0 4px 14px rgba(0,0,0,.35); transition: all .15s; }
+  .pill:hover { border-color: rgba(255,255,255,.32); }
+  .pill[aria-pressed="true"] { border-color: var(--acc); color: var(--acc); background: rgba(15, 23, 42, .92); font-weight: 600; }
+
+  /* Bottom-Left Compact Legend */
+  .legend { position: fixed; left: 12px; bottom: 26px; z-index: 4; background: var(--glass); border: 1px solid var(--line); border-radius: 11px; padding: 7px 11px; font-size: 11.5px; backdrop-filter: blur(12px); box-shadow: 0 6px 24px rgba(0,0,0,.45); max-width: calc(100vw - 260px); }
+  .leg-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 11px; }
+  .leg-item { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; border: 1px solid rgba(5,10,20,.85); flex: none; }
+  .dot.ring { background: rgba(15,23,42,.78); border: 2px solid var(--red); width: 10px; height: 10px; }
+  .leg-sub { margin-top: 3px; color: var(--mute); font-size: 11px; }
+
+  /* Bottom-Right Map Style & 2D/3D Controls */
+  .mapctrl { position: fixed; right: 54px; bottom: 40px; z-index: 4; display: flex; align-items: center; gap: 2px; background: var(--glass); border: 1px solid var(--line); border-radius: 9px; padding: 3px; backdrop-filter: blur(12px); box-shadow: 0 6px 20px rgba(0,0,0,.45); }
+  .mapctrl button { background: transparent; color: var(--mute); border: 0; border-radius: 6px; padding: 4px 8px; font: inherit; font-size: 11.5px; font-weight: 500; cursor: pointer; }
+  .mapctrl button:hover { color: var(--ink); }
+  .mapctrl button[aria-pressed="true"] { background: rgba(255,255,255,.14); color: var(--ink); }
+  .mapctrl .sep { width: 1px; height: 14px; background: var(--line); margin: 0 2px; }
+
+  /* Right-side Cards (Inspector + Drawer) */
+  .card { position: fixed; top: 12px; right: 12px; width: min(390px, calc(100vw - 24px)); max-height: calc(100dvh - 165px); overflow: auto; background: var(--glass-solid); border: 1px solid var(--line); border-radius: 14px; padding: 14px; z-index: 6; display: none; backdrop-filter: blur(14px); box-shadow: 0 14px 40px rgba(0,0,0,.6); }
+  .card.open { display: block; }
+  .chead { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+  .chead h2 { margin: 0; font-size: 17px; line-height: 1.25; }
+  .cmeta { color: var(--mute); font-size: 12px; margin-top: 2px; }
+  .close { background: rgba(255,255,255,.07); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 3px 9px; font-size: 16px; line-height: 1.2; cursor: pointer; flex: none; }
+  .close:hover { background: rgba(255,255,255,.15); }
+
+  /* Status Badge */
+  .sbadge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; margin-bottom: 10px; border: 1px solid transparent; }
+  .sbadge.strong { background: rgba(16,185,129,.16); color: #6ee7b7; border-color: rgba(16,185,129,.35); }
+  .sbadge.mod { background: rgba(250,204,21,.15); color: #fde047; border-color: rgba(250,204,21,.35); }
+  .sbadge.weak { background: rgba(249,115,22,.16); color: #fdba74; border-color: rgba(249,115,22,.35); }
+  .sbadge.blind { background: rgba(239,68,68,.16); color: #fca5a5; border-color: rgba(239,68,68,.38); }
+
+  /* 3 Metric Tiles */
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-bottom: 10px; }
+  .tile { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 8px; }
+  .tile .tl { font-size: 10.5px; color: var(--mute); text-transform: uppercase; letter-spacing: .03em; }
+  .tile .tv { font-size: 14px; font-weight: 700; margin-top: 2px; }
+  .tile .ts { font-size: 11px; color: var(--mute); margin-top: 2px; line-height: 1.25; }
+
+  .verdict { font-size: 13px; color: var(--ink); margin: 0 0 8px; }
+  .netnote { font-size: 12px; color: var(--mute); background: var(--card); border-left: 2px solid var(--acc); padding: 6px 9px; border-radius: 0 7px 7px 0; margin-bottom: 10px; }
+
+  details.math { border-top: 1px solid var(--line); padding-top: 8px; margin-top: 4px; }
+  details.math summary { cursor: pointer; font-size: 12px; font-weight: 600; color: var(--mute); user-select: none; }
+  details.math summary:hover { color: var(--ink); }
+  table.mtbl { width: 100%; border-collapse: collapse; font-size: 11.5px; margin-top: 8px; }
+  table.mtbl th, table.mtbl td { padding: 4px 3px; border-bottom: 1px solid var(--line); text-align: right; }
+  table.mtbl th:first-child, table.mtbl td:first-child { text-align: left; color: var(--mute); }
+  table.mtbl th { color: var(--mute); font-weight: 600; }
+  .mfoot { margin-top: 8px; font-size: 11.5px; color: var(--mute); line-height: 1.45; }
+
+  /* Unified Drawer Tabs & Controls */
+  .tabs { display: flex; gap: 6px; }
+  .tab { background: rgba(255,255,255,.06); color: var(--mute); border: 1px solid var(--line); border-radius: 8px; padding: 5px 11px; font: inherit; font-size: 12.5px; font-weight: 600; cursor: pointer; }
+  .tab[aria-selected="true"] { color: var(--acc); border-color: var(--acc); background: rgba(255,179,92,.12); }
+  .lbl { font-size: 11.5px; font-weight: 600; color: var(--mute); margin: 10px 0 5px; }
+  .seg { display: flex; flex-wrap: wrap; gap: 5px; }
+  .seg button { background: rgba(255,255,255,.05); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 5px 9px; font: inherit; font-size: 12px; cursor: pointer; }
+  .seg button[aria-pressed="true"] { border-color: var(--acc); color: var(--acc); background: rgba(255,179,92,.12); }
+  .switch-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 12px; padding: 8px 10px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 12.5px; cursor: pointer; }
+  .about-box { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 12px; color: var(--mute); }
+  .about-box p { margin: 0 0 6px; }
+
+  /* Blind Table */
+  .rfilter { width: 100%; background: rgba(255,255,255,.06); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 6px 9px; font: inherit; font-size: 12.5px; margin: 6px 0 8px; }
+  .rtable { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .rtable th, .rtable td { padding: 6px 4px; border-bottom: 1px solid var(--line); text-align: left; }
+  .rtable th { color: var(--mute); font-weight: 600; font-size: 11px; }
+  .rtable tr.row { cursor: pointer; }
+  .rtable tr.row:hover { background: rgba(255,255,255,.07); }
+
+  /* Hover Tooltip & Popups */
+  .maplibregl-popup-content { background: var(--glass-solid); color: var(--ink); border: 1px solid var(--line); border-radius: 9px; font-size: 12px; padding: 7px 10px; box-shadow: 0 8px 24px rgba(0,0,0,.55); }
+  .maplibregl-popup-close-button { color: var(--mute); padding: 1px 6px; }
+  .maplibregl-popup-tip { display: none; }
+
+  .banner { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 12; background: var(--glass-solid); border: 1px solid var(--line); border-radius: 11px; padding: 10px 16px; font-size: 13px; text-align: center; max-width: min(380px, calc(100vw - 32px)); }
+  .banner.err { border-color: var(--red); color: #fecaca; }
+  .hidden { display: none !important; }
+
+  @media (max-width: 640px) {
+    .hud-tl { top: 8px; left: 8px; width: calc(100vw - 16px); gap: 5px; }
+    .legend { left: 8px; bottom: 64px; right: 56px; max-width: none; padding: 6px 9px; font-size: 11px; }
+    .mapctrl { left: 8px; right: auto; top: 88px; bottom: auto; }
+    .mapctrl button { padding: 4px 7px; font-size: 11.5px; }
+    .maplibregl-ctrl-bottom-right { bottom: 4px; }
+    .card { top: auto; left: 8px; right: 8px; bottom: 8px; width: auto; max-height: 48dvh; padding: 12px; }
+    .tiles { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+    .tile { padding: 6px; }
+    .tile .tv { font-size: 13px; }
+    body.sheet-open .legend, body.sheet-open .mapctrl, body.sheet-open .maplibregl-ctrl-bottom-right { display: none; }
+  }
 </style>
 </head>
 <body>
 <div id="map"></div>
-<div class="title"><h1>Volcano Blind Spots</h1><p id="sub">Smallest magma volume change open data would notice</p></div>
-<div class="bar">
-  <button id="bLayer" aria-pressed="false">Layer</button>
-  <button id="bRank" aria-pressed="false">Blind &amp; exposed</button>
-  <button id="bSta" aria-pressed="false">GNSS stations</button>
-  <button id="bAbout" aria-pressed="false">About</button>
-</div>
-<div class="panel" id="pLayer">
-  <h2>What to show</h2>
-  <div class="k">Sensor</div>
-  <div class="seg" id="segSensor">
-    <button data-v="comb" aria-pressed="true">GNSS or Sentinel-1</button>
-    <button data-v="g">Open GNSS</button>
-    <button data-v="gs">Open GNSS, sill source</button>
-    <button data-v="g1s">Open GNSS, USGS-style 1σ</button>
-    <button data-v="ib">Sentinel-1, best season</button>
-    <button data-v="iw">Sentinel-1, worst season</button>
+
+<div class="hud-tl">
+  <div class="search-bar">
+    <span class="brand-dot" aria-hidden="true"></span>
+    <div class="search-wrap">
+      <input id="q" type="search" placeholder="Search 1,100 volcanoes or countries…" aria-label="Search volcano or country" autocomplete="off">
+    </div>
+    <button class="hud-btn" id="bCtrl" aria-expanded="false" aria-controls="drawer">Controls</button>
+    <button class="hud-btn" id="bBlind" aria-expanded="false" aria-controls="drawer">Blind List</button>
   </div>
-  <div class="k">Source depth</div>
-  <div class="seg" id="segDepth">
-    <button data-v="2">2 km</button><button data-v="5" aria-pressed="true">5 km</button><button data-v="10">10 km</button>
-  </div>
-  <div class="k">Volcanoes</div>
-  <div class="seg" id="segSet">
-    <button data-v="all" aria-pressed="true">All Holocene</button>
-    <button data-v="act">Erupted since 1900</button>
-    <button data-v="ae">… and ≥100k people within 30 km</button>
+  <div id="qList" class="qlist" role="listbox" aria-label="Search results"></div>
+  <div class="presets" role="group" aria-label="Quick views">
+    <button class="pill" id="preAll" data-preset="all" aria-pressed="true">All · 1,100</button>
+    <button class="pill" id="preAe" data-preset="ae" aria-pressed="false">At Risk · 118</button>
+    <button class="pill" id="preBlind" data-preset="blind" aria-pressed="false" title="Erupted since 1900, ≥100k people within 30 km, open GNSS cannot detect 10⁷ m³">Blind Spots · 76</button>
   </div>
 </div>
-<div class="panel" id="pRank">
-  <h2>Active, exposed and blind to open GNSS</h2>
-  <p class="k" id="rankNote"></p>
-  <table><thead><tr><th>Volcano</th><th>People ≤30 km</th><th>Nearest open GNSS</th></tr></thead><tbody id="rankBody"></tbody></table>
+
+<div class="legend" id="legend">
+  <div class="leg-row">
+    <span class="leg-item"><span class="dot" style="background:#10b981"></span>≤1M m³</span>
+    <span class="leg-item"><span class="dot" style="background:#facc15"></span>≤10M</span>
+    <span class="leg-item"><span class="dot" style="background:#f97316"></span>&gt;10M</span>
+    <span class="leg-item"><span class="dot" style="background:#ef4444"></span>&gt;100M</span>
+    <span class="leg-item"><span class="dot ring"></span><span id="legNullLabel">No open data</span></span>
+  </div>
+  <div class="leg-sub" id="legSub">5 km · GNSS + Sentinel-1 · 736 / 1,100 detectable ≤10⁷ m³</div>
 </div>
-<div class="panel" id="pAbout">
-  <h2>About</h2>
-  <p>For every Smithsonian GVP Holocene volcano: the smallest Mogi point-source volume change at 2, 5 or 10 km depth that a
-  matched filter over all open Nevada Geodetic Laboratory GNSS stations within 100 km would detect at signal-to-noise 5,
-  comparing two 30-day mean positions (noise estimated per station, seasonal motion removed); and the change whose
-  line-of-sight uplift reaches 5.9 cm (Biggs et al. 2022) at a coherent Sentinel-1 pixel near the summit, counted only in
-  seasons when at least 10 % of the pixels within 5 km are coherent (seasonal 12-day coherence, Kellndorfer et al. 2022).
-  The first-pass criterion of USGS SIR 2024-5062-D and 2026-5117-A (1σ daily noise at one station) is kept as an option.
-  Volcanic fields have no single summit reservoir, so a point source below the GVP coordinate is only indicative there.</p>
-  <p>This is what <b>open</b> data can see. Many observatories run GNSS networks that are not public, so "blind" here means
-  "not visible in open data", not "unmonitored".</p>
-  <p>Retrospective sensitivity only; no eruption forecasts. Paper (preprint, under review at GRL):
-  <a href="https://doi.org/10.31223/X5C23N">doi:10.31223/X5C23N</a>. Code and tables:
-  <a href="https://github.com/ismoilovdevml/volcano-detectability">github.com/ismoilovdevml/volcano-detectability</a>.
-  Data: GVP (Smithsonian, non-commercial terms), NGL (Blewitt et al. 2018), Kellndorfer et al. 2022, Natural Earth.</p>
+
+<div class="mapctrl" role="group" aria-label="Map style and projection">
+  <button data-base="sat" aria-pressed="true" title="Satellite imagery with ocean bathymetry & cities">Satellite</button>
+  <button data-base="ocean" aria-pressed="false" title="Ocean floor bathymetry & relief">Ocean</button>
+  <button data-base="topo" aria-pressed="false" title="Topographic terrain & places">Terrain</button>
+  <span class="sep" aria-hidden="true"></span>
+  <button id="bProj" aria-pressed="false" title="Switch 3D Globe / 2D Flat Map">2D</button>
 </div>
-<div class="legend">
-  <div id="legTitle">Smallest detectable volume change, 5 km</div>
-  <div class="ramp"></div>
-  <div class="ticks"><span>10⁵</span><span>10⁶</span><span>10⁷</span><span>10⁸</span><span>10⁹ m³</span></div>
-  <div style="margin-top:4px"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;border:2px solid #4ab3ff;vertical-align:-1px"></span>
-  <span class="k">nothing open within reach</span></div>
-</div>
+
+<aside class="card" id="inspector" aria-label="Selected volcano details"></aside>
+
+<aside class="card" id="drawer" aria-label="Atlas controls and blind list">
+  <div class="chead">
+    <div class="tabs" role="tablist">
+      <button class="tab" id="tabCtrl" role="tab" aria-selected="true">Controls</button>
+      <button class="tab" id="tabBlind" role="tab" aria-selected="false">Blind Spots</button>
+    </div>
+    <button class="close" id="closeDrawer" aria-label="Close drawer">&times;</button>
+  </div>
+  <div id="paneCtrl">
+    <div class="lbl">Sensor</div>
+    <div class="seg" id="segSensor">
+      <button data-v="comb" aria-pressed="true">GNSS + Sentinel-1</button>
+      <button data-v="g">Open GNSS</button>
+      <button data-v="gs">GNSS Sill</button>
+      <button data-v="g1s">GNSS 1σ (USGS)</button>
+      <button data-v="ib">Sentinel-1 Best</button>
+      <button data-v="iw">Sentinel-1 Worst</button>
+    </div>
+    <div class="lbl">Magma Source Depth</div>
+    <div class="seg" id="segDepth">
+      <button data-v="2">2 km</button>
+      <button data-v="5" aria-pressed="true">5 km</button>
+      <button data-v="10">10 km</button>
+    </div>
+    <div class="lbl">Volcano Filter</div>
+    <div class="seg" id="segSet">
+      <button data-v="all" aria-pressed="true">All Holocene (1,100)</button>
+      <button data-v="act">Erupted ≥1900 (380)</button>
+      <button data-v="ae">At Risk ≥100k pop (118)</button>
+      <button data-v="blind">At Risk &amp; GNSS-blind</button>
+    </div>
+    <label class="switch-row">
+      <span>Show Open NGL GNSS Stations (2,480)</span>
+      <input type="checkbox" id="chkSta">
+    </label>
+    <div class="about-box">
+      <p><b>What this shows:</b> The smallest underground magma volume change (2, 5, or 10 km depth) that open NGL GNSS (SNR 5 matched filter over 30-day means, DOF-corrected &amp; floored at daily white noise/√30) or Sentinel-1 InSAR (5.9 cm LOS across ≥10% coherent pixels ≤5 km, VV + polar HH) would notice. Clicking any volcano draws its <b>30 km population radius</b> and links to its nearest open GNSS site.</p>
+      <p>Open-data sensitivity only — many observatories operate non-public GNSS networks. Paper: <a href="https://doi.org/10.31223/X5C23N" target="_blank" rel="noopener">EarthArXiv</a> · <a href="https://github.com/ismoilovdevml/volcano-detectability" target="_blank" rel="noopener">GitHub</a> · Data: GVP, NGL, Kellndorfer et al. 2022, GVMID, Esri.</p>
+    </div>
+  </div>
+  <div id="paneBlind" class="hidden">
+    <p class="k" id="rankNote" style="font-size:12px;color:var(--mute);margin:0 0 6px"></p>
+    <input id="rankFilter" class="rfilter" type="search" placeholder="Filter by volcano or country…" aria-label="Filter blind volcanoes">
+    <table class="rtable">
+      <thead><tr><th>Volcano</th><th>People ≤30 km</th><th>Nearest GNSS</th></tr></thead>
+      <tbody id="rankBody"></tbody>
+    </table>
+  </div>
+</aside>
+
+<div class="banner" id="loading">Loading real-Earth imagery &amp; 1,100 volcanoes…</div>
+<div class="banner err hidden" id="err" role="alert"></div>
+
 <script type="module">
 import * as maplibregl from 'https://unpkg.com/maplibre-gl@6.18.0/dist/maplibre-gl.mjs';
-const state ={ sensor: 'comb', depth: 5, set: 'all', stations: false };
-const fmt = v => v == null ? '—' : (v >= 1e9 ? (v/1e9).toFixed(1)+'×10⁹' : v >= 1e6 ? (v/1e6).toFixed(v < 1e7 ? 1 : 0)+'×10⁶' : (v/1e5).toFixed(1)+'×10⁵') ;
-const fmtPop = v => v == null ? '—' : v >= 1e6 ? (v/1e6).toFixed(1)+' M' : v >= 1e3 ? Math.round(v/1e3)+' k' : String(v);
-const field = () => state.sensor + state.depth;
-const NN = {
-  observatory_cgnss_not_open: 'observatory runs continuous GNSS, data not open',
-  open_sites_inactive: 'open GNSS sites existed but are no longer active',
-  campaign_gps_only: 'campaign GPS only',
-  other_deformation_only: 'tilt or levelling only, no GNSS found',
-  none_found: 'no ground deformation network found'
+
+const VALID_SENSORS = new Set(['comb', 'g', 'gs', 'g1s', 'ib', 'iw']);
+const VALID_DEPTHS = new Set([2, 5, 10]);
+const VALID_SETS = new Set(['all', 'act', 'ae', 'blind']);
+const VALID_BASE = new Set(['sat', 'ocean', 'topo']);
+
+const state = {
+  sensor: 'comb', depth: 5, set: 'all', base: 'sat', proj: 'globe',
+  stations: false, drawerTab: null, selectedVnum: null
 };
 
+const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+const toSup = n => String(n).split('').map(c => SUP[c] || c).join('');
+function fmt(v) {
+  if (v == null || !Number.isFinite(v) || v <= 0) return '—';
+  let exp = Math.floor(Math.log10(v));
+  let m = (v / (10 ** exp)).toFixed(1);
+  if (m === '10.0') { exp += 1; m = '1.0'; }
+  return `${m}×10${toSup(exp)}`;
+}
+const fmtPop = v => v == null ? '—' : v >= 1e6 ? (v / 1e6).toFixed(1) + ' M' : v >= 1e3 ? Math.round(v / 1e3) + ' k' : String(v);
+const fmtCoord = (lon, lat) => `${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'}, ${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}`;
+const fmtPct = f => f == null ? '—' : `${(f * 100).toFixed(f < 0.1 && f > 0 ? 1 : 0)}%`;
+const esc = s => String(s ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+const field = () => state.sensor + state.depth;
+
+const NN = {
+  observatory_cgnss_not_open: 'Observatory runs continuous GNSS (not in open NGL archive).',
+  open_gnss_insufficient: 'Active open NGL GNSS sits within 30 km, but needs >10⁷ m³ or has <8 30-day pairs.',
+  open_sites_inactive: 'Open GNSS sites existed near this volcano but are no longer active.',
+  campaign_gps_only: 'Documented campaign GPS surveys only (no continuous GNSS found).',
+  other_deformation_only: 'Tilt or levelling documented, no continuous GNSS found.',
+  none_found: 'No continuous ground deformation network found in GVMID or checked literature.'
+};
+
+function haversineKm(c1, c2) {
+  const R = 6371, rad = Math.PI / 180;
+  const dLat = (c2[1] - c1[1]) * rad, dLon = (c2[0] - c1[0]) * rad;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(c1[1] * rad) * Math.cos(c2[1] * rad) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(Math.min(1, a)));
+}
+
+function greedyPopBounds(rows) {
+  const upper = rows.reduce((s, f) => s + (f.properties.p30 || 0), 0);
+  const sorted = [...rows].sort((a, b) => (b.properties.p30 || 0) - (a.properties.p30 || 0));
+  const chosen = [];
+  let lower = 0;
+  for (const f of sorted) {
+    const c = f.geometry.coordinates;
+    if (chosen.every(o => haversineKm(c, o) > 60)) {
+      chosen.push(c);
+      lower += f.properties.p30 || 0;
+    }
+  }
+  return [lower, upper];
+}
+
+function circleFeature(lon, lat, km = 30, steps = 64) {
+  const d = km / 6371, lat1 = lat * Math.PI / 180, lon1 = lon * Math.PI / 180;
+  const coords = [];
+  for (let i = 0; i <= steps; i++) {
+    const brng = (2 * Math.PI * i) / steps;
+    const lat2 = Math.asin(Math.sin(lat1) * Math.cos(d) + Math.cos(lat1) * Math.sin(d) * Math.cos(brng));
+    const dLon = Math.atan2(Math.sin(brng) * Math.sin(d) * Math.cos(lat1), Math.cos(d) - Math.sin(lat1) * Math.sin(lat2));
+    coords.push([(lon1 + dLon) * 180 / Math.PI, lat2 * 180 / Math.PI]);
+  }
+  return { type: 'Feature', geometry: { type: 'Polygon', coordinates: [coords] }, properties: {} };
+}
+
+function linkFeature(lon1, lat1, lon2, lat2) {
+  const endLon = lon1 + (((lon2 - lon1 + 540) % 360) - 180);
+  return { type: 'Feature', geometry: { type: 'LineString', coordinates: [[lon1, lat1], [endLon, lat2]] }, properties: {} };
+}
+
+function readHash() {
+  const sp = new URLSearchParams(location.hash.replace(/^#/, ''));
+  if (VALID_SENSORS.has(sp.get('s'))) state.sensor = sp.get('s');
+  const d = Number(sp.get('d'));
+  if (VALID_DEPTHS.has(d)) state.depth = d;
+  if (VALID_SETS.has(sp.get('set'))) state.set = sp.get('set');
+  if (VALID_BASE.has(sp.get('m'))) state.base = sp.get('m');
+  if (sp.get('p') === 'mercator') state.proj = 'mercator';
+  const v = Number(sp.get('v'));
+  if (Number.isInteger(v) && v > 0) state.selectedVnum = v;
+}
+
+function writeHash() {
+  const sp = new URLSearchParams();
+  sp.set('s', state.sensor);
+  sp.set('d', String(state.depth));
+  sp.set('set', state.set);
+  if (state.base !== 'sat') sp.set('m', state.base);
+  if (state.proj !== 'globe') sp.set('p', state.proj);
+  if (state.selectedVnum) sp.set('v', String(state.selectedVnum));
+  history.replaceState(null, '', '#' + sp.toString());
+}
+
+readHash();
+
+const EMPTY_FC = { type: 'FeatureCollection', features: [] };
 const style = {
   version: 8,
-  projection: { type: 'globe' },
+  projection: { type: state.proj },
   sky: { 'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 1, 5, 1, 7, 0] },
   sources: {
-    land: { type: 'geojson', data: 'data/ne_50m_land.geojson' },
-    borders: { type: 'geojson', data: 'data/ne_50m_admin_0_boundary_lines_land.geojson' },
-    volc: { type: 'geojson', data: { type: 'FeatureCollection', features: [] } },
-    sta: { type: 'geojson', data: 'data/stations.geojson' }
+    'esri-sat': { type: 'raster', tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'], tileSize: 256, maxzoom: 17, attribution: 'Powered by Esri · Source: Esri, Vantor, Earthstar Geographics, and the GIS User Community' },
+    'esri-ref': { type: 'raster', tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}'], tileSize: 256, maxzoom: 17, attribution: 'Esri, HERE, Garmin, © OpenStreetMap contributors, and the GIS user community' },
+    'esri-ocean': { type: 'raster', tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}'], tileSize: 256, maxzoom: 13, attribution: 'Powered by Esri · Esri, Garmin, GEBCO, NOAA NGDC, and other contributors' },
+    'esri-ocean-ref': { type: 'raster', tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Reference/MapServer/tile/{z}/{y}/{x}'], tileSize: 256, maxzoom: 13, attribution: 'Sources: Esri, GEBCO, NOAA, National Geographic, Garmin, HERE, Geonames.org, and other contributors' },
+    'esri-topo': { type: 'raster', tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'], tileSize: 256, maxzoom: 17, attribution: 'Powered by Esri · Sources: Esri, HERE, Garmin, Intermap, increment P Corp., GEBCO, USGS, FAO, NPS, NRCAN, GeoBase, IGN, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), © OpenStreetMap contributors, and the GIS User Community' },
+    volc: { type: 'geojson', data: EMPTY_FC },
+    sta: { type: 'geojson', data: EMPTY_FC },
+    expo: { type: 'geojson', data: EMPTY_FC },
+    link: { type: 'geojson', data: EMPTY_FC },
+    selsta: { type: 'geojson', data: EMPTY_FC },
+    selvolc: { type: 'geojson', data: EMPTY_FC }
   },
   layers: [
-    { id: 'bg', type: 'background', paint: { 'background-color': '#0a1424' } },
-    { id: 'land', type: 'fill', source: 'land', paint: { 'fill-color': '#1d2433' } },
-    { id: 'borders', type: 'line', source: 'borders', paint: { 'line-color': '#3a4558', 'line-width': 0.6 } },
+    { id: 'bg', type: 'background', paint: { 'background-color': '#060c18' } },
+    { id: 'lyr-sat', type: 'raster', source: 'esri-sat', layout: { visibility: state.base === 'sat' ? 'visible' : 'none' } },
+    { id: 'lyr-ref', type: 'raster', source: 'esri-ref', layout: { visibility: state.base === 'sat' ? 'visible' : 'none' } },
+    { id: 'lyr-ocean', type: 'raster', source: 'esri-ocean', layout: { visibility: state.base === 'ocean' ? 'visible' : 'none' } },
+    { id: 'lyr-ocean-ref', type: 'raster', source: 'esri-ocean-ref', layout: { visibility: state.base === 'ocean' ? 'visible' : 'none' } },
+    { id: 'lyr-topo', type: 'raster', source: 'esri-topo', layout: { visibility: state.base === 'topo' ? 'visible' : 'none' } },
+    { id: 'expo-fill', type: 'fill', source: 'expo', paint: { 'fill-color': '#ffb35c', 'fill-opacity': 0.11 } },
+    { id: 'expo-line', type: 'line', source: 'expo', paint: { 'line-color': '#ffb35c', 'line-width': 1.8, 'line-dasharray': [3, 2] } },
+    { id: 'link-line', type: 'line', source: 'link', paint: { 'line-color': '#38bdf8', 'line-width': 2.2, 'line-dasharray': [2, 2] } },
     { id: 'sta', type: 'circle', source: 'sta', layout: { visibility: 'none' },
-      paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 1, 1.2, 6, 3.5], 'circle-color': '#7fd1ff', 'circle-opacity': 0.7 } },
-    { id: 'volc', type: 'circle', source: 'volc', paint: {} }
+      paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 1, 1.8, 7, 4.5], 'circle-color': '#38bdf8', 'circle-stroke-color': '#071324', 'circle-stroke-width': 0.7, 'circle-opacity': 0.8 } },
+    { id: 'volc', type: 'circle', source: 'volc', paint: {} },
+    { id: 'sel-sta', type: 'circle', source: 'selsta', paint: { 'circle-radius': 5.5, 'circle-color': '#38bdf8', 'circle-stroke-color': '#ffffff', 'circle-stroke-width': 1.8 } },
+    { id: 'sel-volc', type: 'circle', source: 'selvolc', paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 1, 7, 8, 12], 'circle-color': 'rgba(0,0,0,0)', 'circle-stroke-color': '#ffffff', 'circle-stroke-width': 2.4 } }
   ]
 };
-const map = new maplibregl.Map({ container: 'map', style, center: [120, 5], zoom: 1.6, attributionControl: { compact: true, customAttribution: 'GVP · NGL · Kellndorfer et al. 2022 · Natural Earth' } });
+
+const map = new maplibregl.Map({
+  container: 'map', style, center: [120, 5], zoom: 1.7,
+  attributionControl: { compact: true, customAttribution: 'GVP · NGL · Kellndorfer et al. 2022 · GVMID' }
+});
 map.addControl(new maplibregl.NavigationControl({ visualizePitch: false }), 'bottom-right');
 
 let features = [];
+const byVnum = new Map();
+let stationsLoaded = false;
+let hoverPop = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 10 });
+let staPop = null;
+
+function showErr(msg) {
+  const el = document.getElementById('err');
+  el.textContent = msg;
+  el.classList.remove('hidden');
+}
+
+// "Blind Spots" = active, exposed and blind to open GNSS (network SNR 5) at the selected depth: the headline set
+function isGnssBlindAE(f) {
+  const p = f.properties, g = p['g' + state.depth];
+  return p.act && p.exp && (g == null || g > 1e7);
+}
+
+function visibleFeatures() {
+  if (state.set === 'act') return features.filter(f => f.properties.act);
+  if (state.set === 'ae') return features.filter(f => f.properties.act && f.properties.exp);
+  if (state.set === 'blind') return features.filter(isGnssBlindAE);
+  return features;
+}
+
+function syncUI() {
+  for (const [id, key] of [['segSensor', 'sensor'], ['segDepth', 'depth'], ['segSet', 'set']]) {
+    document.querySelectorAll(`#${id} button`).forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === String(state[key]))));
+  }
+  document.querySelectorAll('.mapctrl button[data-base]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.base === state.base)));
+  const bp = document.getElementById('bProj');
+  bp.setAttribute('aria-pressed', String(state.proj === 'mercator'));
+  bp.textContent = state.proj === 'mercator' ? '3D' : '2D';
+
+  document.getElementById('preAll').setAttribute('aria-pressed', String(state.set === 'all'));
+  document.getElementById('preAe').setAttribute('aria-pressed', String(state.set === 'ae'));
+  document.getElementById('preBlind').setAttribute('aria-pressed', String(state.set === 'blind'));
+
+  const curBlind = features.length ? features.filter(isGnssBlindAE).length : 76;
+  document.getElementById('preBlind').textContent = `Blind Spots · ${curBlind}`;
+}
+
+function setBasemap(base) {
+  state.base = base;
+  map.setLayoutProperty('lyr-sat', 'visibility', base === 'sat' ? 'visible' : 'none');
+  map.setLayoutProperty('lyr-ref', 'visibility', base === 'sat' ? 'visible' : 'none');
+  map.setLayoutProperty('lyr-ocean', 'visibility', base === 'ocean' ? 'visible' : 'none');
+  map.setLayoutProperty('lyr-ocean-ref', 'visibility', base === 'ocean' ? 'visible' : 'none');
+  map.setLayoutProperty('lyr-topo', 'visibility', base === 'topo' ? 'visible' : 'none');
+  syncUI();
+  writeHash();
+}
+
 function paint() {
   const f = field();
   const v = ['get', f];
-  map.setPaintProperty('volc', 'circle-radius', ['interpolate', ['linear'], ['zoom'], 1, 3.2, 6, 7]);
-  map.setPaintProperty('volc', 'circle-color', ['case', ['==', v, null], 'rgba(0,0,0,0)',
-    ['interpolate', ['linear'], ['log10', v], 5, '#fde7a8', 6, '#f99a5c', 7, '#d6456a', 8, '#8d2390', 8.6, '#3a0f6b', 9, '#0b0420']]);
-  map.setPaintProperty('volc', 'circle-stroke-color', ['case', ['==', v, null], '#4ab3ff', 'rgba(0,0,0,.6)']);
-  map.setPaintProperty('volc', 'circle-stroke-width', ['case', ['==', v, null], 1.6, 0.5]);
-  const filt = state.set === 'act' ? ['==', ['get', 'act'], true] : state.set === 'ae' ? ['all', ['==', ['get', 'act'], true], ['==', ['get', 'exp'], true]] : null;
+  map.setPaintProperty('volc', 'circle-radius', ['interpolate', ['linear'], ['zoom'], 1, 3.6, 6, 6.5, 10, 8.5]);
+  map.setPaintProperty('volc', 'circle-color', [
+    'case', ['==', v, null], 'rgba(15,23,42,0.72)',
+    ['step', v, '#10b981', 1e6 + 1, '#facc15', 1e7 + 1, '#f97316', 1e8 + 1, '#ef4444']
+  ]);
+  map.setPaintProperty('volc', 'circle-stroke-color', ['case', ['==', v, null], '#ef4444', 'rgba(5,10,20,0.88)']);
+  map.setPaintProperty('volc', 'circle-stroke-width', ['case', ['==', v, null], 1.8, 0.9]);
+
+  let filt = null;
+  if (state.set === 'act') filt = ['==', ['get', 'act'], true];
+  else if (state.set === 'ae') filt = ['all', ['==', ['get', 'act'], true], ['==', ['get', 'exp'], true]];
+  else if (state.set === 'blind') {
+    const g = ['get', 'g' + state.depth];  // same definition as isGnssBlindAE (open GNSS, network SNR 5)
+    filt = ['all', ['==', ['get', 'act'], true], ['==', ['get', 'exp'], true], ['any', ['==', g, null], ['>', g, 1e7]]];
+  }
   map.setFilter('volc', filt);
-  const names = { comb: 'GNSS or Sentinel-1', g: 'open GNSS', gs: 'open GNSS, horizontal sill', g1s: 'open GNSS, 1σ daily (USGS style)', ib: 'Sentinel-1, best season', iw: 'Sentinel-1, worst season' };
-  document.getElementById('legTitle').textContent = `Smallest detectable volume change, ${state.depth} km (${names[state.sensor]})`;
+
+  const shortNames = { comb: 'GNSS + Sentinel-1', g: 'Open GNSS', gs: 'GNSS Sill', g1s: 'GNSS 1σ', ib: 'Sentinel-1 Best', iw: 'Sentinel-1 Worst' };
+  const vis = visibleFeatures();
+  const det = vis.filter(ft => ft.properties[f] != null && ft.properties[f] <= 1e7).length;
+  document.getElementById('legSub').textContent = `${state.depth} km · ${shortNames[state.sensor]} · ${det.toLocaleString()} / ${vis.length.toLocaleString()} detectable ≤10⁷ m³`;
+  const hollow = { comb: 'Blind spot', g: 'No 30d GNSS', gs: 'No 30d GNSS', g1s: 'No GNSS ≤100 km', ib: '<10% S1 coh.', iw: 'Not 4 seasons' };
+  document.getElementById('legNullLabel').textContent = hollow[state.sensor];
 }
 
-map.on('load', async () => {
-  const gj = await (await fetch('data/volcanoes.geojson')).json();
-  for (const ft of gj.features) {
-    const p = ft.properties;
-    for (const d of [2, 5, 10]) {
-      const a = p['g' + d], b = p['ib' + d];
-      p['comb' + d] = a == null ? b : b == null ? a : Math.min(a, b);
+function verdictInfo(p) {
+  const d = state.depth, s = state.sensor, val = p[s + d], g = p['g' + d], ib = p['ib' + d];
+  if (s === 'comb') {
+    if (g != null && g <= 1e7) {
+      return [g <= 1e6 ? 'strong' : 'mod', 'Detected by Open GNSS',
+        `Open GNSS detects magma changes from about ${fmt(g)} m³ at ${d} km${ib != null ? `; best-season Sentinel-1 sees from ${fmt(ib)} m³.` : '; Sentinel-1 lacks ≥10% coherent area within 5 km.'}`];
     }
+    if (ib != null && ib <= 1e7) {
+      return ['mod', 'Detected by Satellite (Best Season)',
+        `Open GNSS cannot detect 10⁷ m³ at ${d} km here; Sentinel-1 detects from about ${fmt(ib)} m³ in its best season.`];
+    }
+    if (g != null || ib != null) {
+      return ['weak', 'Weak Coverage (>10⁷ m³)',
+        g != null ? `Needs about ${fmt(g)} m³ at ${d} km on open GNSS; Sentinel-1 has <10% coherent area within 5 km.`
+                  : `Sentinel-1 requires about ${fmt(ib)} m³ in best season; no 30-day open GNSS within 100 km.`];
+    }
+    return ['blind', 'Blind Spot (No Open Coverage)', 'No 30-day open GNSS within 100 km and no Sentinel-1 season with ≥10% coherent area within 5 km.'];
   }
-  features = gj.features;
-  map.getSource('volc').setData(gj);
-  paint();
-  buildRank();
-});
+  const sLab = s === 'g' ? 'Open GNSS' : s === 'gs' ? 'Open GNSS (Sill)' : s === 'g1s' ? 'Open GNSS (1σ)' : s === 'ib' ? 'Sentinel-1 Best' : 'Sentinel-1 Worst';
+  if (val == null) {
+    return ['blind', 'No Usable Data', s.startsWith('i') ? `${sLab}: fewer than 10% of pixels within 5 km are coherent.` : `No active open GNSS station ${s === 'g1s' ? '' : 'with 30-day noise '}within 100 km.`];
+  }
+  if (val <= 1e6) return ['strong', `Strong Coverage (${sLab})`, `${sLab} detects changes from about ${fmt(val)} m³ at ${d} km.`];
+  if (val <= 1e7) return ['mod', `Moderate Coverage (${sLab})`, `${sLab} detects changes from about ${fmt(val)} m³ at ${d} km (below 10⁷ m³).`];
+  return ['weak', `Weak Coverage (${sLab})`, `${sLab} needs about ${fmt(val)} m³ at ${d} km (misses 10⁷ m³).`];
+}
 
-map.on('click', 'volc', e => {
-  const p = e.features[0].properties;
+function updateSelectionOverlays(ft) {
+  if (!ft) {
+    for (const s of ['expo', 'link', 'selsta', 'selvolc']) map.getSource(s).setData(EMPTY_FC);
+    return;
+  }
+  const [lon, lat] = ft.geometry.coordinates;
+  const p = ft.properties;
+  map.getSource('expo').setData({ type: 'FeatureCollection', features: [circleFeature(lon, lat, 30)] });
+  map.getSource('selvolc').setData({ type: 'FeatureCollection', features: [ft] });
+  if (p.ns && p.ns_lon != null && p.ns_lat != null) {
+    map.getSource('link').setData({ type: 'FeatureCollection', features: [linkFeature(lon, lat, p.ns_lon, p.ns_lat)] });
+    map.getSource('selsta').setData({ type: 'FeatureCollection', features: [{ type: 'Feature', geometry: { type: 'Point', coordinates: [p.ns_lon, p.ns_lat] }, properties: { s: p.ns } }] });
+  } else {
+    map.getSource('link').setData(EMPTY_FC);
+    map.getSource('selsta').setData(EMPTY_FC);
+  }
+}
+
+function syncSheetClass() {
+  const open = document.getElementById('inspector').classList.contains('open') || document.getElementById('drawer').classList.contains('open');
+  document.body.classList.toggle('sheet-open', open);
+}
+
+function closeDrawer() {
+  state.drawerTab = null;
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('bCtrl').setAttribute('aria-expanded', 'false');
+  document.getElementById('bBlind').setAttribute('aria-expanded', 'false');
+  syncSheetClass();
+}
+
+function openDrawer(tab) {
+  if (state.drawerTab === tab) { closeDrawer(); return; }
+  state.drawerTab = tab;
+  document.getElementById('inspector').classList.remove('open');
+  document.getElementById('drawer').classList.add('open');
+  const isCtrl = tab === 'ctrl';
+  document.getElementById('paneCtrl').classList.toggle('hidden', !isCtrl);
+  document.getElementById('paneBlind').classList.toggle('hidden', isCtrl);
+  document.getElementById('tabCtrl').setAttribute('aria-selected', String(isCtrl));
+  document.getElementById('tabBlind').setAttribute('aria-selected', String(!isCtrl));
+  document.getElementById('bCtrl').setAttribute('aria-expanded', String(isCtrl));
+  document.getElementById('bBlind').setAttribute('aria-expanded', String(!isCtrl));
+  if (!isCtrl) buildRank();
+  syncSheetClass();
+}
+
+function closeInspector(clearMap = true) {
+  document.getElementById('inspector').classList.remove('open');
+  if (clearMap) {
+    state.selectedVnum = null;
+    updateSelectionOverlays(null);
+    writeHash();
+  }
+  syncSheetClass();
+}
+
+function renderInspector(ft) {
+  closeDrawer();
+  const p = ft.properties;
+  const [lon, lat] = ft.geometry.coordinates;
   const d = state.depth;
-  const g = p['g' + d], ib = p['ib' + d], iw = p['iw' + d];
-  const best = [g, ib].filter(x => x != null);
-  const bestv = best.length ? Math.min(...best) : null;
-  let verdict;
-  if (bestv == null) verdict = 'No open GNSS station within 100 km and no coherent Sentinel-1 pixel within 20 km.';
-  else if (g == null || g > 1e7) verdict = `Open GNSS cannot see 10⁷ m³ here; Sentinel-1 sees about ${fmt(ib)} m³ at best.`;
-  else verdict = `Open GNSS sees changes from about ${fmt(g)} m³.`;
-  const html = `<b>${p.n}</b> <span class="k">${p.c}</span><br>
-    <span class="k">People within 30 km</span> ${fmtPop(p.p30)} · <span class="k">eruptions since 1900</span> ${p.e19}${p.vei != null ? ' · <span class="k">max VEI</span> ' + p.vei : ''}<br>
-    <span class="k">Open GNSS stations ≤20 km</span> ${p.s20} · <span class="k">≤50 km</span> ${p.s50}${p.bs ? ' · <span class="k">deciding</span> ' + p.bs + ' (' + p.bk + ' km)' : ''}<br>
-    <span class="k">Detectable at ${d} km:</span> GNSS ${fmt(g)} m³ (sill ${fmt(p['gs' + d])}) · Sentinel-1 ${fmt(ib)} (best) / ${fmt(iw)} (worst season) m³
-    <div class="verdict">${p.fld ? 'Volcanic field: a point source below one coordinate is only indicative. ' : ''}${verdict}${p.nn ? '<br><span class="k">Ground networks (GVMID + literature):</span> ' + NN[p.nn] : ''}</div>`;
-  new maplibregl.Popup({ closeButton: true, maxWidth: '300px' }).setLngLat(e.features[0].geometry.coordinates).setHTML(html).addTo(map);
-});
-map.on('mouseenter', 'volc', () => map.getCanvas().style.cursor = 'pointer');
-map.on('mouseleave', 'volc', () => map.getCanvas().style.cursor = '');
+  const [cls, statusTitle, verdictText] = verdictInfo(p);
+  const gVal = p['g' + d], ibVal = p['ib' + d];
+  const nnText = p.nn ? (NN[p.nn] || p.nn.replace(/_/g, ' ')) : '';
+  const elStr = p.el != null ? `${p.el.toLocaleString()} m · ` : '';
+  const vtStr = p.vt ? `${esc(p.vt)} · ` : '';
+
+  const rowsHtml = [2, 5, 10].map(dd => `<tr>
+    <td>${dd} km</td>
+    <td>${fmt(p['g' + dd])}</td>
+    <td>${fmt(p['gs' + dd])}</td>
+    <td>${fmt(p['g1s' + dd])}</td>
+    <td>${fmt(p['ib' + dd])}</td>
+    <td>${fmt(p['iw' + dd])}</td>
+  </tr>`).join('');
+
+  const card = document.getElementById('inspector');
+  card.innerHTML = `
+    <div class="chead">
+      <div>
+        <h2>${esc(p.n)}</h2>
+        <div class="cmeta">${esc(p.c)} · ${vtStr}${elStr}${fmtCoord(lon, lat)}</div>
+      </div>
+      <button class="close" id="closeInsp" aria-label="Close volcano details">&times;</button>
+    </div>
+    <div class="sbadge ${cls}">${esc(statusTitle)}</div>
+    <div class="tiles">
+      <div class="tile">
+        <div class="tl">People ≤30 km</div>
+        <div class="tv">${fmtPop(p.p30)}</div>
+        <div class="ts">${p.e19} erupt. ≥1900${p.vei != null ? ' · VEI ' + p.vei : ''}</div>
+      </div>
+      <div class="tile">
+        <div class="tl">Open GNSS</div>
+        <div class="tv">${gVal != null ? fmt(gVal) + ' m³' : 'No 30d data'}</div>
+        <div class="ts">${p.ns ? `${esc(p.ns)} · ${p.nk} km` : 'None ≤100 km'}</div>
+      </div>
+      <div class="tile">
+        <div class="tl">Sentinel-1</div>
+        <div class="tv">${ibVal != null ? fmt(ibVal) + ' m³' : 'Not usable'}</div>
+        <div class="ts">${fmtPct(p.f5b)} coherent ≤5 km</div>
+      </div>
+    </div>
+    <p class="verdict">${p.fld ? '<b>Volcanic field:</b> point source below one coordinate is indicative only. ' : ''}${esc(verdictText)}</p>
+    ${nnText ? `<div class="netnote"><b>Ground monitoring (GVMID + lit):</b> ${esc(nnText)}</div>` : ''}
+    <details class="math">
+      <summary>Mathematical breakdown &amp; depths (2 / 5 / 10 km)</summary>
+      <table class="mtbl">
+        <thead><tr><th>Depth</th><th>GNSS</th><th>Sill</th><th>1σ</th><th>S1 Best</th><th>S1 Worst</th></tr></thead>
+        <tbody>${rowsHtml}</tbody>
+      </table>
+      <div class="mfoot">
+        30-day GNSS ≤20 km / ≤50 km: <b>${p.s20} / ${p.s50}</b> (${p.sa50} active total ≤50 km)${p.nbs ? ` · top network site: <b>${esc(p.nbs)}</b> (${p.nbk} km)` : ''}<br>
+        Sentinel-1 ≤5 km coherent pixels: <b>${fmtPct(p.f5b)}</b> best / <b>${fmtPct(p.f5w)}</b> worst season (10% min required)<br>
+        GVP #${p.v} · <a href="https://volcano.si.edu/volcano.cfm?vn=${p.v}" target="_blank" rel="noopener">Smithsonian GVP profile ↗</a>
+      </div>
+    </details>`;
+  card.classList.add('open');
+  document.getElementById('closeInsp').onclick = () => closeInspector(true);
+  state.selectedVnum = p.v;
+  updateSelectionOverlays(ft);
+  writeHash();
+  syncSheetClass();
+}
+
+function focusVolcano(ft, fly = true) {
+  renderInspector(ft);
+  if (fly) {
+    const mobilePad = window.innerWidth <= 640 ? { bottom: Math.round(window.innerHeight * 0.42) } : { right: 190 };
+    map.flyTo({ center: ft.geometry.coordinates, zoom: Math.max(map.getZoom(), 8.5), speed: 1.35, padding: mobilePad });
+  }
+}
 
 function buildRank() {
-  const rows = features.filter(f => f.properties.act && f.properties.exp && (f.properties.g5 == null || f.properties.g5 > 1e7))
+  if (!features.length) return;
+  const d = state.depth, fKey = field();
+  const q = document.getElementById('rankFilter').value.trim().toLowerCase();
+  const aeAll = features.filter(f => f.properties.act && f.properties.exp);
+  const blindAll = aeAll.filter(f => f.properties[fKey] == null || f.properties[fKey] > 1e7)
     .sort((a, b) => (b.properties.p30 || 0) - (a.properties.p30 || 0));
-  const all = features.filter(f => f.properties.act && f.properties.exp).length;
-  const ppl = rows.reduce((s, f) => s + (f.properties.p30 || 0), 0);
-  document.getElementById('rankNote').textContent = `${rows.length} of ${all} volcanoes that erupted since 1900 and have ≥100,000 people within 30 km: open GNSS would not detect a 10⁷ m³ change at 5 km (network, signal-to-noise 5). Up to ${(ppl/1e6).toFixed(0)} M people live within 30 km of them (circles overlap, so this is an upper bound). Click a row to fly there.`;
+  const [lo, up] = greedyPopBounds(blindAll);
+  const sensorNames = { comb: 'GNSS + Sentinel-1', g: 'Open GNSS (SNR 5)', gs: 'GNSS Sill', g1s: 'GNSS 1σ', ib: 'Sentinel-1 Best', iw: 'Sentinel-1 Worst' };
+  document.getElementById('rankNote').textContent =
+    `${blindAll.length} of ${aeAll.length} active exposed volcanoes miss 10⁷ m³ at ${d} km under ${sensorNames[state.sensor]}. ` +
+    `${(lo / 1e6).toFixed(1)}–${(up / 1e6).toFixed(1)} M people live ≤30 km (non-overlapping >60 km lower bound to sum upper bound).`;
+
+  const shown = q ? blindAll.filter(f => f.properties.n.toLowerCase().includes(q) || f.properties.c.toLowerCase().includes(q)) : blindAll;
   const body = document.getElementById('rankBody');
-  body.innerHTML = rows.map((f, i) => `<tr class="row" data-i="${i}"><td>${f.properties.n}<br><span class="k">${f.properties.c}</span></td><td>${fmtPop(f.properties.p30)}</td><td>${f.properties.bs ? f.properties.bk + ' km' : 'none ≤100 km'}</td></tr>`).join('');
-  body.querySelectorAll('tr').forEach(tr => tr.onclick = () => {
-    const f = rows[+tr.dataset.i];
-    map.flyTo({ center: f.geometry.coordinates, zoom: 7, speed: 1.2 });
+  if (!shown.length) {
+    body.innerHTML = `<tr><td colspan="3" style="color:var(--mute)">No matching volcanoes under this filter.</td></tr>`;
+    return;
+  }
+  body.innerHTML = shown.map(f => {
+    const p = f.properties;
+    const near = p.ns ? `${esc(String(p.nk))} km (${esc(p.ns)})` : 'none ≤100 km';
+    return `<tr class="row" data-v="${Number(p.v)}"><td><b>${esc(p.n)}</b><br><span style="color:var(--mute);font-size:11px">${esc(p.c)}</span></td><td>${fmtPop(p.p30)}</td><td>${near}</td></tr>`;
+  }).join('');
+  body.querySelectorAll('tr.row').forEach(tr => tr.onclick = () => {
+    const ft = byVnum.get(Number(tr.dataset.v));
+    if (ft) focusVolcano(ft, true);
   });
 }
+
+// Presets & Drawer Navigation
+document.getElementById('preAll').onclick = () => { state.set = 'all'; syncUI(); paint(); buildRank(); writeHash(); };
+document.getElementById('preAe').onclick = () => { state.set = 'ae'; syncUI(); paint(); buildRank(); writeHash(); };
+document.getElementById('preBlind').onclick = () => { state.set = 'blind'; syncUI(); paint(); buildRank(); writeHash(); };
+
+window.addEventListener('hashchange', () => {
+  readHash();
+  setBasemap(state.base);
+  map.setProjection({ type: state.proj });
+  syncUI();
+  paint();
+  buildRank();
+  if (state.selectedVnum && byVnum.has(state.selectedVnum)) {
+    focusVolcano(byVnum.get(state.selectedVnum), true);
+  }
+});
+
+document.getElementById('bCtrl').onclick = () => openDrawer('ctrl');
+document.getElementById('bBlind').onclick = () => openDrawer('blind');
+document.getElementById('tabCtrl').onclick = () => { state.drawerTab = null; openDrawer('ctrl'); };
+document.getElementById('tabBlind').onclick = () => { state.drawerTab = null; openDrawer('blind'); };
+document.getElementById('closeDrawer').onclick = closeDrawer;
 
 function seg(id, key, cast) {
   document.querySelectorAll(`#${id} button`).forEach(b => b.onclick = () => {
-    document.querySelectorAll(`#${id} button`).forEach(x => x.setAttribute('aria-pressed', x === b));
     state[key] = cast ? cast(b.dataset.v) : b.dataset.v;
+    syncUI();
     paint();
+    buildRank();
+    writeHash();
+    if (!state.drawerTab && state.selectedVnum && byVnum.has(state.selectedVnum)) renderInspector(byVnum.get(state.selectedVnum));
   });
 }
-seg('segSensor', 'sensor'); seg('segDepth', 'depth', Number); seg('segSet', 'set');
+seg('segSensor', 'sensor');
+seg('segDepth', 'depth', Number);
+seg('segSet', 'set');
 
-const panels = { bLayer: 'pLayer', bRank: 'pRank', bAbout: 'pAbout' };
-for (const [b, p] of Object.entries(panels)) {
-  document.getElementById(b).onclick = () => {
-    const open = !document.getElementById(p).classList.contains('open');
-    for (const [b2, p2] of Object.entries(panels)) {
-      document.getElementById(p2).classList.remove('open');
-      document.getElementById(b2).setAttribute('aria-pressed', 'false');
+document.querySelectorAll('.mapctrl button[data-base]').forEach(b => b.onclick = () => setBasemap(b.dataset.base));
+document.getElementById('bProj').onclick = () => {
+  state.proj = state.proj === 'globe' ? 'mercator' : 'globe';
+  map.setProjection({ type: state.proj });
+  syncUI();
+  writeHash();
+};
+
+document.getElementById('chkSta').onchange = async e => {
+  const chk = e.currentTarget;
+  if (chk.checked && !stationsLoaded) {
+    chk.disabled = true;
+    try {
+      const res = await fetch('data/stations.geojson');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      map.getSource('sta').setData(await res.json());
+      stationsLoaded = true;
+    } catch (err) {
+      chk.checked = false;
+      chk.disabled = false;
+      showErr(`Could not load GNSS stations (${err.message}).`);
+      return;
     }
-    if (open) { document.getElementById(p).classList.add('open'); document.getElementById(b).setAttribute('aria-pressed', 'true'); }
-  };
-}
-document.getElementById('bSta').onclick = e => {
-  state.stations = !state.stations;
-  e.target.setAttribute('aria-pressed', state.stations);
+    chk.disabled = false;
+  }
+  state.stations = chk.checked;
   map.setLayoutProperty('sta', 'visibility', state.stations ? 'visible' : 'none');
 };
+
+// Search
+const qInput = document.getElementById('q');
+const qList = document.getElementById('qList');
+let qMatches = [], qIdx = -1;
+function closeSearch() { qList.classList.remove('open'); qIdx = -1; }
+function renderSearch() {
+  const term = qInput.value.trim().toLowerCase();
+  if (!term || !features.length) { closeSearch(); return; }
+  qMatches = features.filter(f => f.properties.n.toLowerCase().includes(term) || f.properties.c.toLowerCase().includes(term))
+    .sort((a, b) => (b.properties.p30 || 0) - (a.properties.p30 || 0)).slice(0, 12);
+  qList.innerHTML = qMatches.length
+    ? qMatches.map((f, i) => `<div class="qitem${i === qIdx ? ' active' : ''}" role="option" data-i="${i}"><span>${esc(f.properties.n)}</span><span class="qc">${esc(f.properties.c)} · ${fmtPop(f.properties.p30)}</span></div>`).join('')
+    : `<div class="qitem"><span style="color:var(--mute)">No matching volcano</span></div>`;
+  qList.querySelectorAll('.qitem[data-i]').forEach(el => el.onclick = () => {
+    const ft = qMatches[Number(el.dataset.i)];
+    qInput.value = ft.properties.n;
+    closeSearch();
+    focusVolcano(ft, true);
+  });
+  qList.classList.add('open');
+}
+qInput.addEventListener('input', () => { qIdx = -1; renderSearch(); });
+qInput.addEventListener('keydown', e => {
+  if (!qList.classList.contains('open') || !qMatches.length) {
+    if (e.key === 'Escape') { qInput.blur(); closeSearch(); }
+    return;
+  }
+  if (e.key === 'ArrowDown') { e.preventDefault(); qIdx = (qIdx + 1) % qMatches.length; renderSearch(); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); qIdx = (qIdx - 1 + qMatches.length) % qMatches.length; renderSearch(); }
+  else if (e.key === 'Enter' && (qIdx >= 0 || qMatches.length === 1)) {
+    e.preventDefault();
+    const ft = qMatches[Math.max(0, qIdx)];
+    qInput.value = ft.properties.n;
+    closeSearch();
+    focusVolcano(ft, true);
+  } else if (e.key === 'Escape') { closeSearch(); }
+});
+document.addEventListener('click', e => { if (!e.target.closest('.hud-tl')) closeSearch(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeSearch();
+    closeDrawer();
+    if (staPop) { staPop.remove(); staPop = null; }
+    closeInspector(true);
+  }
+});
+document.getElementById('rankFilter').addEventListener('input', buildRank);
+
+// Map Interactions
+map.on('click', 'volc', e => {
+  const ft = byVnum.get(e.features[0].properties.v) || e.features[0];
+  focusVolcano(ft, map.getZoom() < 5);
+});
+map.on('click', 'sta', e => {
+  if (map.queryRenderedFeatures(e.point, { layers: ['volc'] }).length) return;
+  const p = e.features[0].properties;
+  const s30 = p.u30 != null ? `${p.e30} / ${p.n30} / ${p.u30} mm` : 'too short (&lt;8 30-day pairs)';
+  if (staPop) staPop.remove();
+  staPop = new maplibregl.Popup({ closeButton: true, maxWidth: '280px' })
+    .setLngLat(e.features[0].geometry.coordinates)
+    .setHTML(`<b>NGL Station ${esc(p.s)}</b><br><span style="color:var(--mute)">30-day noise (E/N/U):</span> ${s30}<br><span style="color:var(--mute)">Daily white noise:</span> ${p.e} / ${p.n} / ${p.u} mm`)
+    .addTo(map);
+});
+map.on('mouseenter', 'volc', e => {
+  map.getCanvas().style.cursor = 'pointer';
+  if (window.innerWidth <= 640) return;
+  const ft = byVnum.get(e.features[0].properties.v) || e.features[0];
+  const p = ft.properties;
+  hoverPop.setLngLat(ft.geometry.coordinates)
+    .setHTML(`<b>${esc(p.n)}</b> <span style="color:var(--mute)">${esc(p.c)}</span> · ${fmt(p[field()])} m³`)
+    .addTo(map);
+});
+map.on('mouseleave', 'volc', () => { map.getCanvas().style.cursor = ''; hoverPop.remove(); });
+map.on('mouseenter', 'sta', () => { map.getCanvas().style.cursor = 'pointer'; });
+map.on('mouseleave', 'sta', () => { map.getCanvas().style.cursor = ''; });
+
+map.on('error', e => {
+  if (e && e.sourceId && String(e.sourceId).startsWith('esri-')) return;
+  if (e && e.error && !String(e.error.message || '').includes('AbortError')) {
+    showErr(`Atlas error: ${e.error.message || 'failed to render map layer'}`);
+  }
+});
+
+map.on('load', async () => {
+  try {
+    const res = await fetch('data/volcanoes.geojson');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const gj = await res.json();
+    for (const ft of gj.features) {
+      const p = ft.properties;
+      for (const d of [2, 5, 10]) {
+        const a = p['g' + d], b = p['ib' + d];
+        p['comb' + d] = a == null ? b : b == null ? a : Math.min(a, b);
+      }
+      byVnum.set(p.v, ft);
+    }
+    features = gj.features;
+    map.getSource('volc').setData(gj);
+    syncUI();
+    paint();
+    document.getElementById('loading').classList.add('hidden');
+    if (state.selectedVnum && byVnum.has(state.selectedVnum)) {
+      const ft = byVnum.get(state.selectedVnum);
+      map.jumpTo({ center: ft.geometry.coordinates, zoom: 8.5 });
+      renderInspector(ft);
+    }
+  } catch (err) {
+    document.getElementById('loading').classList.add('hidden');
+    showErr(`Failed to load volcano catalogue: ${err.message}`);
+  }
+});
 </script>
 </body>
 </html>

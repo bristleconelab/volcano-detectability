@@ -1,36 +1,36 @@
 vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
-210010,West Eifel Volcanic Field,Germany,False,True,232256,961182,803212.7,1539553,1782517
-210020,Chaine des Puys,France,False,True,427221,683866.7,507753.3,744299.5,925676.4
-210030,Olot Volcanic Field,Spain,False,True,101153,1012598,747540.3,1277162,1732767
-210040,Calatrava Volcanic Field,Spain,False,True,197199,4390852,4.941479e+07,4400885,5391689
-211004,Colli Albani,Italy,False,True,2962194,389530,338444.7,347249.5,458956.5
-211010,Campi Flegrei,Italy,False,True,3006865,763802,1902037,661885.2,962848.3
-211020,Vesuvius,Italy,True,True,3907941,2614845,2.724157e+07,2433444,3009057
-211030,Ischia,Italy,False,True,383661,1108687,3554718,1282615,1944407
-211041,Panarea,Italy,False,False,42429,492526.8,373053.1,594250.4,754123.9
-211042,Lipari,Italy,False,False,36059,550663.1,751225.6,598904.7,799191.8
-211040,Stromboli,Italy,True,False,3894,803838.8,517349.9,858549.5,1110934
-211050,Vulcano,Italy,False,False,86766,473365.8,289948.6,446016.2,538128.6
-211060,Etna,Italy,True,True,1016540,1260871,1926835,1481069,2095517
-211071,Pantelleria,Italy,False,False,12403,1169512,1511464,1549153,2405108
-212020,Methana,Greece,False,False,48917,1.386895e+07,2.532695e+08,1.419818e+07,1.662617e+07
-212030,Milos,Greece,False,False,9851,742515.7,719589.6,1210330,1467711
-212040,Santorini,Greece,True,False,12336,2014442,1677940,3330235,5046649
-212050,Nisyros,Greece,False,False,14285,1.525524e+07,1.284298e+09,1.527947e+07,1.732527e+07
+210010,West Eifel Volcanic Field,Germany,False,True,232256,855737.2,695671.8,969427.1,1738685
+210020,Chaine des Puys,France,False,True,427221,674026.3,485700.6,779598.6,1014475
+210030,Olot Volcanic Field,Spain,False,True,101153,1182322,872720.6,1331728,2115231
+210040,Calatrava Volcanic Field,Spain,False,True,197199,6334412,7.206297e+07,5738904,7780434
+211004,Colli Albani,Italy,False,True,2962194,464952.4,396191,390948.2,530335.8
+211010,Campi Flegrei,Italy,False,True,3006865,933245.5,2244310,845528.4,1311011
+211020,Vesuvius,Italy,True,True,3907941,2930236,3.42947e+07,2757725,3363668
+211030,Ischia,Italy,False,True,383661,1904214,6572849,2032502,3100402
+211041,Panarea,Italy,False,False,42429,698229.6,528473.9,783931.7,1088775
+211042,Lipari,Italy,False,False,36059,623395.6,812563.2,627385.4,957151.4
+211040,Stromboli,Italy,True,False,3894,1046608,667933,1172945,1646031
+211050,Vulcano,Italy,False,False,86766,440375.7,259432.9,494536,691888.3
+211060,Etna,Italy,True,True,1016540,2058548,3611461,2082159,3329585
+211071,Pantelleria,Italy,False,False,12403,815929.7,1054499,1054755,1657005
+212020,Methana,Greece,False,False,48917,1.575739e+07,2.645413e+08,1.595812e+07,1.954277e+07
+212030,Milos,Greece,False,False,9851,872333.9,845401.6,1412800,1724864
+212040,Santorini,Greece,True,False,12336,2038076,1692962,3141781,5425714
+212050,Nisyros,Greece,False,False,14285,2.770335e+07,1.865439e+09,2.756001e+07,3.111127e+07
 213000,Kula,Turkiye,False,True,187845,inf,inf,inf,inf
 213002,Hasandag-Keciboyduran Volcanic Complex,Turkiye,False,True,174584,inf,inf,inf,inf
 213011,Karaca Dag,Turkiye,False,False,93286,inf,inf,inf,inf
 213010,Erciyes Volcanic Complex,Turkiye,False,True,767813,inf,inf,inf,inf
 213020,Nemrut Dagi,Turkiye,False,True,230531,inf,inf,inf,inf
 213030,Tenduruk Dagi,Turkiye,False,True,173581,inf,inf,inf,inf
-213040,Ararat,Turkiye,False,True,135563,4.11776e+07,3.38014e+09,4.134799e+07,4.740668e+07
-214010,Elbrus,Russia,False,False,5718,7.590865e+07,1.158354e+10,7.596234e+07,8.083988e+07
+213040,Ararat,Turkiye,False,True,135563,4.948354e+07,4.170678e+09,4.969451e+07,5.649987e+07
+214010,Elbrus,Russia,False,False,5718,7.624326e+07,1.149481e+10,7.633367e+07,8.288267e+07
 214020,Kazbek,Georgia,False,False,7693,inf,inf,inf,inf
 214050,Samsari Volcanic Center,Georgia,False,False,86563,inf,inf,inf,inf
-214060,Aragats,Armenia,False,True,150143,8231835,8.025355e+07,8475556,1.20892e+07
-214070,Ghegham Volcanic Ridge,Armenia,False,True,1265153,8913639,1.326055e+08,9203386,1.216908e+07
-214080,Vaiyots-Sar,Armenia,False,False,57079,7.026771e+07,8.01128e+09,7.057245e+07,7.942007e+07
-214090,Porak,Armenia-Azerbaijan,False,False,62882,7.161322e+07,1.101922e+10,7.10477e+07,7.770889e+07
+214060,Aragats,Armenia,False,True,150143,8381198,8.127677e+07,8818023,1.216511e+07
+214070,Ghegham Volcanic Ridge,Armenia,False,True,1265153,1.074664e+07,1.588839e+08,1.110957e+07,1.48225e+07
+214080,Vaiyots-Sar,Armenia,False,False,57079,8.323481e+07,9.48967e+09,8.361047e+07,9.438318e+07
+214090,Porak,Armenia-Azerbaijan,False,False,62882,8.047033e+07,1.237185e+10,7.984541e+07,8.598451e+07
 214100,Tskhouk-Karckar,Armenia-Azerbaijan,False,False,55696,inf,inf,inf,inf
 221010,"Tair, Jebel at",Yemen,True,False,0,inf,inf,inf,inf
 221021,Zukur,Yemen,False,False,1075,inf,inf,inf,inf
@@ -63,7 +63,7 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 221123,Mousa Alli,Ethiopia-Eritrea-Djibouti,False,False,11607,inf,inf,inf,inf
 221124,Gufa,Eritrea-Djibouti,False,False,6301,inf,inf,inf,inf
 221125,Assab Volcanic Field,Eritrea,False,False,97,inf,inf,inf,inf
-221126,Ardoukoba,Djibouti,True,False,6898,2.488865e+07,8.722269e+08,2.525673e+07,3.104058e+07
+221126,Ardoukoba,Djibouti,True,False,6898,2.810693e+07,9.850119e+08,2.843483e+07,3.508641e+07
 221120,Kurub,Ethiopia,False,False,64938,inf,inf,inf,inf
 221141,Dama Ali,Ethiopia,False,False,40013,inf,inf,inf,inf
 221151,Yangudi,Ethiopia,False,False,11672,inf,inf,inf,inf
@@ -76,11 +76,11 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 221191,Beru,Ethiopia,False,True,196084,inf,inf,inf,inf
 221190,Fentale,Ethiopia,False,True,169357,inf,inf,inf,inf
 221200,Kone,Ethiopia,False,True,255387,inf,inf,inf,inf
-221210,Boset,Ethiopia,False,True,586318,1.162357e+08,2.066374e+10,1.166021e+08,1.281885e+08
-221220,Bishoftu Volcanic Field,Ethiopia,False,True,662037,1.638952e+07,4.502139e+08,1.674047e+07,2.108555e+07
-221222,Melkassa,Ethiopia,False,True,648056,1.046209e+08,1.805575e+10,1.049784e+08,1.161952e+08
-221230,Gedemsa,Ethiopia,False,True,744211,8.546421e+07,1.289452e+10,8.579464e+07,9.559717e+07
-221250,Bora-Bericha-Tullu Moye,Ethiopia,True,True,546291,1.037004e+08,1.975632e+10,1.040117e+08,inf
+221210,Boset,Ethiopia,False,True,586318,1.361839e+08,2.421002e+10,1.366164e+08,1.501741e+08
+221220,Bishoftu Volcanic Field,Ethiopia,False,True,662037,1.915676e+07,5.26229e+08,1.956957e+07,2.464758e+07
+221222,Melkassa,Ethiopia,False,True,648056,1.223483e+08,2.111519e+10,1.227693e+08,1.35885e+08
+221230,Gedemsa,Ethiopia,False,True,744211,9.980172e+07,1.505771e+10,1.001893e+08,1.116424e+08
+221250,Bora-Bericha-Tullu Moye,Ethiopia,True,True,546291,1.210064e+08,2.305335e+10,1.213708e+08,inf
 221252,East Ziway,Ethiopia,False,True,432279,inf,inf,inf,inf
 221260,Butajiri-Silti Field,Ethiopia,False,True,889323,inf,inf,inf,inf
 221270,Aluto,Ethiopia,False,True,314216,inf,inf,inf,inf
@@ -102,11 +102,11 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 222055,Ol Kokwe,Kenya,False,True,115689,inf,inf,inf,inf
 222056,Nyambeni Hills,Kenya,False,True,768936,inf,inf,inf,inf
 222060,Menengai,Kenya,False,True,886293,inf,inf,inf,inf
-222071,Elmenteita Badlands,Kenya,False,True,445904,5.5125e+07,7.251476e+09,5.542036e+07,6.185509e+07
+222071,Elmenteita Badlands,Kenya,False,True,445904,7.763091e+07,1.021204e+10,7.801517e+07,8.714661e+07
 222070,Homa Mountain,Kenya,False,True,628701,inf,inf,inf,inf
-222080,"Eburru, Ol Doinyo",Kenya,False,True,323529,6.534645e+07,9.944138e+09,6.56125e+07,7.270758e+07
-222090,Olkaria,Kenya,False,True,208003,8.423187e+07,1.466694e+10,8.458088e+07,9.372299e+07
-222100,Longonot,Kenya,False,True,410677,6.870234e+07,9.029854e+09,6.910933e+07,7.74119e+07
+222080,"Eburru, Ol Doinyo",Kenya,False,True,323529,9.146048e+07,1.391806e+10,9.181012e+07,1.016007e+08
+222090,Olkaria,Kenya,False,True,208003,1.140502e+08,1.985908e+10,1.144531e+08,1.267628e+08
+222100,Longonot,Kenya,False,True,410677,9.076846e+07,1.19301e+10,9.119828e+07,1.022728e+08
 222110,Suswa,Kenya,False,True,105232,inf,inf,inf,inf
 222120,"Lengai, Ol Doinyo",Tanzania,True,False,18074,inf,inf,inf,inf
 222130,Chyulu Hills,Kenya,False,False,91280,inf,inf,inf,inf
@@ -114,11 +114,11 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 222166,Rungwe,Tanzania,False,True,393819,inf,inf,inf,inf
 222160,Meru,Tanzania,True,True,828942,inf,inf,inf,inf
 222170,Kyejo,Tanzania,False,True,378511,inf,inf,inf,inf
-223001,Fort Portal Volcanic Field,Uganda,False,True,498815,2411857,3930928,3275653,5477316
-223002,Ndali-Kasenda Volcanic Field,Uganda,False,True,537190,1.111723e+07,1.095803e+08,1.189363e+07,1.641208e+07
-223020,Nyamulagira,DR Congo,True,True,711356,1.148675e+07,2.920382e+08,1.166433e+07,1.448263e+07
-223030,Nyiragongo,DR Congo,True,True,1006436,4738646,3.983245e+07,4857891,6751641
-223040,Karisimbi,DR Congo-Rwanda,False,True,1198124,5085169,4.06939e+07,5349920,7412544
+223001,Fort Portal Volcanic Field,Uganda,False,True,498815,1991073,3245120,2576098,4819031
+223002,Ndali-Kasenda Volcanic Field,Uganda,False,True,537190,8444859,8.323929e+07,9066737,1.244704e+07
+223020,Nyamulagira,DR Congo,True,True,711356,7056475,1.689064e+08,7188126,9076551
+223030,Nyiragongo,DR Congo,True,True,1006436,2903354,2.299192e+07,2960378,4221924
+223040,Karisimbi,DR Congo-Rwanda,False,True,1198124,2840730,2.095443e+07,3074487,4333060
 224004,"Basile, Pico",Equatorial Guinea,True,True,117500,inf,inf,inf,inf
 224011,Tombel Graben,Cameroon,False,True,434892,inf,inf,inf,inf
 224010,Cameroon,Cameroon,True,True,417460,inf,inf,inf,inf
@@ -151,31 +151,31 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 231180,Bir Borhut,Yemen,False,False,2117,inf,inf,inf,inf
 232010,Damavand,Iran,False,False,59171,inf,inf,inf,inf
 233001,"Grille, La",Union of the Comoros,False,True,243474,inf,inf,inf,inf
-233005,Mayotte,France,False,False,,453697.4,1009815,559867.8,727676.1
+233005,Mayotte,France,False,False,,753137.7,1688073,750922.8,1147183
 233010,Karthala,Union of the Comoros,True,True,278330,inf,inf,inf,inf
-233020,"Fournaise, Piton de la",France,True,True,246792,1668035,9306209,1572928,2264588
+233020,"Fournaise, Piton de la",France,True,True,246792,1910600,1.140404e+07,1898036,2663912
 234001,Amsterdam Island,France,False,False,0,inf,inf,inf,inf
 234002,St. Paul,France,False,False,0,inf,inf,inf,inf
 234011,McDonald Islands,Australia,True,False,0,inf,inf,inf,inf
 234010,Heard,Australia,True,False,0,inf,inf,inf,inf
-234020,Kerguelen Islands,France,False,False,0,2.57012e+07,1.835967e+09,2.587685e+07,2.98493e+07
-234030,"Est, Ile de l'",France,False,False,0,1.138661e+07,1.653647e+08,1.155272e+07,1.585707e+07
-234040,"Possession, Ile de la",France,False,False,0,1624077,3004960,1771094,3241077
+234020,Kerguelen Islands,France,False,False,0,2.999082e+07,2.142155e+09,3.020162e+07,3.489692e+07
+234030,"Est, Ile de l'",France,False,False,0,1.474655e+07,2.141603e+08,1.48745e+07,2.053849e+07
+234040,"Possession, Ile de la",France,False,False,0,2087322,3862081,2210759,4185491
 234050,"Cochons, Ile aux",France,False,False,0,inf,inf,inf,inf
 234060,Prince Edward Island,South Africa,False,False,0,inf,inf,inf,inf
 234070,Marion Island,South Africa,True,False,0,inf,inf,inf,inf
-241021,Tuhua/Mayor Island,New Zealand,False,False,141,2.144634e+07,1.469314e+09,2.153793e+07,2.564141e+07
-241020,Auckland Volcanic Field,New Zealand,False,True,1222436,194364.3,249592.6,340413.3,888112.4
-241030,Taranaki,New Zealand,False,False,77381,438675.3,431896.5,714583.3,1211719
-241040,Whakaari/White Island,New Zealand,True,False,5,1.324326e+07,9.055264e+08,1.334976e+07,1.56084e+07
-241050,Okataina,New Zealand,True,False,79591,763155.1,769390,719963.7,1192740
-241070,Taupo,New Zealand,False,False,26674,736837.3,3055115,664098.7,882673.6
-241080,Tongariro,New Zealand,True,False,7591,521835.7,673335.9,562914.9,650739.3
-241100,Ruapehu,New Zealand,True,False,6901,579448.5,452572.3,616627.7,708800
+241021,Tuhua/Mayor Island,New Zealand,False,False,141,1.968889e+07,1.334423e+09,1.995853e+07,2.388347e+07
+241020,Auckland Volcanic Field,New Zealand,False,True,1222436,633277.1,877953.2,702738.4,1158943
+241030,Taranaki,New Zealand,False,False,77381,864177.6,1008049,876388.2,1339101
+241040,Whakaari/White Island,New Zealand,True,False,5,1.663283e+07,1.285489e+09,1.686212e+07,1.91578e+07
+241050,Okataina,New Zealand,True,False,79591,660206.4,647574.1,615793.3,1123114
+241070,Taupo,New Zealand,False,False,26674,990902.4,3096283,855092.9,1086631
+241080,Tongariro,New Zealand,True,False,7591,507103.9,587680.5,542378.7,588624.3
+241100,Ruapehu,New Zealand,True,False,6901,402887.4,284356.7,476595.3,548599
 242010,Curtis Island,New Zealand,False,False,0,inf,inf,inf,inf
 242021,Macauley,New Zealand,False,False,0,inf,inf,inf,inf
-242030,Raoul Island,New Zealand,True,False,0,767026.6,515887.6,1289321,1722988
-243040,Hunga Tonga-Hunga Ha'apai,Tonga,True,False,532,8.211583e+07,7.831255e+09,8.236754e+07,9.462461e+07
+242030,Raoul Island,New Zealand,True,False,0,1332931,896504.3,2045592,2517720
+243040,Hunga Tonga-Hunga Ha'apai,Tonga,True,False,532,1.26696e+08,1.208279e+10,1.271718e+08,1.453968e+08
 243061,Kao,Tonga,False,False,1563,inf,inf,inf,inf
 243060,Tofua,Tonga,True,False,1556,inf,inf,inf,inf
 243070,Lateiki,Tonga,True,False,18,inf,inf,inf,inf
@@ -183,14 +183,14 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 243101,Tafahi,Tonga,False,False,1706,inf,inf,inf,inf
 243100,Fonualei,Tonga,True,False,91,inf,inf,inf,inf
 243110,Niuafo'ou,Tonga,True,False,155,inf,inf,inf,inf
-244001,Tau,United States,False,False,1538,4882201,6535861,5476017,1.03434e+07
-244010,Ofu-Olosega,United States,False,False,1387,1.109557e+07,4.187939e+07,1.220259e+07,1.957989e+07
-244020,Tutuila,United States,False,False,56239,1122314,1023126,1324342,2766954
-244030,Upolu,Samoa,False,True,144419,1333180,3174774,1568776,2526102
-244040,Savaii,Samoa,True,False,34215,7.736938e+07,1.230464e+10,7.762016e+07,8.584731e+07
+244001,Tau,United States,False,False,1538,5286698,7077366,6003287,1.119288e+07
+244010,Ofu-Olosega,United States,False,False,1387,1.211602e+07,4.573101e+07,1.3335e+07,2.130071e+07
+244020,Tutuila,United States,False,False,56239,1385186,1262766,2006659,2849858
+244030,Upolu,Samoa,False,True,144419,1657741,3947671,1906060,3155382
+244040,Savaii,Samoa,True,False,34215,8.755009e+07,1.392375e+10,8.785969e+07,9.706321e+07
 245010,Taveuni,Fiji,False,False,19186,inf,inf,inf,inf
 245030,Nabukelevu,Fiji,False,False,4523,inf,inf,inf,inf
-250010,St. Andrew Strait,Papua New Guinea,True,False,2870,3.19162e+07,9.03313e+08,3.202693e+07,4.082669e+07
+250010,St. Andrew Strait,Papua New Guinea,True,False,2870,3.618512e+07,1.024135e+09,3.636117e+07,4.628441e+07
 251001,Blup Blup,Papua New Guinea,False,False,462,inf,inf,inf,inf
 251002,Kadovar,Papua New Guinea,True,False,1341,inf,inf,inf,inf
 251010,Bam,Papua New Guinea,True,False,462,inf,inf,inf,inf
@@ -228,7 +228,7 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 255020,Bagana,Papua New Guinea,True,False,7861,inf,inf,inf,inf
 255030,Loloru,Papua New Guinea,False,False,26075,inf,inf,inf,inf
 255050,Simbo,Solomon Islands,True,False,833,inf,inf,inf,inf
-255070,Savo,Solomon Islands,False,False,6251,2.082684e+07,5.786474e+08,2.111898e+07,2.656974e+07
+255070,Savo,Solomon Islands,False,False,6251,1.997352e+07,5.549389e+08,2.024539e+07,2.56387e+07
 256010,Tinakula,Solomon Islands,True,False,19,inf,inf,inf,inf
 257001,Motlav,Vanuatu,False,False,3768,inf,inf,inf,inf
 257010,Suretamatai,Vanuatu,True,False,5555,inf,inf,inf,inf
@@ -237,13 +237,13 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 257040,Ambrym,Vanuatu,True,False,10826,inf,inf,inf,inf
 257050,Lopevi,Vanuatu,True,False,7942,inf,inf,inf,inf
 257060,East Epi,Vanuatu,True,False,7819,inf,inf,inf,inf
-257081,Nguna-Emau,Vanuatu,False,False,26614,2.537947e+07,5.701289e+08,2.616362e+07,3.326097e+07
+257081,Nguna-Emau,Vanuatu,False,False,26614,2.428335e+07,5.455055e+08,2.505953e+07,3.18188e+07
 257090,Traitor's Head,Vanuatu,False,False,7007,inf,inf,inf,inf
 257100,Yasur,Vanuatu,False,False,24748,inf,inf,inf,inf
 258010,Matthew Island,France - claimed by Vanuatu,True,False,1,inf,inf,inf,inf
 258020,Hunter Island,France - claimed by Vanuatu,True,False,0,inf,inf,inf,inf
-259010,Newer Volcanics Province,Australia,False,True,610361,1.012082e+07,2.464168e+08,1.019324e+07,1.132858e+07
-259804,McBride Volcanic Province,Australia,False,False,,1.518298e+07,4.961334e+08,1.541843e+07,1.854233e+07
+259010,Newer Volcanics Province,Australia,False,True,610361,8222850,1.839875e+08,8343981,9675942
+259804,McBride Volcanic Province,Australia,False,False,,2.050683e+07,6.848557e+08,2.085456e+07,2.45969e+07
 260010,Barren Island,India,True,False,645,inf,inf,inf,inf
 261030,Peuet Sague,Indonesia,True,False,16227,inf,inf,inf,inf
 261050,"Telong, Bur ni",Indonesia,True,True,125812,inf,inf,inf,inf
@@ -252,9 +252,9 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 261121,Malintang,Indonesia,False,True,169047,inf,inf,inf,inf
 261120,Sorikmarapi,Indonesia,True,False,90257,inf,inf,inf,inf
 261130,Talakmau,Indonesia,False,True,352639,inf,inf,inf,inf
-261140,Marapi,Indonesia,True,True,818039,6.415388e+07,5.396357e+09,6.445173e+07,7.427503e+07
-261150,Tandikat-Singgalang,Indonesia,True,True,604282,5.213614e+07,3.536873e+09,5.24286e+07,6.139076e+07
-261160,Talang,Indonesia,True,True,214975,1.637946e+07,4.208314e+08,1.674801e+07,2.115892e+07
+261140,Marapi,Indonesia,True,True,818039,5.982931e+07,5.032592e+09,6.026643e+07,6.910921e+07
+261150,Tandikat-Singgalang,Indonesia,True,True,604282,4.796444e+07,3.253868e+09,4.839727e+07,5.645057e+07
+261160,Talang,Indonesia,True,True,214975,2.450531e+07,6.296058e+08,2.478738e+07,3.168631e+07
 261170,Kerinci,Indonesia,True,True,264107,inf,inf,inf,inf
 261180,Sumbing,Indonesia,True,False,49583,inf,inf,inf,inf
 261220,Kaba,Indonesia,True,True,333750,inf,inf,inf,inf
@@ -263,13 +263,13 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 261251,Ranau,Indonesia,False,False,21279,inf,inf,inf,inf
 261270,Suoh,Indonesia,True,False,24619,inf,inf,inf,inf
 262000,Krakatau,Indonesia,True,False,8027,inf,inf,inf,inf
-263010,Pulosari,Indonesia,False,True,739785,8.163307e+07,1.563591e+10,8.184211e+07,inf
-263020,Karang,Indonesia,False,True,1753655,7.194207e+07,1.215245e+10,7.21512e+07,7.968465e+07
-263040,Perbakti-Gagak,Indonesia,True,True,2333456,1.033162e+07,2.51512e+08,1.05428e+07,1.339767e+07
-263050,Salak,Indonesia,True,True,2675904,6893070,1.116543e+08,7104452,9350279
-263060,Gede-Pangrango,Indonesia,True,True,2315469,1.108816e+07,2.905987e+08,1.12993e+07,1.412342e+07
-263070,Patuha,Indonesia,False,True,1516827,7.799599e+07,1.442165e+10,7.820699e+07,inf
-263090,Tangkuban Parahu,Indonesia,True,True,5729309,6.703917e+07,1.055913e+10,6.724809e+07,7.432867e+07
+263010,Pulosari,Indonesia,False,True,739785,8.985353e+07,1.721054e+10,9.009805e+07,inf
+263020,Karang,Indonesia,False,True,1753655,7.940725e+07,1.341353e+10,7.965198e+07,8.791415e+07
+263040,Perbakti-Gagak,Indonesia,True,True,2333456,1.186257e+07,2.887771e+08,1.210234e+07,1.536051e+07
+263050,Salak,Indonesia,True,True,2675904,7966005,1.290271e+08,8205629,1.077889e+07
+263060,Gede-Pangrango,Indonesia,True,True,2315469,1.284761e+07,3.366905e+08,1.308702e+07,1.632888e+07
+263070,Patuha,Indonesia,False,True,1516827,8.902577e+07,1.646097e+10,8.926567e+07,inf
+263090,Tangkuban Parahu,Indonesia,True,True,5729309,7.42228e+07,1.169055e+10,7.446743e+07,8.223153e+07
 263100,Papandayan,Indonesia,True,True,1637971,inf,inf,inf,inf
 263131,Tampomas,Indonesia,False,True,2301649,inf,inf,inf,inf
 263130,Guntur,Indonesia,False,True,3412038,inf,inf,inf,inf
@@ -277,19 +277,19 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 263150,Talagabodas,Indonesia,False,True,2388005,inf,inf,inf,inf
 263170,Ciremai,Indonesia,True,True,3058015,inf,inf,inf,inf
 263180,Slamet,Indonesia,True,True,2904026,inf,inf,inf,inf
-263200,Dieng Volcanic Complex,Indonesia,True,True,1886942,9.054511e+07,1.245891e+10,9.100431e+07,1.019211e+08
-263210,Sundoro,Indonesia,True,True,2086299,5.639571e+07,4.914969e+09,5.684122e+07,6.539547e+07
-263220,Sumbing,Indonesia,False,True,2425607,3.709796e+07,2.143426e+09,3.753675e+07,4.442596e+07
-263240,Merbabu,Indonesia,False,True,3019783,1.413701e+07,3.546575e+08,1.452385e+07,1.817367e+07
-263250,Merapi,Indonesia,True,True,4348473,8139016,1.144955e+08,8490348,1.126934e+07
-263260,Lawu,Indonesia,False,True,2344575,1.629015e+08,2.748039e+10,1.629697e+08,1.813696e+08
-263281,Kawi-Butak,Indonesia,False,True,2927446,8.973259e+07,9.220027e+09,9.010889e+07,1.018862e+08
-263280,Kelud,Indonesia,True,True,2087876,1.102566e+08,1.430909e+10,1.106852e+08,1.23841e+08
-263291,Penanggungan,Indonesia,False,True,4605710,2.010022e+07,4.536097e+08,2.047033e+07,2.618873e+07
-263290,Arjuno-Welirang,Indonesia,True,True,4143137,3.97092e+07,1.779856e+09,4.008019e+07,4.81363e+07
-263300,Semeru,Indonesia,True,True,1022197,1.399044e+08,2.188625e+10,1.402683e+08,1.558384e+08
-263310,Tengger Caldera,Indonesia,True,True,1420878,9.123929e+07,9.418679e+09,9.161041e+07,1.038444e+08
-263320,Lamongan,Indonesia,False,True,2193829,1.610896e+08,3.147211e+10,1.615197e+08,inf
+263200,Dieng Volcanic Complex,Indonesia,True,True,1886942,7.287284e+07,1.002722e+10,7.33323e+07,8.208675e+07
+263210,Sundoro,Indonesia,True,True,2086299,4.509635e+07,3.930213e+09,4.552989e+07,5.235761e+07
+263220,Sumbing,Indonesia,False,True,2425607,2.957139e+07,1.70856e+09,2.999287e+07,3.547244e+07
+263240,Merbabu,Indonesia,False,True,3019783,1.082934e+07,2.716774e+08,1.114835e+07,1.390766e+07
+263250,Merapi,Indonesia,True,True,4348473,6266573,8.815491e+07,6555666,8716957
+263260,Lawu,Indonesia,False,True,2344575,1.743435e+08,2.941057e+10,1.741069e+08,1.949586e+08
+263281,Kawi-Butak,Indonesia,False,True,2927446,6.995709e+07,7.188093e+09,7.030398e+07,7.95088e+07
+263280,Kelud,Indonesia,True,True,2087876,8.902813e+07,1.155406e+10,8.937569e+07,1.002493e+08
+263291,Penanggungan,Indonesia,False,True,4605710,1.544097e+07,3.484625e+08,1.579737e+07,1.996466e+07
+263290,Arjuno-Welirang,Indonesia,True,True,4143137,3.050968e+07,1.367513e+09,3.086597e+07,3.67736e+07
+263300,Semeru,Indonesia,True,True,1022197,1.057064e+08,1.65364e+10,1.060621e+08,1.175478e+08
+263310,Tengger Caldera,Indonesia,True,True,1420878,7.004698e+07,7.230986e+09,7.040317e+07,7.941875e+07
+263320,Lamongan,Indonesia,False,True,2193829,1.351959e+08,2.641324e+10,1.355438e+08,inf
 263330,Iyang-Argapura,Indonesia,False,True,1601344,inf,inf,inf,inf
 263340,Raung,Indonesia,True,True,581515,inf,inf,inf,inf
 263351,Baluran,Indonesia,False,True,437688,inf,inf,inf,inf
@@ -359,10 +359,10 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 273030,Mayon,Philippines,True,True,1166441,inf,inf,inf,inf
 273041,Iriga,Philippines,False,True,1159509,inf,inf,inf,inf
 273042,Isarog,Philippines,False,True,1208269,inf,inf,inf,inf
-273050,Banahaw,Philippines,False,True,1698285,3.004543e+07,3.044895e+09,3.02143e+07,3.429139e+07
-273060,San Pablo Volcanic Field,Philippines,False,True,3039334,1.969263e+07,1.186474e+09,1.981596e+07,2.327491e+07
-273070,Taal,Philippines,True,True,2380326,2.61267e+07,1.841119e+09,2.621505e+07,3.066852e+07
-273083,Pinatubo,Philippines,True,True,1148684,5.186778e+07,9.952486e+09,5.203593e+07,inf
+273050,Banahaw,Philippines,False,True,1698285,3.275369e+07,3.344885e+09,3.293813e+07,3.738244e+07
+273060,San Pablo Volcanic Field,Philippines,False,True,3039334,2.143722e+07,1.3126e+09,2.157849e+07,2.530294e+07
+273070,Taal,Philippines,True,True,2380326,2.852871e+07,2.064896e+09,2.862269e+07,3.339933e+07
+273083,Pinatubo,Philippines,True,True,1148684,5.73396e+07,1.098707e+10,5.750996e+07,inf
 273090,Cagua,Philippines,False,False,34018,inf,inf,inf,inf
 274010,Camiguin de Babuyanes,Philippines,False,False,1369,inf,inf,inf,inf
 274020,Didicas,Philippines,True,False,132,inf,inf,inf,inf
@@ -372,79 +372,79 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 275020,Ly Son Group,Vietnam,False,False,29181,inf,inf,inf,inf
 275080,Popa,Burma (Myanmar),False,True,452931,inf,inf,inf,inf
 275110,Tengchong,China,False,True,419814,inf,inf,inf,inf
-281031,Kueishantao,Taiwan,False,True,471596,7.258548e+07,1.118366e+10,7.278275e+07,1.18675e+08
-281032,Tatun Volcanic Group,Taiwan,False,True,6735396,2.801581e+07,1.560523e+09,2.827736e+07,3.309276e+07
-282021,Yokoatejima,Japan,False,False,72,3.422486e+07,1.956708e+09,3.308097e+07,3.632111e+07
-282022,Akusekijima,Japan,False,False,199,9026426,7.685935e+07,9567172,1.328326e+07
-282020,Io-Torishima,Japan,True,False,0,3.756769e+07,3.500818e+09,3.741561e+07,4.276734e+07
-282030,Suwanosejima,Japan,True,False,325,1237106,791413.1,1636547,2026912
-282043,Kuchinoshima,Japan,False,False,291,1630312,1209724,1608084,3586057
-282040,Nakanoshima,Japan,True,False,364,8408340,5.406316e+07,8696672,1.112949e+07
-282050,Kuchinoerabujima,Japan,True,False,5348,1006924,657271.8,1388916,1883434
-282060,Kikai,Japan,True,False,152,1027336,802750.5,1075779,1210908
-282070,Ata,Japan,False,True,171590,2546157,1.064642e+07,2656183,3734165
-282081,Yonemaru-Sumiyoshiike,Japan,False,True,923168,1264484,1950122,1239711,1419984
-282080,Aira,Japan,True,True,905254,843514.9,799106.3,882953.3,1022605
-282091,Fukue,Japan,False,False,61450,647730.9,353732,1092638,1403528
-282090,Kirishimayama,Japan,True,True,407050,2162242,8742047,1978829,2295621
-282100,Unzendake,Japan,True,True,444737,1107443,1465661,1101009,1382708
-282110,Asosan,Japan,True,True,234591,1522965,2313343,1395086,1595580
-282120,Kujusan,Japan,True,True,181541,1808525,3458933,1686403,1909751
-283001,Abu,Japan,False,True,117805,4122584,3.423556e+07,4246364,4907370
-283002,Sanbesan,Japan,False,True,171742,1181799,4301585,1238722,1603107
-283010,Izu-Tobu,Japan,True,True,447660,889935.9,1485172,982243.7,1440386
-283020,Hakoneyama,Japan,True,True,1543563,805968.7,741099,869765.5,972380.1
-283031,Yokodake,Japan,False,True,484929,1055263,1682461,1025816,1422523
-283030,Fujisan,Japan,False,True,906969,700290,565213.3,662671.1,779517.6
-283040,Ontakesan,Japan,True,False,86634,1530349,4291502,1300829,1681037
-283050,Hakusan,Japan,False,False,63965,2565700,1.21232e+07,2321755,3072288
-283060,Norikuradake,Japan,False,True,109638,1343660,850283.2,1144684,1195710
-283070,Yakedake,Japan,True,True,156542,2083099,1.350309e+07,1889861,2526434
-283080,Midagahara,Japan,False,True,143935,989637.5,679917.7,1102158,1235846
-283090,Niigata-Yakeyama,Japan,True,True,226866,1854257,8837502,1825046,2176991
-283100,Myokosan,Japan,False,True,561142,1463578,3058581,1564031,2063894
-283110,Asamayama,Japan,True,True,457576,1369057,1983689,1384274,1567882
-283121,Shiga,Japan,False,True,449713,1679898,6891050,1554053,1947122
-283122,Harunasan,Japan,False,True,1185012,1552458,6708134,1584833,2069738
-283120,Kusatsu-Shiranesan,Japan,True,True,434049,1354516,1880377,1459727,2000962
-283131,Hiuchigatake,Japan,False,False,18567,3562902,2.786024e+07,3542178,3745422
-283130,Akagisan,Japan,False,True,1116366,1317914,3365575,1203698,1604879
-283141,Nantaisan,Japan,False,True,128931,1776559,7070563,1747336,2138919
-283142,Omanago Group,Japan,False,True,113236,1216633,2179892,1584966,2049750
-283143,Takaharayama,Japan,False,True,381490,2541655,7139385,2556325,3104841
-283140,Nikko-Shiranesan,Japan,True,False,79844,2563505,1.413582e+07,2272259,2770497
-283151,Numazawa,Japan,False,True,110303,1016564,1035735,1354150,1503251
-283150,Nasudake,Japan,True,True,298717,1537911,3451548,1361012,2374838
-283160,Bandaisan,Japan,False,True,327454,695087.9,588713.6,846073.2,1028263
-283170,Adatarayama,Japan,True,True,717078,1375881,2765433,1301195,1636961
-283180,Azumayama,Japan,True,True,548195,1753916,2951461,1859551,2586177
-283191,Hijiori,Japan,False,True,302176,1601404,2264235,1733936,2760868
-283190,Zaozan [Zaosan],Japan,True,True,550409,1370971,1490607,1719172,2184000
-283200,Naruko,Japan,False,True,210262,1792280,2633840,1885646,2953290
-283220,Chokaisan,Japan,True,True,185681,2579772,1.161644e+07,2241105,2628440
-283230,Akita-Komagatake,Japan,True,True,216708,3060599,7127879,3428730,4369282
-283240,Iwatesan,Japan,True,True,415920,4183091,2.054617e+07,3610295,4904340
-283250,Hachimantai,Japan,False,False,89833,3831253,1.103261e+07,4284869,5510741
-283262,Megata,Japan,False,False,81218,1009843,674500.4,1027542,1405458
-283260,Akita-Yakeyama,Japan,True,False,55493,4334227,1.420709e+07,4873869,5783008
-283271,Towada,Japan,False,True,103631,2533442,5394650,3266853,4615648
-283270,Iwakisan,Japan,False,True,465065,2677545,6454458,2812508,3365694
-283280,Hakkodasan,Japan,False,True,476624,3066010,6042752,3042534,4194318
-283290,Osorezan,Japan,False,False,80028,2909284,8036907,2563107,3464417
-284011,Toshima,Japan,False,False,13194,1075264,577507.2,969220.2,1128111
-284010,Izu-Oshima,Japan,True,False,8375,712758.5,667266.3,705071,877806.4
-284020,Niijima,Japan,False,False,6139,1002683,868837.6,1037627,1373713
-284030,Kozushima,Japan,False,False,5716,713183.2,497166,856891.5,1106115
-284041,Mikurajima,Japan,False,False,4551,866936.6,475951.2,849042.8,2279356
-284040,Miyakejima,Japan,True,False,3474,791781,650713.3,890693.5,1263260
-284050,Hachijojima,Japan,False,False,13564,1187293,879779.9,1694057,2285077
-284060,Aogashima,Japan,False,False,232,1035206,531058.3,753800.3,1111900
-284070,Myojinsho,Japan,True,False,0,3.812493e+07,3.28403e+09,3.842835e+07,4.387811e+07
+281031,Kueishantao,Taiwan,False,True,471596,6.8184e+07,1.1101e+10,6.841939e+07,1.328678e+08
+281032,Tatun Volcanic Group,Taiwan,False,True,6735396,3.096116e+07,1.699544e+09,3.124439e+07,3.669742e+07
+282021,Yokoatejima,Japan,False,False,72,3.744013e+07,2.069312e+09,3.628513e+07,4.027496e+07
+282022,Akusekijima,Japan,False,False,199,1.383521e+07,1.19145e+08,1.459965e+07,1.97312e+07
+282020,Io-Torishima,Japan,True,False,0,4.326241e+07,4.041261e+09,4.313619e+07,4.939025e+07
+282030,Suwanosejima,Japan,True,False,325,1858274,1189032,2115897,3395786
+282043,Kuchinoshima,Japan,False,False,291,1827854,1355976,1834165,4140113
+282040,Nakanoshima,Japan,True,False,364,1.011438e+07,6.280535e+07,1.051725e+07,1.419839e+07
+282050,Kuchinoerabujima,Japan,True,False,5348,1091216,716537.4,1446720,1840353
+282060,Kikai,Japan,True,False,152,1142402,883844.2,1128692,1258421
+282070,Ata,Japan,False,True,171590,2844539,1.175029e+07,2997590,4194925
+282081,Yonemaru-Sumiyoshiike,Japan,False,True,923168,1502195,2207390,1591509,1778844
+282080,Aira,Japan,True,True,905254,925720.7,840246.3,990463,1088505
+282091,Fukue,Japan,False,False,61450,1131988,621883,1421990,1738158
+282090,Kirishimayama,Japan,True,True,407050,2460118,9844939,2194004,2585589
+282100,Unzendake,Japan,True,True,444737,1159956,1529703,1137763,1529497
+282110,Asosan,Japan,True,True,234591,1639483,2450788,1584884,1645109
+282120,Kujusan,Japan,True,True,181541,1819093,3138234,1737299,2077449
+283001,Abu,Japan,False,True,117805,4632521,3.809307e+07,4771675,5514455
+283002,Sanbesan,Japan,False,True,171742,1329570,4693740,1407858,1823971
+283010,Izu-Tobu,Japan,True,True,447660,1014902,1684745,996338.1,1611291
+283020,Hakoneyama,Japan,True,True,1543563,926743.5,788147.7,1016936,1154755
+283031,Yokodake,Japan,False,True,484929,1099461,1706303,1106630,1527682
+283030,Fujisan,Japan,False,True,906969,780374.4,637410.3,728630.8,833684.3
+283040,Ontakesan,Japan,True,False,86634,1787149,4900319,1511465,1983412
+283050,Hakusan,Japan,False,False,63965,2795841,1.263676e+07,2624903,3372486
+283060,Norikuradake,Japan,False,True,109638,1426654,884410.5,1207857,1303167
+283070,Yakedake,Japan,True,True,156542,2344537,1.4587e+07,2132351,2839678
+283080,Midagahara,Japan,False,True,143935,1193256,797020,1278347,1336560
+283090,Niigata-Yakeyama,Japan,True,True,226866,2190311,1.026165e+07,2131984,2713727
+283100,Myokosan,Japan,False,True,561142,1854918,3900557,1865186,2719193
+283110,Asamayama,Japan,True,True,457576,1455508,2050874,1485061,1652049
+283121,Shiga,Japan,False,True,449713,2104634,8336672,1923302,2303083
+283122,Harunasan,Japan,False,True,1185012,1961776,8877745,1889620,2508872
+283120,Kusatsu-Shiranesan,Japan,True,True,434049,1556227,2160127,1690465,2313813
+283131,Hiuchigatake,Japan,False,False,18567,3935255,3.262954e+07,3860771,4113094
+283130,Akagisan,Japan,False,True,1116366,1474056,3733594,1361549,1797095
+283141,Nantaisan,Japan,False,True,128931,1829038,6991400,1878665,2247199
+283142,Omanago Group,Japan,False,True,113236,1207462,2131046,1640226,2132259
+283143,Takaharayama,Japan,False,True,381490,2706068,7203573,2788490,3531952
+283140,Nikko-Shiranesan,Japan,True,False,79844,2796024,1.505547e+07,2480412,3116034
+283151,Numazawa,Japan,False,True,110303,1159779,1160473,1467111,1833179
+283150,Nasudake,Japan,True,True,298717,2250830,4206321,2014361,2978460
+283160,Bandaisan,Japan,False,True,327454,764531,649336.5,898679.3,1093969
+283170,Adatarayama,Japan,True,True,717078,1479353,2905864,1385212,1650365
+283180,Azumayama,Japan,True,True,548195,1982052,3555952,1901343,2843705
+283191,Hijiori,Japan,False,True,302176,1607079,2520379,1559392,2463124
+283190,Zaozan [Zaosan],Japan,True,True,550409,1489884,1622718,1852116,2309720
+283200,Naruko,Japan,False,True,210262,2041658,3048965,2122369,3298356
+283220,Chokaisan,Japan,True,True,185681,2826312,1.281274e+07,2439362,2942462
+283230,Akita-Komagatake,Japan,True,True,216708,3396554,7989397,3799585,4841396
+283240,Iwatesan,Japan,True,True,415920,4565956,2.200988e+07,4031574,5443888
+283250,Hachimantai,Japan,False,False,89833,4295990,1.249247e+07,4823017,6093034
+283262,Megata,Japan,False,False,81218,1153360,765687.5,1169569,1590728
+283260,Akita-Yakeyama,Japan,True,False,55493,4862635,1.63223e+07,5485394,6300964
+283271,Towada,Japan,False,True,103631,3643111,8129690,4269804,5707337
+283270,Iwakisan,Japan,False,True,465065,2905930,7183133,2977955,3674867
+283280,Hakkodasan,Japan,False,True,476624,3937660,6791107,3967907,5674015
+283290,Osorezan,Japan,False,False,80028,2591610,8411981,2120912,3320845
+284011,Toshima,Japan,False,False,13194,1190333,642987.6,1038806,1267775
+284010,Izu-Oshima,Japan,True,False,8375,758934.4,686617.6,734855.5,963960.2
+284020,Niijima,Japan,False,False,6139,1100892,984601.8,1112389,1453656
+284030,Kozushima,Japan,False,False,5716,771999.4,533228.5,949736.2,1184756
+284041,Mikurajima,Japan,False,False,4551,1252622,692354.5,1506392,2672612
+284040,Miyakejima,Japan,True,False,3474,823736,665918.7,925245.5,1254481
+284050,Hachijojima,Japan,False,False,13564,867964.3,642946.4,1340769,2005588
+284060,Aogashima,Japan,False,False,232,1161466,595833.5,830557.3,1249559
+284070,Myojinsho,Japan,True,False,0,4.165675e+07,3.588256e+09,4.199089e+07,4.793994e+07
 284080,Sumisujima,Japan,True,False,0,inf,inf,inf,inf
 284091,Sofugan,Japan,False,False,0,inf,inf,inf,inf
 284096,Nishinoshima,Japan,True,False,0,inf,inf,inf,inf
 284090,Izu-Torishima,Japan,True,False,21,inf,inf,inf,inf
-284120,Ioto,Japan,True,False,1189,3484095,2877899,5976870,7388756
+284120,Ioto,Japan,True,False,1189,3965572,3280866,6279079,8404459
 284143,Maug Islands,United States,False,False,0,inf,inf,inf,inf
 284140,Farallon de Pajaros,United States,True,False,0,inf,inf,inf,inf
 284150,Asuncion,United States,True,False,0,inf,inf,inf,inf
@@ -455,28 +455,28 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 284192,Sarigan,United States,False,False,0,inf,inf,inf,inf
 284190,Guguan,United States,False,False,0,inf,inf,inf,inf
 284200,Anatahan,United States,True,False,0,inf,inf,inf,inf
-285011,Esan,Japan,False,False,33197,1594586,1269161,2351276,3366770
-285010,Oshima-Oshima,Japan,False,False,6,3.945412e+07,3.258709e+09,3.818743e+07,4.50709e+07
-285020,Hokkaido-Komagatake,Japan,True,True,234213,1207795,1956899,1206069,1582183
-285031,Niseko,Japan,False,False,75171,2409159,7420747,2177370,2727169
-285032,Yoteizan,Japan,False,False,80006,1593532,2474092,2067427,2662986
-285034,Kuttara,Japan,False,True,220509,2270674,7277054,2285901,2704243
-285030,Toya,Japan,True,True,214565,953966.5,1127858,993244.9,1141670
-285041,Rishirizan,Japan,False,False,12933,1343599,2340513,1598492,2257615
-285040,Shikotsu,Japan,True,True,316816,2865142,1.125105e+07,2501348,2951226
-285050,Tokachidake,Japan,True,False,60382,1781189,1564665,1919964,2815136
-285061,Maruyama,Japan,False,False,3682,2491143,9501839,2330784,3513780
-285060,Taisetsuzan,Japan,False,False,16391,911910,1005794,1314949,1607604
-285070,Akan,Japan,True,False,9756,1984262,4468579,2126265,2683042
-285081,Mashu,Japan,False,False,25627,1250857,4319435,1144855,1375545
-285082,Rausudake,Japan,False,False,8574,544900.1,1035754,709845.8,851963.3
-285080,Kussharo,Japan,False,False,26476,789727.4,502467.1,796803.2,891054.1
-285090,Shiretoko-Iozan,Japan,True,False,7890,852018.6,3298837,970181.6,1453832
-290010,Tomariyama [Golovnin],Japan - administered by Russia,False,False,2445,3172166,8.458489e+07,3236928,4012131
-290021,Ruruidake [Smirnov],Japan - administered by Russia,False,False,903,5.301856e+07,4.736347e+09,5.065622e+07,5.924981e+07
-290020,Raususan [Mendeleev],Japan - administered by Russia,False,False,3527,4528026,1.771504e+07,4971846,5703077
-290030,Chachadake [Tiatia],Japan - administered by Russia,True,False,896,5.690422e+07,3.412769e+09,5.698045e+07,6.498954e+07
-290040,Berutarubesan [Berutarube],Japan - administered by Russia,False,False,240,2.927322e+08,5.637577e+10,2.935632e+08,inf
+285011,Esan,Japan,False,False,33197,1721045,1372808,2594313,3698070
+285010,Oshima-Oshima,Japan,False,False,6,4.123496e+07,3.359781e+09,3.831685e+07,4.706688e+07
+285020,Hokkaido-Komagatake,Japan,True,True,234213,1590763,2733540,1447293,1938321
+285031,Niseko,Japan,False,False,75171,2778119,8383455,2511422,3193940
+285032,Yoteizan,Japan,False,False,80006,1899027,2951674,2475609,3068269
+285034,Kuttara,Japan,False,True,220509,2553351,8002955,2640585,3053409
+285030,Toya,Japan,True,True,214565,1051054,1230173,1132296,1270041
+285041,Rishirizan,Japan,False,False,12933,1541292,2731123,1787856,2499546
+285040,Shikotsu,Japan,True,True,316816,3265112,1.26547e+07,2882979,3335393
+285050,Tokachidake,Japan,True,False,60382,1599275,1354111,2027152,2553044
+285061,Maruyama,Japan,False,False,3682,2850139,1.116682e+07,2692437,3875604
+285060,Taisetsuzan,Japan,False,False,16391,660619.5,703224.6,1121222,1664195
+285070,Akan,Japan,True,False,9756,2145613,4922925,2307329,2713263
+285081,Mashu,Japan,False,False,25627,1447672,4959820,1361407,1586887
+285082,Rausudake,Japan,False,False,8574,996994.7,2387633,936349.8,1627451
+285080,Kussharo,Japan,False,False,26476,910195.6,612121.9,845956.8,1063886
+285090,Shiretoko-Iozan,Japan,True,False,7890,2034380,9940972,2163070,3223243
+290010,Tomariyama [Golovnin],Japan - administered by Russia,False,False,2445,5390198,1.566248e+08,5394368,6212954
+290021,Ruruidake [Smirnov],Japan - administered by Russia,False,False,903,3.04203e+07,1.708236e+09,2.985612e+07,3.639488e+07
+290020,Raususan [Mendeleev],Japan - administered by Russia,False,False,3527,3110571,1.061848e+07,3516298,5441764
+290030,Chachadake [Tiatia],Japan - administered by Russia,True,False,896,2.929994e+07,1.37296e+09,2.98129e+07,3.567402e+07
+290040,Berutarubesan [Berutarube],Japan - administered by Russia,False,False,240,1.644057e+08,3.166204e+10,1.707732e+08,inf
 290050,Etorofu-Atosanupuri [Atosanupuri],Japan - administered by Russia,True,False,644,inf,inf,inf,inf
 290060,Hitokappu Volcano Group [Bogatyr Ridge],Japan - administered by Russia,False,False,1268,inf,inf,inf,inf
 290070,Etorofu-Yakeyama [Grozny Group],Japan - administered by Russia,True,False,2417,inf,inf,inf,inf
@@ -501,40 +501,40 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 290300,Kharimkotan,Russia,True,False,4,inf,inf,inf,inf
 290310,Tao-Rusyr Caldera,Russia,True,False,83,inf,inf,inf,inf
 290320,Nemo Peak,Russia,True,False,46,inf,inf,inf,inf
-290331,Shirinki,Russia,False,False,50,6.427157e+08,1.19313e+11,6.450614e+08,inf
-290340,Fuss Peak,Russia,False,False,354,4.11716e+08,4.787573e+10,4.141735e+08,4.687101e+08
-290350,Karpinsky Group,Russia,False,False,516,4.888626e+08,6.002523e+10,4.918739e+08,5.516025e+08
-290360,Chikurachki,Russia,True,False,527,2.656807e+08,1.932769e+10,2.682921e+08,3.122347e+08
-290370,Vernadsky Ridge,Russia,False,False,976,1.601418e+07,6.345932e+07,1.871441e+07,2.876909e+07
-290380,Ebeko,Russia,True,False,1076,5650127,8946599,7889535,1.180398e+07
-290390,Alaid,Russia,True,False,64,1.33709e+08,5.31442e+09,1.359083e+08,1.656466e+08
-300010,Kambalny,Russia,True,False,572,6.584583e+08,1.042507e+11,6.604799e+08,7.347798e+08
+290331,Shirinki,Russia,False,False,50,1.538486e+09,2.856029e+11,1.542109e+09,inf
+290340,Fuss Peak,Russia,False,False,354,9.406185e+08,1.093783e+11,9.456757e+08,1.062512e+09
+290350,Karpinsky Group,Russia,False,False,516,9.023465e+08,1.10795e+11,9.070124e+08,1.022522e+09
+290360,Chikurachki,Russia,True,False,527,5.709281e+08,4.153376e+10,5.759073e+08,6.670653e+08
+290370,Vernadsky Ridge,Russia,False,False,976,2.803189e+07,1.110818e+08,3.241522e+07,5.151068e+07
+290380,Ebeko,Russia,True,False,1076,1.168939e+07,1.850936e+07,1.476553e+07,2.985672e+07
+290390,Alaid,Russia,True,False,64,3.396719e+08,1.350066e+10,3.431641e+08,4.203449e+08
+300010,Kambalny,Russia,True,False,572,1.132944e+09,1.79374e+11,1.137436e+09,1.266033e+09
 300021,Yavinsky,Russia,False,False,1356,inf,inf,inf,inf
 300022,Diky Greben,Russia,False,False,544,inf,inf,inf,inf
 300023,Kurile Lake,Russia,False,False,397,inf,inf,inf,inf
-300020,Koshelev,Russia,False,False,855,7.095367e+08,1.120055e+11,7.116534e+08,7.952008e+08
+300020,Koshelev,Russia,False,False,855,1.085651e+09,1.713778e+11,1.089858e+09,1.21245e+09
 300030,Iliinsky,Russia,True,False,410,inf,inf,inf,inf
 300040,Zheltovsky,Russia,True,False,135,inf,inf,inf,inf
 300052,Olkoviy-Ozernoy Volcanic Field,Russia,False,False,46,inf,inf,inf,inf
 300053,Khodutka,Russia,False,False,187,inf,inf,inf,inf
-300058,Asacha,Russia,False,False,34,4.717249e+07,9.021646e+09,4.738605e+07,inf
-300059,Visokiy,Russia,False,False,30,3.658691e+07,5.460955e+09,3.679644e+07,4.113225e+07
+300058,Asacha,Russia,False,False,34,9.322556e+07,1.78292e+10,9.361605e+07,inf
+300059,Visokiy,Russia,False,False,30,7.235358e+07,1.079948e+10,7.273801e+07,8.128459e+07
 300050,Ksudach,Russia,True,False,244,inf,inf,inf,inf
-300060,Mutnovsky,Russia,True,False,97,2.619014e+07,3.070791e+09,2.634828e+07,2.97466e+07
-300070,Gorely,Russia,True,False,19,2.542246e+07,2.596377e+09,2.564206e+07,2.925869e+07
-300082,Tolmachev Dol,Russia,False,False,14,5.266533e+07,8.045611e+09,5.296672e+07,6.019868e+07
-300083,Vilyuchinsky,Russia,False,False,23874,1.139903e+07,5.484633e+08,1.158773e+07,1.39263e+07
-300084,Barkhatnaya Sopka,Russia,False,False,13963,9258838,3.165443e+08,9542241,1.168622e+07
+300060,Mutnovsky,Russia,True,False,97,5.224055e+07,6.125199e+09,5.254431e+07,5.928525e+07
+300070,Gorely,Russia,True,False,19,5.020026e+07,5.126916e+09,5.059977e+07,5.772839e+07
+300082,Tolmachev Dol,Russia,False,False,14,9.939608e+07,1.51846e+10,9.984059e+07,1.127284e+08
+300083,Vilyuchinsky,Russia,False,False,23874,2.262433e+07,1.088568e+09,2.297684e+07,2.760421e+07
+300084,Barkhatnaya Sopka,Russia,False,False,13963,1.812272e+07,6.195856e+08,1.861256e+07,2.282468e+07
 300080,Opala,Russia,False,False,50,inf,inf,inf,inf
-300090,Koryaksky,Russia,True,True,142050,3249450,4.96776e+07,3412734,4452845
-300100,Avachinsky,Russia,True,True,180016,2910810,3.364498e+07,3138526,4265068
-300110,Dzenzursky,Russia,False,False,110,1.816166e+07,1.53026e+09,1.830438e+07,2.094562e+07
-300121,Veer,Russia,False,False,44,2.419786e+07,2.798302e+09,2.435749e+07,2.737807e+07
-300122,Kostakan,Russia,False,False,1352,3.891116e+07,6.665821e+09,3.907741e+07,4.331815e+07
-300123,Bakening,Russia,False,False,1583,4.399874e+07,8.691956e+09,inf,inf
-300124,Zavaritsky,Russia,False,False,37,3.672841e+07,6.436847e+09,3.68889e+07,4.061318e+07
+300090,Koryaksky,Russia,True,True,142050,6514411,9.959232e+07,6832018,8930066
+300100,Avachinsky,Russia,True,True,180016,5751905,6.648414e+07,6163115,8408694
+300110,Dzenzursky,Russia,False,False,110,3.63345e+07,3.061463e+09,3.661279e+07,4.186868e+07
+300121,Veer,Russia,False,False,44,4.851847e+07,5.610798e+09,4.882961e+07,5.490205e+07
+300122,Kostakan,Russia,False,False,1352,7.749897e+07,1.327625e+10,7.781588e+07,8.62152e+07
+300123,Bakening,Russia,False,False,1583,8.777815e+07,1.734059e+10,inf,inf
+300124,Zavaritsky,Russia,False,False,37,7.36307e+07,1.290417e+10,7.394331e+07,8.142866e+07
 300125,Akademia Nauk,Russia,True,False,615,inf,inf,inf,inf
-300120,Zhupanovsky,Russia,True,False,153,2.102139e+07,1.841893e+09,2.12176e+07,2.444949e+07
+300120,Zhupanovsky,Russia,True,False,153,4.166375e+07,3.650576e+09,4.202787e+07,4.841148e+07
 300130,Karymsky,Russia,True,False,291,inf,inf,inf,inf
 300140,Maly Semyachik,Russia,True,False,497,inf,inf,inf,inf
 300150,Bolshoi Semiachik,Russia,False,False,554,inf,inf,inf,inf
@@ -547,20 +547,20 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 300221,Vysoky,Russia,False,False,123,inf,inf,inf,inf
 300220,Komarov,Russia,False,False,238,inf,inf,inf,inf
 300230,Kizimen,Russia,True,False,197,inf,inf,inf,inf
-300241,Udina,Russia,False,False,63,9.050189e+07,7.841056e+09,9.110357e+07,1.038178e+08
-300242,Zimina,Russia,False,False,77,5.95345e+07,3.393335e+09,6.013559e+07,7.047081e+07
-300240,Tolbachik,Russia,True,False,225,8.680517e+07,7.014475e+09,8.737864e+07,1.007833e+08
-300251,Kamen,Russia,False,False,63,2.97063e+07,8.269421e+08,3.027561e+07,3.782953e+07
-300250,Bezymianny,Russia,True,False,47,3.746796e+07,1.327398e+09,3.803336e+07,4.634075e+07
-300261,Ushkovsky,Russia,False,False,292,2.262181e+07,4.561495e+08,2.320635e+07,3.014853e+07
-300260,Klyuchevskoy,Russia,True,False,292,2.242666e+07,4.717507e+08,2.29949e+07,2.945283e+07
+300241,Udina,Russia,False,False,63,1.509767e+08,1.308057e+10,1.515034e+08,1.749797e+08
+300242,Zimina,Russia,False,False,77,1.000888e+08,5.704842e+09,1.00595e+08,1.19826e+08
+300240,Tolbachik,Russia,True,False,225,1.27278e+08,1.028496e+10,1.279494e+08,1.477376e+08
+300251,Kamen,Russia,False,False,63,4.595638e+07,1.2793e+09,4.659607e+07,5.903344e+07
+300250,Bezymianny,Russia,True,False,47,5.993982e+07,2.123521e+09,6.054085e+07,7.505197e+07
+300261,Ushkovsky,Russia,False,False,292,2.908498e+07,5.864739e+08,2.999643e+07,3.865366e+07
+300260,Klyuchevskoy,Russia,True,False,292,3.529893e+07,7.425223e+08,3.59184e+07,4.695126e+07
 300272,Khangar,Russia,False,False,38,inf,inf,inf,inf
 300273,Cherpuk Group,Russia,False,False,32,inf,inf,inf,inf
-300270,Sheveluch,Russia,True,False,1718,5.258759e+07,2.505801e+09,5.31699e+07,6.384969e+07
+300270,Sheveluch,Russia,True,False,1718,6.994471e+07,3.332868e+09,7.087142e+07,8.449151e+07
 300280,Ichinsky,Russia,False,False,34,inf,inf,inf,inf
 300360,Bolshoi-Kekuknaysky,Russia,False,False,158,inf,inf,inf,inf
-300450,Alney-Chashakondzha,Russia,False,False,3,1.653768e+08,2.310034e+10,1.658898e+08,1.843814e+08
-300511,Shisheika,Russia,False,False,363,1.831121e+08,3.250795e+10,1.837067e+08,2.02705e+08
+300450,Alney-Chashakondzha,Russia,False,False,3,1.751805e+08,2.446974e+10,1.75934e+08,1.965736e+08
+300511,Shisheika,Russia,False,False,363,3.24654e+08,5.763593e+10,3.249861e+08,3.601249e+08
 300512,Terpuk,Russia,False,False,33,inf,inf,inf,inf
 300520,Sedanka Lava Field,Russia,False,False,77,inf,inf,inf,inf
 300550,Gorny Institute,Russia,False,False,17,inf,inf,inf,inf
@@ -584,182 +584,182 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 305050,Longgang Group,China,False,True,197016,inf,inf,inf,inf
 305060,Changbaishan,China-North Korea,True,False,29476,inf,inf,inf,inf
 306030,Ulleungdo,South Korea,False,False,9210,inf,inf,inf,inf
-306040,Halla,South Korea,False,True,482766,2700921,7015182,3158841,5037493
+306040,Halla,South Korea,False,True,482766,3236837,8407132,3787976,6025711
 311010,Buldir,United States,False,False,0,inf,inf,inf,inf
 311020,Kiska,United States,True,False,0,inf,inf,inf,inf
 311030,Segula,United States,False,False,0,inf,inf,inf,inf
-311040,Davidof,United States,False,False,0,1.397716e+08,2.481277e+10,1.404264e+08,1.55047e+08
-311050,Little Sitkin,United States,False,False,0,1.160096e+08,1.583874e+10,1.164574e+08,1.308695e+08
-311060,Semisopochnoi,United States,True,False,0,9.916128e+07,8.265196e+09,9.953628e+07,1.16476e+08
-311070,Gareloi,United States,True,False,0,9.919822e+07,5.503903e+09,1.000407e+08,1.186762e+08
-311080,Tanaga,United States,True,False,0,4383257,9819161,5233857,8422044
-311090,Takawangha,United States,False,False,0,2243859,2127523,3031366,4500045
-311100,Bobrof,United States,False,False,0,4.232015e+07,1.914952e+09,4.122434e+07,4.396356e+07
-311110,Kanaga,United States,True,False,0,2.527104e+07,6.734748e+08,2.585717e+07,3.154278e+07
-311111,Moffett,United States,False,False,0,3937975,1.089801e+07,4494504,7537314
-311120,Great Sitkin,United States,True,False,0,1286397,1059689,1518559,2605473
-311130,Kasatochi,United States,True,False,0,4.037109e+07,1.613676e+09,4.087273e+07,4.818002e+07
-311140,Koniuji,United States,False,False,0,6.782638e+07,5.865877e+09,6.778314e+07,6.99321e+07
-311160,Atka Volcanic Complex,United States,True,False,207,4150307,1.892171e+07,4660376,6899397
+311040,Davidof,United States,False,False,0,1.625867e+08,2.8863e+10,1.631715e+08,1.803188e+08
+311050,Little Sitkin,United States,False,False,0,1.311851e+08,1.791063e+10,1.317955e+08,1.470745e+08
+311060,Semisopochnoi,United States,True,False,0,9.568239e+07,7.975227e+09,9.60206e+07,1.112154e+08
+311070,Gareloi,United States,True,False,0,5.465218e+07,3.032316e+09,5.530385e+07,6.533773e+07
+311080,Tanaga,United States,True,False,0,2815990,6308245,3599073,5503939
+311090,Takawangha,United States,False,False,0,1889904,1792154,2088298,4005658
+311100,Bobrof,United States,False,False,0,2.324532e+07,1.047327e+09,2.251749e+07,2.446687e+07
+311110,Kanaga,United States,True,False,0,1.358182e+07,3.555329e+08,1.396321e+07,1.702819e+07
+311111,Moffett,United States,False,False,0,2730839,7543238,3814723,6622778
+311120,Great Sitkin,United States,True,False,0,1191920,1040271,1483793,2138785
+311130,Kasatochi,United States,True,False,0,2.750545e+07,1.232986e+09,2.776206e+07,2.979244e+07
+311140,Koniuji,United States,False,False,0,2.372409e+07,1.926434e+09,2.393589e+07,2.690264e+07
+311160,Atka Volcanic Complex,United States,True,False,207,3988774,1.818526e+07,4449642,9939753
 311180,Seguam,United States,True,False,0,inf,inf,inf,inf
-311190,Amukta,United States,True,False,0,1.141285e+08,2.096922e+10,1.14494e+08,inf
-311200,Chagulak,United States,False,False,0,8.291281e+07,1.270869e+10,8.758472e+07,1.011994e+08
-311210,Yunaska,United States,True,False,0,3.021513e+07,1.643142e+09,3.054898e+07,3.589899e+07
-311220,Herbert,United States,False,False,0,2840623,1.268136e+07,3293627,4846265
-311230,Carlisle,United States,False,False,0,2908480,9384972,2922064,4907088
-311240,Cleveland,United States,True,False,0,992123.8,657298.5,1051808,1562694
-311241,Tana,United States,False,False,0,1320563,1877980,1373340,2277638
-311250,Uliaga,United States,False,False,0,1.079304e+07,1.822252e+08,1.091597e+07,1.41107e+07
-311260,Kagamil,United States,True,False,0,6297609,5.997372e+07,6366629,8739783
-311270,Vsevidof,United States,False,False,6,6496569,6.113071e+07,6920517,9483759
-311280,Recheschnoi,United States,False,False,0,8948256,1.783844e+08,8899288,9728618
-311290,Okmok,United States,True,False,0,730258.7,514589.6,887427.6,978758
-311300,Bogoslof,United States,True,False,0,2.687192e+07,2.634113e+09,2.75176e+07,4.13527e+07
-311310,Makushin,United States,True,False,3437,1343283,3495847,1328234,1998542
-311320,Akutan,United States,True,False,233,520583,673978.8,474392.3,675656.8
-311340,Westdahl,United States,True,False,0,1311646,1709524,1346836,1962146
-311350,Fisher,United States,False,False,0,4322306,2.445258e+07,4370527,4918299
-311360,Shishaldin,United States,True,False,10,1724219,2373488,1281941,1662242
-311380,Roundtop,United States,False,False,10,3398899,1.47177e+07,3220935,3860780
-311390,Amak,United States,False,False,0,2.117125e+07,6.59456e+08,2.168412e+07,2.635824e+07
-312010,Frosty,United States,False,False,67,5301256,3.17097e+07,5619911,8177177
-312011,Dutton,United States,False,False,859,2746730,7980839,3187670,4727837
-312020,Emmons Lake Volcanic Center,United States,False,False,686,1.79604e+07,4.905538e+08,1.825629e+07,2.272531e+07
-312030,Pavlof,United States,True,False,0,2.996671e+07,1.464823e+09,3.023797e+07,3.567433e+07
-312040,Pavlof Sister,United States,False,False,0,3.567604e+07,2.159508e+09,3.593731e+07,4.157416e+07
-312050,Dana,United States,False,False,0,5.818262e+07,3.989154e+09,5.849137e+07,6.71467e+07
-312060,Kupreanof,United States,False,False,11,4.250025e+07,1.800724e+09,4.291597e+07,5.017636e+07
-312070,Veniaminof,United States,True,False,0,2.544e+07,6.425213e+08,2.539271e+07,3.065054e+07
-312080,Black Peak,United States,False,False,0,1.767262e+07,4.368785e+08,1.767885e+07,1.947526e+07
-312090,Aniakchak,United States,True,False,36,1897149,1072958,2251938,2509475
-312100,Yantarni,United States,False,False,0,7.556809e+07,6.732313e+09,7.543664e+07,8.45174e+07
-312110,Chiginagak,United States,True,False,0,1.037374e+08,8.299954e+09,9.836459e+07,1.168091e+08
-312120,Kialagvik,United States,False,False,0,1.178111e+08,1.061334e+10,1.182294e+08,1.339785e+08
-312130,Ugashik-Peulik,United States,False,False,0,1.57093e+08,1.768164e+10,1.580316e+08,1.774272e+08
-312131,Ukinrek Maars,United States,True,False,0,1.058325e+08,1.23564e+10,1.05089e+08,1.132042e+08
-312132,Alaska Peninsula Arc at 155.4°W,United States,False,False,0,1.916431e+08,2.699184e+10,1.923328e+08,2.142124e+08
-312140,Martin,United States,True,False,0,9.551887e+07,1.213017e+10,9.452091e+07,1.003015e+08
-312150,Mageik,United States,False,False,0,8.867313e+07,9.106216e+09,9.359372e+07,1.156364e+08
-312160,Trident,United States,True,False,0,8.486967e+07,5.338068e+09,8.066637e+07,9.578899e+07
-312170,Katmai,United States,True,False,0,6.217966e+07,2.860466e+09,6.288297e+07,7.556006e+07
-312180,Novarupta,United States,True,False,0,7.925213e+07,6.656344e+09,8.456067e+07,9.546869e+07
-312190,Griggs,United States,False,False,0,7.477794e+07,5.808246e+09,7.888827e+07,8.624254e+07
-312200,Snowy Mountain,United States,False,False,0,3.166716e+07,7.608199e+08,3.232466e+07,4.036585e+07
-312210,Denison,United States,False,False,0,2.283126e+07,3.983037e+08,2.340484e+07,3.050442e+07
-312220,Steller,United States,False,False,0,2.161887e+07,3.558016e+08,2.215317e+07,2.887855e+07
-312230,Kukak,United States,False,False,0,2.349908e+07,4.299113e+08,2.392359e+07,3.054807e+07
-312250,Kaguyak,United States,False,False,0,2.512545e+07,1.123948e+09,2.50256e+07,2.695381e+07
-312260,Fourpeaked,United States,True,False,0,6668915,4.739933e+07,7146938,1.017122e+07
-312270,Douglas,United States,False,False,0,2549426,6569571,3069034,5057757
-313010,Augustine,United States,True,False,0,249162.8,155886.5,329974.4,374007.9
-313020,Iliamna,United States,False,False,1,2.090341e+07,1.373438e+09,2.051979e+07,2.178517e+07
-313030,Redoubt,United States,True,False,1,1056851,944235.4,1032150,1433709
-313040,Spurr,United States,True,False,0,1622178,2810032,1329074,2332712
-313050,Hayes,United States,False,False,0,1.580162e+07,4.835254e+08,1.583899e+07,1.853763e+07
-314010,St. Paul Island,United States,False,False,582,1199156,636938.9,1084740,1537439
+311190,Amukta,United States,True,False,0,2.501417e+08,4.632495e+10,2.508782e+08,inf
+311200,Chagulak,United States,False,False,0,9.744434e+07,1.757575e+10,1.516296e+08,2.221962e+08
+311210,Yunaska,United States,True,False,0,3.913281e+07,2.686805e+09,3.946703e+07,4.549524e+07
+311220,Herbert,United States,False,False,0,5208700,2.89512e+07,5658130,8009509
+311230,Carlisle,United States,False,False,0,4285773,1.501743e+07,4724149,7315517
+311240,Cleveland,United States,True,False,0,1032864,699646,1424424,1975524
+311241,Tana,United States,False,False,0,1180276,1419751,1354997,2537110
+311250,Uliaga,United States,False,False,0,1.717202e+07,3.15686e+08,1.714934e+07,2.279216e+07
+311260,Kagamil,United States,True,False,0,8840215,8.241254e+07,8561058,1.28319e+07
+311270,Vsevidof,United States,False,False,6,7959955,7.751625e+07,8392944,1.032444e+07
+311280,Recheschnoi,United States,False,False,0,1.123059e+07,2.528439e+08,1.07445e+07,1.21702e+07
+311290,Okmok,United States,True,False,0,878538.6,681495.2,805694,1153975
+311300,Bogoslof,United States,True,False,0,3.380061e+07,2.487518e+09,3.42656e+07,3.926004e+07
+311310,Makushin,United States,True,False,3437,1468771,3360657,1242800,2369337
+311320,Akutan,United States,True,False,233,636205,780659.9,666402.3,836036.3
+311340,Westdahl,United States,True,False,0,888259.8,1136877,1092261,1397997
+311350,Fisher,United States,False,False,0,3876323,2.904509e+07,4017053,4391405
+311360,Shishaldin,United States,True,False,10,928701.3,1258189,932432.1,1365816
+311380,Roundtop,United States,False,False,10,2910773,1.105754e+07,2827736,3415165
+311390,Amak,United States,False,False,0,3.087956e+07,1.151085e+09,3.137212e+07,3.632801e+07
+312010,Frosty,United States,False,False,67,7449020,4.763889e+07,7827731,1.076779e+07
+312011,Dutton,United States,False,False,859,4155955,1.187547e+07,4278462,7664845
+312020,Emmons Lake Volcanic Center,United States,False,False,686,2.544821e+07,6.460014e+08,2.578975e+07,3.210978e+07
+312030,Pavlof,United States,True,False,0,4.029244e+07,1.847538e+09,4.065217e+07,4.749484e+07
+312040,Pavlof Sister,United States,False,False,0,4.808147e+07,2.779123e+09,4.809759e+07,5.545233e+07
+312050,Dana,United States,False,False,0,5.836789e+07,3.99628e+09,5.872285e+07,6.778959e+07
+312060,Kupreanof,United States,False,False,11,4.525233e+07,1.860278e+09,4.54985e+07,5.404108e+07
+312070,Veniaminof,United States,True,False,0,2.024572e+07,4.479762e+08,2.064829e+07,2.599719e+07
+312080,Black Peak,United States,False,False,0,2.184152e+07,5.548269e+08,2.169046e+07,2.402085e+07
+312090,Aniakchak,United States,True,False,36,1130476,621403.2,1352180,2461693
+312100,Yantarni,United States,False,False,0,5.191504e+07,3.921389e+09,5.213791e+07,5.955501e+07
+312110,Chiginagak,United States,True,False,0,7.663806e+07,6.973285e+09,7.598546e+07,8.475501e+07
+312120,Kialagvik,United States,False,False,0,9.808061e+07,1.018907e+10,9.761526e+07,1.081476e+08
+312130,Ugashik-Peulik,United States,False,False,0,1.63068e+08,1.835416e+10,1.640422e+08,1.841758e+08
+312131,Ukinrek Maars,United States,True,False,0,1.024702e+08,1.244042e+10,1.017012e+08,1.088436e+08
+312132,Alaska Peninsula Arc at 155.4°W,United States,False,False,0,1.877684e+08,2.644611e+10,1.884886e+08,2.102762e+08
+312140,Martin,United States,True,False,0,9.251429e+07,1.165679e+10,9.158359e+07,9.701868e+07
+312150,Mageik,United States,False,False,0,8.57351e+07,8.713572e+09,9.062069e+07,1.103691e+08
+312160,Trident,United States,True,False,0,8.088118e+07,5.087203e+09,7.800133e+07,9.127895e+07
+312170,Katmai,United States,True,False,0,5.940407e+07,2.73278e+09,6.015686e+07,7.215103e+07
+312180,Novarupta,United States,True,False,0,7.666365e+07,6.364845e+09,8.120619e+07,9.09664e+07
+312190,Griggs,United States,False,False,0,7.285581e+07,5.594674e+09,7.708571e+07,8.250603e+07
+312200,Snowy Mountain,United States,False,False,0,3.062228e+07,7.393859e+08,3.129287e+07,3.919024e+07
+312210,Denison,United States,False,False,0,2.345904e+07,4.142125e+08,2.400466e+07,3.121206e+07
+312220,Steller,United States,False,False,0,2.257981e+07,3.774073e+08,2.303876e+07,2.990727e+07
+312230,Kukak,United States,False,False,0,2.471953e+07,4.627601e+08,2.504046e+07,3.180442e+07
+312250,Kaguyak,United States,False,False,0,2.318144e+07,9.360837e+08,2.334491e+07,2.621356e+07
+312260,Fourpeaked,United States,True,False,0,4917237,3.397333e+07,5432575,7597434
+312270,Douglas,United States,False,False,0,2373374,6092883,3170773,4727319
+313010,Augustine,United States,True,False,0,490954.8,351565.2,545355.9,691601.9
+313020,Iliamna,United States,False,False,1,2.071324e+07,1.377016e+09,2.053138e+07,2.166527e+07
+313030,Redoubt,United States,True,False,1,1018929,972849.6,1090780,1660732
+313040,Spurr,United States,True,False,0,884831.7,1691116,1085771,1690339
+313050,Hayes,United States,False,False,0,1.068985e+07,3.477395e+08,1.076457e+07,1.254212e+07
+314010,St. Paul Island,United States,False,False,582,1090073,578998.5,894262.3,1582812
 314030,Ingakslugwat Hills,United States,False,False,0,inf,inf,inf,inf
-314040,St. Michael,United States,False,False,662,3727220,5327045,4559193,8647207
-314060,Imuruk Lake,United States,False,False,0,1.077617e+08,5.8328e+09,1.091044e+08,1.291772e+08
-315001,Buzzard Creek,United States,False,False,12,2.269427e+07,7.27707e+08,2.32107e+07,2.725052e+07
-315020,Wrangell,United States,True,False,0,8.125252e+07,1.073354e+10,8.106151e+07,8.93473e+07
+314040,St. Michael,United States,False,False,662,2738905,3918507,3517007,7123880
+314060,Imuruk Lake,United States,False,False,0,6.640056e+07,3.594054e+09,6.728909e+07,7.956655e+07
+315001,Buzzard Creek,United States,False,False,12,2.763229e+07,8.73641e+08,2.81167e+07,3.273344e+07
+315020,Wrangell,United States,True,False,0,7.456835e+07,9.229046e+09,7.461329e+07,8.286564e+07
 315030,Churchill,United States,False,False,0,inf,inf,inf,inf
-315040,Edgecumbe,United States,False,False,6613,464480.4,326429.5,597224.9,663882
-315050,Duncan Canal,United States,False,False,60,1.645944e+07,4.183343e+08,1.689891e+07,2.050676e+07
-315060,Tlevak Strait-Suemez Island,United States,False,False,1596,1.949979e+07,6.203049e+08,1.976323e+07,2.439555e+07
+315040,Edgecumbe,United States,False,False,6613,450277.2,300047.7,506129.5,629948.2
+315050,Duncan Canal,United States,False,False,60,2.866535e+07,7.355095e+08,2.936204e+07,3.520993e+07
+315060,Tlevak Strait-Suemez Island,United States,False,False,1596,2.441853e+07,7.767744e+08,2.470754e+07,3.071949e+07
 315070,Behm Canal-Rudyerd Bay,United States,False,False,6,inf,inf,inf,inf
 320010,Fort Selkirk,Canada,False,False,6,inf,inf,inf,inf
-320020,Alligator Lake,Canada,False,False,47,2.246559e+07,6.819981e+08,2.300438e+07,2.787036e+07
-320030,Atlin Volcanic Field,Canada,False,False,94,1.650559e+07,1.991958e+08,1.730117e+07,2.373345e+07
+320020,Alligator Lake,Canada,False,False,47,1.762194e+07,5.311273e+08,1.799709e+07,2.20534e+07
+320030,Atlin Volcanic Field,Canada,False,False,94,1.609381e+07,1.942263e+08,1.699456e+07,2.325996e+07
 320031,Tuya Volcanic Field,Canada,False,False,0,inf,inf,inf,inf
 320040,Heart Peaks,Canada,False,False,0,inf,inf,inf,inf
-320050,Level Mountain,Canada,False,False,0,7.424279e+07,8.929256e+09,7.464368e+07,8.408441e+07
-320060,Edziza,Canada,False,False,0,1.301029e+08,1.94447e+10,1.304288e+08,1.456628e+08
+320050,Level Mountain,Canada,False,False,0,2.856183e+07,3.43516e+09,2.873735e+07,3.234706e+07
+320060,Edziza,Canada,False,False,0,7.802991e+07,1.166206e+10,7.87619e+07,8.99829e+07
 320070,Spectrum Range,Canada,False,False,0,inf,inf,inf,inf
-320080,Hoodoo Mountain,Canada,False,False,0,1.741535e+08,3.481755e+10,inf,inf
+320080,Hoodoo Mountain,Canada,False,False,0,2.28779e+08,4.573853e+10,inf,inf
 320090,Iskut-Unuk River Cones,Canada,False,False,0,inf,inf,inf,inf
-320100,Tseax River Cone,Canada,False,False,928,6.46701e+07,6.124624e+09,6.513282e+07,7.383603e+07
-320110,Crow Lagoon,Canada,False,False,456,4.116867e+07,1.74069e+09,4.15292e+07,5.023122e+07
-320120,Milbanke Sound Group,Canada,False,False,574,6.02664e+07,3.856996e+09,6.074267e+07,7.125812e+07
+320100,Tseax River Cone,Canada,False,False,928,7.048902e+07,6.675708e+09,7.100019e+07,8.046902e+07
+320110,Crow Lagoon,Canada,False,False,456,4.313418e+07,1.824801e+09,4.352704e+07,5.262057e+07
+320120,Milbanke Sound Group,Canada,False,False,574,8.056235e+07,5.155919e+09,8.126771e+07,9.542053e+07
 320140,Nazko,Canada,False,False,674,inf,inf,inf,inf
 320150,Wells Gray-Clearwater,Canada,False,False,716,inf,inf,inf,inf
 320160,Silverthrone,Canada,False,False,67,inf,inf,inf,inf
-320170,Bridge River Cones,Canada,False,False,219,1.055125e+08,1.428484e+10,1.058142e+08,1.18354e+08
-320180,Meager,Canada,False,False,307,7.046504e+07,6.800502e+09,7.086625e+07,8.053264e+07
-320190,Garibaldi Lake,Canada,False,False,28109,8405856,8.955948e+07,8633058,1.145528e+07
-320200,Garibaldi,Canada,False,False,16058,1.283579e+07,1.709841e+08,1.188407e+07,1.338223e+07
-320811,Cayley Volcanic Field,Canada,False,False,,8085043,1.072142e+08,8452547,1.127039e+07
-321010,Baker,United States,False,False,8568,5821444,1.637947e+08,5786282,7047695
-321020,Glacier Peak,United States,False,False,23,7483995,1.355932e+08,7447633,8494613
-321030,Rainier,United States,False,False,3187,660211.2,644673.1,650062.2,822371.6
-321040,Adams,United States,False,False,4019,3130588,4.832051e+07,3278968,3876352
-321050,St. Helens,United States,True,False,2221,253322.5,173146.3,317138.5,349814.3
-321060,West Crater,United States,False,False,14359,3108390,3.166543e+07,3143322,3701113
-321070,Indian Heaven,United States,False,False,6911,4463032,1.033517e+08,4271960,5037168
-322010,Hood,United States,False,False,9721,423186.8,320268.4,562656.7,665247.6
-322020,Jefferson,United States,False,False,823,1.381849e+07,5.985922e+08,1.367051e+07,1.437827e+07
-322030,Blue Lake Crater,United States,False,False,6914,4700696,3.302015e+07,4263340,5540083
-322040,Sand Mountain Field,United States,False,False,1574,3390243,5405903,3411012,4586515
-322060,Belknap,United States,False,False,6518,4684692,4.971524e+07,4478071,5027318
-322070,Three Sisters,United States,False,False,5672,2037121,3553695,2004163,2908506
-322090,Bachelor,United States,False,False,22514,617538.3,335005.3,787162.6,1247415
-322100,Davis Lake,United States,False,False,7483,6964697,1.547814e+08,7031160,8187412
-322110,Newberry,United States,False,False,16437,674193.6,550739.4,581953.5,668694
-322120,Devils Garden,United States,False,False,287,6540847,1.147617e+08,6672138,8394705
-322150,Cinnamon Butte,United States,False,False,913,8028929,1.370549e+08,8218525,1.008663e+07
-322160,Crater Lake,United States,False,False,366,2012471,2320940,2277877,4117979
-322170,Diamond Craters,United States,False,False,136,4244151,2.542342e+07,4585016,6370371
-322190,Jordan Craters,United States,False,False,28,7955357,2.214193e+08,7631670,8438787
-323010,Shasta,United States,False,False,19785,1258137,2606315,1071177,1294731
-323020,Medicine Lake,United States,False,False,254,757233.1,858647.5,922745.5,1048489
-323080,Lassen Volcanic Center,United States,True,False,2340,408105.6,357000.6,516967.9,650243.6
-323100,Clear Lake Volcanic Field,United States,False,False,71791,2452484,2.365679e+07,2293509,3007018
-323110,Mono Lake Volcanic Field,United States,False,False,1491,929887.7,2361897,745553.3,1319152
-323120,Mono-Inyo Craters,United States,False,False,9048,312895.3,314808.5,420521.6,533497.7
-323150,Mammoth Mountain,United States,False,False,7745,322575.7,343927.6,386510.7,569738.1
-323160,Ubehebe Craters,United States,False,False,262,5848234,8.454433e+07,5664412,6637274
-324010,Black Butte Crater Lava Field,United States,False,False,4440,1.295086e+07,6.481532e+08,1.287186e+07,1.329445e+07
-324020,Craters of the Moon,United States,False,False,1459,4044161,5.359227e+07,4262036,5628520
-324030,Wapi Lava Field,United States,False,False,1394,1.16376e+07,3.545844e+08,1.142882e+07,1.271503e+07
-324040,Hell's Half Acre,United States,False,False,12646,6543435,1.461056e+08,6238884,6901937
-326010,Soda Lakes,United States,False,False,25655,1537745,5110616,1373552,1689629
-327040,Markagunt Plateau,United States,False,False,1887,1.307479e+07,4.726509e+08,1.305688e+07,1.483629e+07
-327050,Black Rock Desert,United States,False,False,3679,4426542,2.454839e+07,3776472,6759093
-328010,Dotsero,United States,False,False,30534,3090431,1.848382e+07,3388397,4429650
-329010,Uinkaret Field,United States,False,False,170,4.067331e+07,6.625976e+09,4.225385e+07,4.419352e+07
-329020,San Francisco Volcanic Field,United States,False,False,70472,4032256,2.563118e+07,3978035,6020641
-327110,Carrizozo,United States,False,False,2596,5.925352e+07,7.248631e+09,6.126157e+07,6.25923e+07
-327120,Zuni-Bandera,United States,False,False,246,1.925358e+07,6.656559e+08,1.943604e+07,2.220036e+07
-327812,Red Hill-Quemado,United States,False,False,,2.82318e+07,1.155292e+09,2.855312e+07,3.236635e+07
-332010,Kilauea,United States,True,False,8495,408200.9,627820.7,443261.1,725844.5
-332020,Mauna Loa,United States,True,False,1906,504978.1,546523.7,511580.8,688818.5
-332030,Mauna Kea,United States,False,False,9950,648593.8,413742.7,911352.7,1408559
-332040,Hualalai,United States,False,False,46959,3412343,4.802626e+07,3257620,3478643
-332060,Haleakala,United States,False,False,65398,437460.9,220827.9,678262.2,728115.7
+320170,Bridge River Cones,Canada,False,False,219,1.361784e+08,1.840538e+10,1.365646e+08,1.537608e+08
+320180,Meager,Canada,False,False,307,8.614178e+07,8.294808e+09,8.655559e+07,9.879473e+07
+320190,Garibaldi Lake,Canada,False,False,28109,1.105237e+07,1.196444e+08,1.122234e+07,1.460368e+07
+320200,Garibaldi,Canada,False,False,16058,1.534901e+07,1.875527e+08,1.463472e+07,1.648341e+07
+320811,Cayley Volcanic Field,Canada,False,False,,8895249,1.175844e+08,9330523,1.238731e+07
+321010,Baker,United States,False,False,8568,8124035,1.57947e+08,7577589,9010168
+321020,Glacier Peak,United States,False,False,23,1.044589e+07,2.497515e+08,9731736,1.094165e+07
+321030,Rainier,United States,False,False,3187,905551.7,1194830,835021.2,993859.4
+321040,Adams,United States,False,False,4019,5262931,9.354531e+07,5392764,5839653
+321050,St. Helens,United States,True,False,2221,236602.1,163129.8,272301.9,311242.3
+321060,West Crater,United States,False,False,14359,2671278,3.44172e+07,2712764,3245834
+321070,Indian Heaven,United States,False,False,6911,4597361,1.205532e+08,4452964,5290119
+322010,Hood,United States,False,False,9721,630947.9,511137.1,727964.2,886892.2
+322020,Jefferson,United States,False,False,823,1.434564e+07,6.421289e+08,1.425357e+07,1.497324e+07
+322030,Blue Lake Crater,United States,False,False,6914,4484933,3.409451e+07,4095063,5644708
+322040,Sand Mountain Field,United States,False,False,1574,3490643,5808084,3518835,4406778
+322060,Belknap,United States,False,False,6518,3911210,3.777591e+07,3664603,4499421
+322070,Three Sisters,United States,False,False,5672,1747721,2790518,1812879,2610518
+322090,Bachelor,United States,False,False,22514,1159013,650558.3,1167744,1328913
+322100,Davis Lake,United States,False,False,7483,6919558,1.5111e+08,6992787,8116804
+322110,Newberry,United States,False,False,16437,638859.7,558239.2,575406.6,709325
+322120,Devils Garden,United States,False,False,287,6133230,1.023993e+08,6293853,7954842
+322150,Cinnamon Butte,United States,False,False,913,7699638,1.273261e+08,7901652,1.006701e+07
+322160,Crater Lake,United States,False,False,366,2181003,2520452,3057541,4394280
+322170,Diamond Craters,United States,False,False,136,3362698,1.991151e+07,3707609,5243138
+322190,Jordan Craters,United States,False,False,28,1.308101e+07,3.70092e+08,1.274134e+07,1.385219e+07
+323010,Shasta,United States,False,False,19785,985627.3,1992832,889550.5,1102132
+323020,Medicine Lake,United States,False,False,254,904802.7,1036197,1020558,1189525
+323080,Lassen Volcanic Center,United States,True,False,2340,412099.3,368074.4,509791.7,736745.2
+323100,Clear Lake Volcanic Field,United States,False,False,71791,3286786,2.933099e+07,3289619,3772494
+323110,Mono Lake Volcanic Field,United States,False,False,1491,957013.1,2443910,892088.8,1429114
+323120,Mono-Inyo Craters,United States,False,False,9048,527279.7,475408.3,477132.1,505090.7
+323150,Mammoth Mountain,United States,False,False,7745,423145.8,412093.4,490089.1,689337.9
+323160,Ubehebe Craters,United States,False,False,262,6436491,1.049839e+08,5901007,7293672
+324010,Black Butte Crater Lava Field,United States,False,False,4440,1.349553e+07,6.199399e+08,1.342276e+07,1.399465e+07
+324020,Craters of the Moon,United States,False,False,1459,7296754,1.083945e+08,7496888,9312850
+324030,Wapi Lava Field,United States,False,False,1394,1.245195e+07,3.814898e+08,1.228319e+07,1.366549e+07
+324040,Hell's Half Acre,United States,False,False,12646,5051132,1.01093e+08,4968597,5424474
+326010,Soda Lakes,United States,False,False,25655,1710417,5442209,1488996,1932820
+327040,Markagunt Plateau,United States,False,False,1887,1.496112e+07,5.17944e+08,1.498876e+07,1.746365e+07
+327050,Black Rock Desert,United States,False,False,3679,3707876,1.973077e+07,4023298,5865767
+328010,Dotsero,United States,False,False,30534,2569851,1.542575e+07,2847707,3669741
+329010,Uinkaret Field,United States,False,False,170,4.623871e+07,7.435227e+09,4.784517e+07,5.052775e+07
+329020,San Francisco Volcanic Field,United States,False,False,70472,4000514,2.657342e+07,4001840,5910145
+327110,Carrizozo,United States,False,False,2596,6.070463e+07,7.214917e+09,6.215828e+07,6.481051e+07
+327120,Zuni-Bandera,United States,False,False,246,1.822364e+07,6.275091e+08,1.83978e+07,2.072237e+07
+327812,Red Hill-Quemado,United States,False,False,,2.88283e+07,1.22393e+09,2.907797e+07,3.194782e+07
+332010,Kilauea,United States,True,False,8495,732773.9,823571.9,660288,1134657
+332020,Mauna Loa,United States,True,False,1906,648734.6,670203.6,678896.1,833527.4
+332030,Mauna Kea,United States,False,False,9950,739663.3,478501,1027824,1469356
+332040,Hualalai,United States,False,False,46959,3237108,3.178353e+07,2944960,3799511
+332060,Haleakala,United States,False,False,65398,573590.7,289574.6,742860.4,829541.7
 333040,Mehetia,France,False,False,114,inf,inf,inf,inf
-341001,Pinacate,Mexico,False,False,408,3.496796e+07,2.784004e+09,3.472654e+07,3.723377e+07
+341001,Pinacate,Mexico,False,False,408,3.0666e+07,2.304712e+09,3.068945e+07,3.33334e+07
 341003,"San Luis, Isla",Mexico,False,False,606,inf,inf,inf,inf
 341004,Jaraguay Volcanic Field,Mexico,False,False,3141,inf,inf,inf,inf
-341007,San Borja Volcanic Field,Mexico,False,False,2558,6.183188e+07,3.900413e+09,6.23716e+07,7.263591e+07
+341007,San Borja Volcanic Field,Mexico,False,False,2558,4.785885e+07,3.018981e+09,4.822892e+07,5.617372e+07
 341011,"Tortuga, Isla",Mexico,False,False,401,inf,inf,inf,inf
-341012,Comondu-La Purisima,Mexico,False,False,2365,5.706652e+07,3.874282e+09,5.74682e+07,6.721442e+07
+341012,Comondu-La Purisima,Mexico,False,False,2365,6.452747e+07,4.380811e+09,6.498156e+07,7.600213e+07
 341021,Socorro,Mexico,True,False,0,inf,inf,inf,inf
 341022,Durango Volcanic Field,Mexico,False,True,571282,inf,inf,inf,inf
 341024,Sanganguey,Mexico,False,True,403964,inf,inf,inf,inf
 341020,Barcena,Mexico,True,False,0,inf,inf,inf,inf
-341031,Mascota Volcanic Field,Mexico,False,False,31760,864749.3,729849,1165374,1713556
-341030,Ceboruco,Mexico,False,False,93057,5.70933e+07,6.757393e+09,5.698829e+07,6.33377e+07
-341040,Colima,Mexico,True,True,303490,6.696974e+07,7.534572e+09,6.720589e+07,8.133204e+07
+341031,Mascota Volcanic Field,Mexico,False,False,31760,841816.4,710514.2,999195.1,1741471
+341030,Ceboruco,Mexico,False,False,93057,5.797687e+07,6.805135e+09,5.79266e+07,6.470801e+07
+341040,Colima,Mexico,True,True,303490,8.833367e+07,9.227919e+09,8.810987e+07,1.012238e+08
 341061,Zitacuaro-Valle de Bravo,Mexico,False,True,490440,inf,inf,inf,inf
-341062,Jocotitlan,Mexico,False,True,630469,1.744209e+08,2.236146e+10,1.751167e+08,1.996384e+08
+341062,Jocotitlan,Mexico,False,True,630469,9.834891e+07,1.260872e+10,9.873701e+07,1.103146e+08
 341060,Michoacan-Guanajuato,Mexico,True,True,5783287,inf,inf,inf,inf
-341070,"Toluca, Nevado de",Mexico,False,True,1626432,1.747524e+08,2.294125e+10,1.754544e+08,1.996743e+08
-341082,Iztaccihuatl,Mexico,False,True,1036172,1.654301e+07,4.939798e+08,1.682014e+07,2.024644e+07
-341080,Chichinautzin,Mexico,False,True,4061942,1.836639e+07,4.379983e+08,1.879098e+07,2.368024e+07
-341091,"Malinche, La",Mexico,False,True,2324232,1.716764e+07,4.798206e+08,1.752831e+07,2.205593e+07
-341092,Serdan-Oriental Volcanic Field,Mexico,False,True,211350,9.750236e+07,1.683852e+10,9.786218e+07,1.076134e+08
+341070,"Toluca, Nevado de",Mexico,False,True,1626432,1.007723e+08,1.322926e+10,1.011605e+08,1.129825e+08
+341082,Iztaccihuatl,Mexico,False,True,1036172,2.229481e+07,7.249178e+08,2.23697e+07,2.459891e+07
+341080,Chichinautzin,Mexico,False,True,4061942,1.821916e+07,4.283937e+08,1.859235e+07,2.357185e+07
+341091,"Malinche, La",Mexico,False,True,2324232,2.334773e+07,6.525487e+08,2.380968e+07,2.964837e+07
+341092,Serdan-Oriental Volcanic Field,Mexico,False,True,211350,1.597451e+08,2.758775e+10,1.600532e+08,1.772668e+08
 341093,"Humeros, Los",Mexico,False,True,566898,inf,inf,inf,inf
 341095,Naolinco Volcanic Field,Mexico,False,True,739767,inf,inf,inf,inf
-341090,Popocatepetl,Mexico,True,True,634054,1.176202e+07,2.520992e+08,1.210296e+07,1.537662e+07
+341090,Popocatepetl,Mexico,True,True,634054,1.960521e+07,4.349372e+08,1.980657e+07,2.471605e+07
 341100,"Orizaba, Pico de",Mexico,False,True,759747,inf,inf,inf,inf
 341110,San Martin,Mexico,False,True,259640,inf,inf,inf,inf
 341120,"Chichon, El",Mexico,True,True,143015,inf,inf,inf,inf
@@ -781,51 +781,51 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 342141,Tahual,Guatemala,False,True,449894,inf,inf,inf,inf
 342150,"Santiago, Cerro",Guatemala,False,True,405083,inf,inf,inf,inf
 342160,Suchitan,Guatemala,False,True,421074,inf,inf,inf,inf
-342170,Chingo,Guatemala-El Salvador,False,True,867678,8.553658e+07,1.13064e+10,8.594069e+07,9.653239e+07
+342170,Chingo,Guatemala-El Salvador,False,True,867678,1.011165e+08,1.336578e+10,1.016461e+08,1.142369e+08
 342180,Ixtepeque,Guatemala,False,True,374232,inf,inf,inf,inf
-343002,"Singuil, Cerro",El Salvador,False,True,883616,6.062661e+07,5.669589e+09,6.103173e+07,6.99348e+07
-343010,Apaneca Range,El Salvador,False,True,1113282,5.893115e+07,5.861099e+09,5.932551e+07,6.70276e+07
-343020,Santa Ana,El Salvador,True,True,1240131,4.055215e+07,2.761415e+09,4.093195e+07,4.72892e+07
-343030,Izalco,El Salvador,True,True,1272308,3.894e+07,2.576541e+09,3.932892e+07,4.567848e+07
-343041,Coatepeque Caldera,El Salvador,False,True,1210307,3.14032e+07,1.624985e+09,3.176354e+07,3.76599e+07
-343051,"Cinotepeque, Cerro",El Salvador,False,True,743867,2.535861e+07,7.65438e+08,2.564925e+07,3.232588e+07
-343050,San Salvador,El Salvador,True,True,2857563,4939033,4.048702e+07,5333888,7440026
-343060,Ilopango,El Salvador,False,True,2948989,1145034,1833181,1567172,2348272
-343072,Taburete,El Salvador,False,True,581517,5.961921e+07,5.806157e+09,5.998584e+07,6.831692e+07
-343070,San Vicente,El Salvador,False,True,864425,1.284966e+07,2.723606e+08,1.320764e+07,1.686852e+07
-343081,Usulutan,El Salvador,False,True,610124,7.138504e+07,8.35857e+09,7.174901e+07,8.081138e+07
-343082,"Tigre, El",El Salvador,False,True,786750,7.384835e+07,9.124575e+09,7.419949e+07,8.299244e+07
-343080,Tecapa,El Salvador,False,True,590144,5.923805e+07,5.869029e+09,5.958931e+07,6.745604e+07
-343090,Chinameca,El Salvador,False,True,824983,7.041368e+07,1.196511e+10,7.184163e+07,8.912844e+07
-343101,"Aramuaca, Laguna",El Salvador,False,True,699308,6.063736e+07,6.576697e+09,6.081869e+07,6.911505e+07
-343100,San Miguel,El Salvador,True,True,796482,7.131094e+07,1.241492e+10,7.232992e+07,8.617288e+07
-343130,"Tigre, Isla del",Honduras,False,True,156692,7816253,1.179833e+08,8078194,1.06567e+07
-343140,"Zacate Grande, Isla",Honduras,False,True,195736,6256701,7.167169e+07,6461365,8988386
+343002,"Singuil, Cerro",El Salvador,False,True,883616,7.167127e+07,6.702446e+09,7.220278e+07,8.2781e+07
+343010,Apaneca Range,El Salvador,False,True,1113282,6.813987e+07,6.776967e+09,6.862507e+07,7.745808e+07
+343020,Santa Ana,El Salvador,True,True,1240131,4.691444e+07,3.194657e+09,4.733482e+07,5.480419e+07
+343030,Izalco,El Salvador,True,True,1272308,4.493035e+07,2.972904e+09,4.540581e+07,5.268735e+07
+343041,Coatepeque Caldera,El Salvador,False,True,1210307,3.646457e+07,1.88689e+09,3.690599e+07,4.382698e+07
+343051,"Cinotepeque, Cerro",El Salvador,False,True,743867,3.302745e+07,9.969183e+08,3.342596e+07,4.26017e+07
+343050,San Salvador,El Salvador,True,True,2857563,5652143,4.633264e+07,6133624,8532888
+343060,Ilopango,El Salvador,False,True,2948989,1251818,2004140,1754321,2686606
+343072,Taburete,El Salvador,False,True,581517,6.94529e+07,6.763834e+09,6.990661e+07,7.971134e+07
+343070,San Vicente,El Salvador,False,True,864425,1.486358e+07,3.150475e+08,1.529902e+07,1.958627e+07
+343081,Usulutan,El Salvador,False,True,610124,8.30962e+07,9.729845e+09,8.354503e+07,9.420374e+07
+343082,"Tigre, El",El Salvador,False,True,786750,8.557422e+07,1.05734e+10,8.599965e+07,9.62958e+07
+343080,Tecapa,El Salvador,False,True,590144,6.863279e+07,6.799816e+09,6.905834e+07,7.826905e+07
+343090,Chinameca,El Salvador,False,True,824983,9.145414e+07,1.510239e+10,9.529206e+07,1.033016e+08
+343101,"Aramuaca, Laguna",El Salvador,False,True,699308,9.776042e+07,1.060305e+10,9.793261e+07,1.114327e+08
+343100,San Miguel,El Salvador,True,True,796482,9.750805e+07,1.727329e+10,9.732427e+07,1.389777e+08
+343130,"Tigre, Isla del",Honduras,False,True,156692,1.188659e+07,1.794235e+08,1.221779e+07,1.63882e+07
+343140,"Zacate Grande, Isla",Honduras,False,True,195736,9810729,1.123838e+08,1.009026e+07,1.420726e+07
 343150,"Yojoa, Lago",Honduras,False,True,279991,inf,inf,inf,inf
-344010,Cosiguina,Nicaragua,False,False,18876,2.152418e+07,1.055479e+09,2.179029e+07,2.57381e+07
-344020,San Cristobal,Nicaragua,True,True,351227,1.692631e+07,5.637512e+08,1.733119e+07,2.107484e+07
-344040,Telica,Nicaragua,True,True,327294,4517555,3.555882e+07,5043190,7038635
-344070,"Negro, Cerro",Nicaragua,True,True,296320,1238309,628393.5,856582.3,2044090
-344080,Las Pilas-El Hoyo Complex,Nicaragua,True,True,299481,646929.9,401822.8,1034337,1639663
-344091,Apoyeque,Nicaragua,False,True,1342581,3594595,1.410904e+07,4013087,6114326
-344092,Nejapa-Miraflores,Nicaragua,False,True,1610426,728021.5,371700.5,1073488,1208279
-344090,Momotombo,Nicaragua,True,False,98583,4141979,3.373388e+07,4520287,6248210
-344101,Granada,Nicaragua,False,True,678798,3.601722e+07,1.458892e+09,3.646165e+07,4.425311e+07
-344100,Masaya,Nicaragua,True,True,1914707,9670453,1.05226e+08,1.010552e+07,1.404778e+07
-344111,Zapatera,Nicaragua,False,True,214864,8.716227e+07,8.55209e+09,8.760669e+07,9.994069e+07
-344110,Mombacho,Nicaragua,False,True,621451,4.616465e+07,2.394174e+09,4.660908e+07,5.558702e+07
+344010,Cosiguina,Nicaragua,False,False,18876,3.046705e+07,1.49401e+09,3.082554e+07,3.650208e+07
+344020,San Cristobal,Nicaragua,True,True,351227,1.932581e+07,6.3784e+08,1.977256e+07,2.428459e+07
+344040,Telica,Nicaragua,True,True,327294,5094898,4.010756e+07,5642777,7924282
+344070,"Negro, Cerro",Nicaragua,True,True,296320,1474979,748533.2,960875.5,1952950
+344080,Las Pilas-El Hoyo Complex,Nicaragua,True,True,299481,741721.4,460705.3,1131302,1712923
+344091,Apoyeque,Nicaragua,False,True,1342581,3555995,1.392684e+07,4043928,6055149
+344092,Nejapa-Miraflores,Nicaragua,False,True,1610426,843293.1,430558.5,1225781,1264947
+344090,Momotombo,Nicaragua,True,False,98583,4697730,3.833425e+07,5108318,7030188
+344101,Granada,Nicaragua,False,True,678798,3.943055e+07,1.59715e+09,3.991698e+07,4.828334e+07
+344100,Masaya,Nicaragua,True,True,1914707,1.029087e+07,1.11903e+08,1.076845e+07,1.493859e+07
+344111,Zapatera,Nicaragua,False,True,214864,9.399086e+07,9.22209e+09,9.447934e+07,1.076323e+08
+344110,Mombacho,Nicaragua,False,True,621451,4.946398e+07,2.565283e+09,4.995257e+07,5.949035e+07
 344120,Concepcion,Nicaragua,True,False,92378,inf,inf,inf,inf
-345010,Orosi,Costa Rica,False,False,31463,3.853721e+07,4.15948e+09,3.850071e+07,4.391525e+07
-345020,Rincon de la Vieja,Costa Rica,True,False,78668,2.305751e+07,1.455584e+09,2.286488e+07,2.574053e+07
-345031,Tenorio,Costa Rica,False,False,92344,1.010934e+07,1.538915e+08,1.046485e+07,1.276852e+07
-345033,Arenal,Costa Rica,True,False,96512,2.167895e+07,1.163322e+09,2.145198e+07,2.448551e+07
-345034,Platanar,Costa Rica,False,True,339271,4.614848e+07,5.446545e+09,4.620628e+07,5.134894e+07
-345030,Miravalles,Costa Rica,True,False,61875,1.462396e+07,4.084427e+08,1.448769e+07,1.659983e+07
-345040,Poas,Costa Rica,True,True,950796,6.009942e+07,9.189099e+09,5.922946e+07,6.680824e+07
-345050,Barva,Costa Rica,False,True,2004665,1.351056e+08,2.461599e+10,9.677296e+07,1.371118e+08
-345060,Irazu,Costa Rica,True,True,1667528,4.892556e+07,5.206633e+09,4.92362e+07,5.579256e+07
-345070,Turrialba,Costa Rica,True,True,672428,3.842047e+07,3.182899e+09,3.873693e+07,4.443312e+07
-346010,Baru,Panama,False,False,79933,5.001471e+07,2.308231e+09,5.012525e+07,5.542399e+07
+345010,Orosi,Costa Rica,False,False,31463,4.087592e+07,4.874646e+09,4.087753e+07,4.629823e+07
+345020,Rincon de la Vieja,Costa Rica,True,False,78668,2.555324e+07,1.793677e+09,2.546628e+07,2.874749e+07
+345031,Tenorio,Costa Rica,False,False,92344,1.319674e+07,2.136921e+08,1.354839e+07,1.502526e+07
+345033,Arenal,Costa Rica,True,False,96512,2.323398e+07,1.164994e+09,2.288118e+07,2.651011e+07
+345034,Platanar,Costa Rica,False,True,339271,5.163511e+07,5.601785e+09,5.125563e+07,5.751027e+07
+345030,Miravalles,Costa Rica,True,False,61875,1.874515e+07,6.067547e+08,1.795717e+07,2.064526e+07
+345040,Poas,Costa Rica,True,True,950796,6.605637e+07,7.390679e+09,6.463047e+07,7.405861e+07
+345050,Barva,Costa Rica,False,True,2004665,1.268396e+08,1.379047e+10,1.188845e+08,1.640021e+08
+345060,Irazu,Costa Rica,True,True,1667528,1.686559e+08,1.881498e+10,1.689217e+08,1.792485e+08
+345070,Turrialba,Costa Rica,True,True,672428,1.387003e+08,1.194078e+10,1.390245e+08,1.558466e+08
+346010,Baru,Panama,False,False,79933,4.057231e+07,1.960667e+09,4.001881e+07,4.459619e+07
 351011,Romeral,Colombia,False,True,537402,inf,inf,inf,inf
 351012,"Bravo, Cerro",Colombia,False,True,538690,inf,inf,inf,inf
 351021,Santa Isabel,Colombia,False,True,302952,inf,inf,inf,inf
@@ -836,227 +836,227 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 351061,Sotara,Colombia,False,True,127782,inf,inf,inf,inf
 351060,Purace,Colombia,True,True,335698,inf,inf,inf,inf
 351070,Dona Juana,Colombia,False,True,160615,inf,inf,inf,inf
-351080,Galeras,Colombia,True,True,630777,5.398057e+07,5.704417e+09,5.431555e+07,6.142266e+07
-351090,Azufral,Colombia,False,True,387292,2.146625e+07,7.963238e+08,2.160741e+07,2.653112e+07
-351100,Cumbal,Colombia,True,True,244853,9315860,1.492572e+08,9467530,1.273724e+07
-351110,Chiles-Cerro Negro,Colombia-Ecuador,True,True,151519,3937054,3.443776e+07,4213201,5882247
-352001,Soche,Ecuador,False,False,70322,8240467,1.471505e+08,8530035,1.11738e+07
-352002,Chachimbiro,Ecuador,False,True,356162,7191107,9.853829e+07,7268752,8877458
-352003,Cuicocha,Ecuador,False,True,364146,6961513,2.265816e+08,6784059,7748879
-352004,Imbabura,Ecuador,False,True,477043,2567925,9864585,2959062,4108292
-352005,Mojanda,Ecuador,False,True,480382,4772234,1.515082e+08,4869186,5210139
-352006,Cayambe,Ecuador,False,True,109630,1.196084e+07,5.081937e+08,1.191841e+07,1.445144e+07
-352011,Pululahua,Ecuador,False,True,1192411,1876181,2.624578e+07,1956286,2568868
-352010,Reventador,Ecuador,True,False,4403,4.159144e+07,5.389525e+09,4.160819e+07,4.721689e+07
-352021,Atacazo,Ecuador,False,True,1837303,1221866,9390669,1344671,2052188
-352022,Chacana,Ecuador,False,True,348743,4015187,8.231192e+07,4227011,5708426
-352020,Guagua Pichincha,Ecuador,True,True,2064475,858653.5,3751878,1104065,2007965
-352031,Aliso,Ecuador,False,False,,1.503643e+07,1.205066e+09,1.524349e+07,1.795843e+07
-352030,Antisana,Ecuador,False,False,56154,7923773,3.679756e+08,8048526,9961160
-352041,Iliniza,Ecuador,False,True,158371,6675659,3.640926e+08,6741277,7993038
-352040,Sumaco,Ecuador,False,False,8384,1.714257e+08,2.786593e+10,1.718184e+08,1.905888e+08
-352050,Cotopaxi,Ecuador,True,True,152139,3041757,1.54751e+07,3205638,3658862
-352060,Quilotoa,Ecuador,False,True,124306,1.645057e+07,2.108306e+09,1.653169e+07,1.843975e+07
-352071,Chimborazo,Ecuador,False,True,463426,8307388,1.303952e+08,8526305,1.134425e+07
-352081,Licto,Ecuador,False,True,333276,3137688,1.674246e+07,3395513,5109472
-352080,Tungurahua,Ecuador,True,True,183640,2343782,3558103,2945837,4539613
-352090,Sangay,Ecuador,True,False,15130,2.947288e+07,1.649573e+09,2.972618e+07,3.517587e+07
-353011,Ecuador,Ecuador,False,False,193,8.29693e+07,1.576084e+10,8.419955e+07,inf
-353010,Fernandina,Ecuador,True,False,208,2.714962e+07,2.444788e+09,2.74186e+07,3.13385e+07
-353020,Wolf,Ecuador,True,False,237,8.720389e+07,1.558748e+10,8.739801e+07,1.216027e+08
-353030,Darwin,Ecuador,False,False,343,5.046875e+07,5.112557e+09,5.064136e+07,5.861462e+07
-353040,Alcedo,Ecuador,True,False,388,2.014892e+07,7.270618e+08,1.968719e+07,2.510123e+07
-353050,"Negra, Sierra",Ecuador,True,False,983,374111.1,323129.7,550319,640434.9
-353060,"Azul, Cerro",Ecuador,True,False,314,5649022,1.231142e+08,5799611,7406906
+351080,Galeras,Colombia,True,True,630777,7.75069e+07,8.19057e+09,7.787811e+07,8.848073e+07
+351090,Azufral,Colombia,False,True,387292,2.514892e+07,9.16803e+08,2.55087e+07,3.088715e+07
+351100,Cumbal,Colombia,True,True,244853,1.115282e+07,1.765299e+08,1.148295e+07,1.499388e+07
+351110,Chiles-Cerro Negro,Colombia-Ecuador,True,True,151519,6544484,5.730907e+07,6878815,9600062
+352001,Soche,Ecuador,False,False,70322,1.318388e+07,2.358905e+08,1.354123e+07,1.770598e+07
+352002,Chachimbiro,Ecuador,False,True,356162,1.179905e+07,1.457582e+08,1.212021e+07,1.539794e+07
+352003,Cuicocha,Ecuador,False,True,364146,1.401719e+07,3.255372e+08,1.354092e+07,1.603022e+07
+352004,Imbabura,Ecuador,False,True,477043,4083626,1.537398e+07,4651600,6894952
+352005,Mojanda,Ecuador,False,True,480382,1.031812e+07,2.734074e+08,1.027514e+07,1.062903e+07
+352006,Cayambe,Ecuador,False,True,109630,2.192528e+07,8.451518e+08,2.169935e+07,2.610608e+07
+352011,Pululahua,Ecuador,False,True,1192411,4290116,5.009328e+07,4491010,6019401
+352010,Reventador,Ecuador,True,False,4403,6.244729e+07,8.065972e+09,6.238903e+07,6.950461e+07
+352021,Atacazo,Ecuador,False,True,1837303,3244373,2.549324e+07,3520457,5249012
+352022,Chacana,Ecuador,False,True,348743,9423345,2.035345e+08,9618455,1.253281e+07
+352020,Guagua Pichincha,Ecuador,True,True,2064475,2064228,9223361,2550065,4025743
+352031,Aliso,Ecuador,False,False,,2.132682e+07,1.327702e+09,2.147624e+07,2.494574e+07
+352030,Antisana,Ecuador,False,False,56154,1.516736e+07,6.712008e+08,1.491061e+07,1.778506e+07
+352041,Iliniza,Ecuador,False,True,158371,1.058858e+07,3.696236e+08,1.05276e+07,1.26819e+07
+352040,Sumaco,Ecuador,False,False,8384,6.812058e+07,1.107327e+10,6.793253e+07,7.559317e+07
+352050,Cotopaxi,Ecuador,True,True,152139,3691884,1.58571e+07,4012117,6282090
+352060,Quilotoa,Ecuador,False,True,124306,2.228177e+07,1.688803e+09,2.241787e+07,2.556768e+07
+352071,Chimborazo,Ecuador,False,True,463426,9066403,1.42789e+08,9305935,1.234069e+07
+352081,Licto,Ecuador,False,True,333276,3325044,1.774389e+07,3624893,5392274
+352080,Tungurahua,Ecuador,True,True,183640,2470540,3741417,3105470,4814533
+352090,Sangay,Ecuador,True,False,15130,3.211477e+07,1.800678e+09,3.238593e+07,3.833407e+07
+353011,Ecuador,Ecuador,False,False,193,1.050253e+08,2.000497e+10,1.082115e+08,inf
+353010,Fernandina,Ecuador,True,False,208,3.190135e+07,2.903517e+09,3.221577e+07,3.682254e+07
+353020,Wolf,Ecuador,True,False,237,1.040476e+08,1.875286e+10,1.042508e+08,1.569156e+08
+353030,Darwin,Ecuador,False,False,343,6.075683e+07,6.216336e+09,6.091822e+07,7.04159e+07
+353040,Alcedo,Ecuador,True,False,388,2.446241e+07,9.005233e+08,2.394913e+07,3.01631e+07
+353050,"Negra, Sierra",Ecuador,True,False,983,428817.9,335107.5,603875.5,654745.1
+353060,"Azul, Cerro",Ecuador,True,False,314,5953865,1.212683e+08,6128563,7852685
 353070,Pinta,Ecuador,False,False,427,inf,inf,inf,inf
 353081,Genovesa,Ecuador,False,False,197,inf,inf,inf,inf
 353080,Marchena,Ecuador,True,False,785,inf,inf,inf,inf
-353091,Santa Cruz,Ecuador,False,False,8800,2393259,1.048093e+07,2697224,4046698
-353090,Santiago,Ecuador,True,False,104,3.617181e+07,4.204795e+09,3.624825e+07,4.10934e+07
-353120,San Cristobal,Ecuador,False,False,7723,1.197355e+08,2.296739e+10,1.199796e+08,inf
+353091,Santa Cruz,Ecuador,False,False,8800,2032889,8894826,2334173,3422117
+353090,Santiago,Ecuador,True,False,104,3.904374e+07,4.633071e+09,3.907954e+07,4.38455e+07
+353120,San Cristobal,Ecuador,False,False,7723,1.321153e+08,2.534205e+10,1.322126e+08,inf
 354000,Quimsachata-Oroscocha,Peru,False,False,85048,inf,inf,inf,inf
 354001,"Auquihuato, Cerro",Peru,False,False,12228,inf,inf,inf,inf
 354003,Coropuna,Peru,False,False,15589,inf,inf,inf,inf
 354004,Andahua-Orcopampa,Peru,False,False,16541,inf,inf,inf,inf
-354005,Huambo,Peru,False,False,7271,8.675197e+07,1.687065e+10,8.699149e+07,inf
-354006,Sabancaya,Peru,True,False,12678,6.763434e+07,9.711105e+09,6.783094e+07,7.539711e+07
-354010,"Misti, El",Peru,True,True,918280,4343091,3.915573e+07,4537900,6442100
-354020,Ubinas,Peru,True,False,14607,3.34138e+07,2.840615e+09,3.365047e+07,3.855188e+07
+354005,Huambo,Peru,False,False,7271,8.962867e+07,1.742995e+10,8.987144e+07,inf
+354006,Sabancaya,Peru,True,False,12678,6.938527e+07,9.962356e+09,6.959044e+07,7.728306e+07
+354010,"Misti, El",Peru,True,True,918280,4460431,4.021282e+07,4664122,6594534
+354020,Ubinas,Peru,True,False,14607,3.502084e+07,2.977224e+09,3.526445e+07,4.041027e+07
 354031,Ticsani,Peru,False,False,18160,inf,inf,inf,inf
-354030,Huaynaputina,Peru,False,False,9153,3.894304e+07,3.850479e+09,3.918044e+07,4.443764e+07
+354030,Huaynaputina,Peru,False,False,9153,4.080541e+07,4.034602e+09,4.104964e+07,4.656888e+07
 354040,Tutupaca,Peru,False,False,21124,inf,inf,inf,inf
 354050,Yucamane,Peru,False,False,10396,inf,inf,inf,inf
-354060,"Casiri, Nevados",Peru,False,False,15247,8.168419e+07,1.094642e+10,8.188967e+07,9.18884e+07
-355011,Taapaca,Chile,False,False,1994,2161633,8475921,2454465,3791045
-355012,Parinacota,Chile-Bolivia,False,False,3442,1.914192e+07,8.239997e+08,1.940554e+07,2.330184e+07
-355020,Guallatiri,Chile,True,False,2290,2.499944e+07,1.470263e+09,2.453527e+07,2.712421e+07
-355032,Tata Sabaya,Bolivia,False,False,6266,1.928208e+07,2.616734e+09,1.928312e+07,2.063103e+07
-355030,Isluga,Chile,True,False,5961,1.874092e+07,1.051201e+09,1.953098e+07,2.096014e+07
-355040,Irruputuncu,Chile-Bolivia,True,False,2852,7.046543e+07,1.113826e+10,6.373174e+07,7.690719e+07
-355050,Olca-Paruma,Chile-Bolivia,False,False,2318,8.367336e+07,1.446905e+10,8.52841e+07,1.41427e+08
-355091,Sairecabur,Chile-Bolivia,False,False,1721,1.094509e+07,3.747537e+08,1.110416e+07,1.377666e+07
-355092,Licancabur,Chile-Bolivia,False,False,1650,1.09103e+07,2.742265e+08,1.115546e+07,1.438467e+07
-355093,Guayaques,Chile-Bolivia,False,False,408,4.134209e+07,4.132641e+09,4.125406e+07,4.709006e+07
-355094,Purico Complex,Chile,False,False,1024,2.335703e+07,1.071558e+09,2.31285e+07,2.810059e+07
-355095,Colachi,Chile,False,False,238,3.369101e+07,2.952456e+09,3.518538e+07,4.462295e+07
-355096,Acamarachi,Chile,False,False,294,4.208429e+07,3.990949e+09,4.235532e+07,4.913927e+07
-355098,Chiliques,Chile,False,False,368,4.852811e+07,7.04695e+09,4.878654e+07,5.457431e+07
-355090,Putana,Chile,False,False,1609,1.733542e+07,1.14885e+09,1.752387e+07,2.044743e+07
+354060,"Casiri, Nevados",Peru,False,False,15247,1.148993e+08,1.539755e+10,1.152366e+08,1.290469e+08
+355011,Taapaca,Chile,False,False,1994,3279090,1.288512e+07,3680558,5660744
+355012,Parinacota,Chile-Bolivia,False,False,3442,2.882435e+07,1.274362e+09,2.915237e+07,3.457987e+07
+355020,Guallatiri,Chile,True,False,2290,2.956592e+07,1.587207e+09,2.872177e+07,3.266548e+07
+355032,Tata Sabaya,Bolivia,False,False,6266,2.629055e+07,3.372521e+09,2.618161e+07,2.747117e+07
+355030,Isluga,Chile,True,False,5961,2.070331e+07,1.04567e+09,2.14131e+07,2.318873e+07
+355040,Irruputuncu,Chile-Bolivia,True,False,2852,8.22515e+07,1.308646e+10,7.45716e+07,8.951171e+07
+355050,Olca-Paruma,Chile-Bolivia,False,False,2318,9.818423e+07,1.661612e+10,1.012176e+08,1.501737e+08
+355091,Sairecabur,Chile-Bolivia,False,False,1721,1.888428e+07,6.260006e+08,1.9131e+07,2.351761e+07
+355092,Licancabur,Chile-Bolivia,False,False,1650,1.343743e+07,3.176889e+08,1.37494e+07,1.730728e+07
+355093,Guayaques,Chile-Bolivia,False,False,408,4.362949e+07,3.674717e+09,4.393096e+07,5.041152e+07
+355094,Purico Complex,Chile,False,False,1024,2.228026e+07,9.120128e+08,2.261057e+07,2.727452e+07
+355095,Colachi,Chile,False,False,238,4.629319e+07,3.896922e+09,4.660004e+07,5.72113e+07
+355096,Acamarachi,Chile,False,False,294,5.906081e+07,5.600871e+09,5.941961e+07,6.79696e+07
+355098,Chiliques,Chile,False,False,368,1.015391e+08,1.474488e+10,1.019248e+08,1.132349e+08
+355090,Putana,Chile,False,False,1609,3.499664e+07,2.321643e+09,3.507665e+07,4.084507e+07
 355101,Cordon de Puntas Negras,Chile,False,False,217,inf,inf,inf,inf
 355102,Miniques,Chile,False,False,505,inf,inf,inf,inf
 355103,"Tujle, Cerro",Chile,False,False,1968,inf,inf,inf,inf
 355104,Caichinque,Chile,False,False,148,inf,inf,inf,inf
 355105,Tilocalar,Chile,False,False,487,inf,inf,inf,inf
 355107,Pular,Chile,False,False,50,inf,inf,inf,inf
-355108,"Negrillar, La",Chile,False,False,791,7.658467e+07,1.142184e+10,7.686756e+07,8.568066e+07
+355108,"Negrillar, La",Chile,False,False,791,8.731077e+07,1.302154e+10,8.762271e+07,9.762447e+07
 355109,Socompa,Chile-Argentina,False,False,538,inf,inf,inf,inf
-355100,Lascar,Chile,True,False,570,3.188006e+07,2.728283e+09,3.22152e+07,3.69151e+07
+355100,Lascar,Chile,True,False,570,5.666824e+07,4.849646e+09,5.704892e+07,6.560933e+07
 355112,Corrida de Cori Volcanic Field,Chile-Argentina,False,False,227,inf,inf,inf,inf
 355110,Llullaillaco,Chile-Argentina,False,False,391,inf,inf,inf,inf
 355121,Cordon del Azufre,Chile-Argentina,False,False,160,inf,inf,inf,inf
-355122,"Bayo Gorbea, Cerro",Chile-Argentina,False,False,288,2.554111e+08,5.118221e+10,inf,inf
-355123,"Nevada, Sierra",Chile-Argentina,False,False,232,4.621956e+07,4.22904e+09,4.663339e+07,5.354181e+07
-355124,Falso Azufre,Chile-Argentina,False,False,215,4.854097e+07,5.584003e+09,4.884634e+07,5.510741e+07
-355125,"Incahuasi, Nevado de",Chile-Argentina,False,False,534,6.390404e+07,9.417385e+09,6.423224e+07,7.107997e+07
+355122,"Bayo Gorbea, Cerro",Chile-Argentina,False,False,288,2.511827e+08,5.033486e+10,inf,inf
+355123,"Nevada, Sierra",Chile-Argentina,False,False,232,3.510735e+07,3.212285e+09,3.544938e+07,4.069915e+07
+355124,Falso Azufre,Chile-Argentina,False,False,215,3.62449e+07,4.1695e+09,3.647844e+07,4.114659e+07
+355125,"Incahuasi, Nevado de",Chile-Argentina,False,False,534,4.782029e+07,7.047162e+09,4.807384e+07,5.317579e+07
 355120,Lastarria,Chile-Argentina,False,False,259,inf,inf,inf,inf
-355131,"Solo, El",Chile-Argentina,False,False,482,2.662017e+07,1.402161e+09,2.703438e+07,3.222787e+07
-355130,"Ojos del Salado, Nevados",Chile-Argentina,False,False,572,4.081024e+07,3.563882e+09,4.114434e+07,4.735574e+07
+355131,"Solo, El",Chile-Argentina,False,False,482,2.0222e+07,1.065151e+09,2.056466e+07,2.450463e+07
+355130,"Ojos del Salado, Nevados",Chile-Argentina,False,False,572,3.074446e+07,2.684856e+09,3.10087e+07,3.57084e+07
 355160,Aracar,Argentina,False,False,94,inf,inf,inf,inf
 355161,Central Andean Arc at 25.1°S,Argentina,False,False,123,inf,inf,inf,inf
-355190,"Condor, El",Argentina,False,False,62,5.588404e+07,7.140399e+09,5.616408e+07,6.271285e+07
+355190,"Condor, El",Argentina,False,False,62,4.184881e+07,5.347094e+09,4.20636e+07,4.699256e+07
 355200,Peinado,Argentina,False,False,47,inf,inf,inf,inf
 355210,"Blanco, Cerro",Argentina,False,False,65,inf,inf,inf,inf
-355220,Tipas,Argentina,False,False,343,4.827981e+07,4.647638e+09,4.868568e+07,5.573607e+07
-356011,Rapa Nui,Chile,False,False,4091,629802.4,369097.9,876325.4,1044602
-357010,Tupungatito,Chile-Argentina,True,False,6161,1.697998e+07,1.079154e+09,1.700736e+07,1.950848e+07
-357021,Maipo,Chile-Argentina,True,False,8221,2.928744e+07,1.632241e+09,2.953144e+07,3.53657e+07
-357022,Palomo,Chile,False,False,4732,3.288358e+07,1.753051e+09,3.301764e+07,3.83491e+07
-357023,"Atuel, Caldera del",Argentina,False,False,1003,6.788694e+07,1.011183e+10,6.911414e+07,7.870491e+07
-357024,Risco Plateado,Argentina,False,False,522,9.168264e+07,1.020476e+10,9.187339e+07,1.043874e+08
-357020,San Jose,Chile-Argentina,True,False,15963,8978174,1.958629e+08,9116236,1.153787e+07
-357030,Tinguiririca,Chile,True,False,1883,2.616066e+07,8.315248e+08,2.629648e+07,3.287998e+07
-357041,Infiernillo,Argentina,False,False,1374,5.98353e+07,8.956292e+09,5.958378e+07,6.411725e+07
-357042,Calabozos,Chile,False,False,1023,8.982717e+07,1.422463e+10,8.079619e+07,9.947742e+07
-357040,Planchon-Peteroa,Chile,True,False,1345,3.110357e+07,1.671631e+09,3.144205e+07,3.715799e+07
-357050,Descabezado Grande,Chile,True,False,3454,6.893886e+07,1.070891e+10,6.860445e+07,7.479575e+07
+355220,Tipas,Argentina,False,False,343,3.664217e+07,3.527345e+09,3.697615e+07,4.233278e+07
+356011,Rapa Nui,Chile,False,False,4091,739477.1,449024.1,929208.4,1111035
+357010,Tupungatito,Chile-Argentina,True,False,6161,1.972316e+07,1.253937e+09,1.981339e+07,2.280923e+07
+357021,Maipo,Chile-Argentina,True,False,8221,3.562348e+07,1.937328e+09,3.590794e+07,4.400091e+07
+357022,Palomo,Chile,False,False,4732,3.471216e+07,1.830142e+09,3.48047e+07,3.99606e+07
+357023,"Atuel, Caldera del",Argentina,False,False,1003,7.195126e+07,1.051146e+10,7.249087e+07,8.046803e+07
+357024,Risco Plateado,Argentina,False,False,522,8.559163e+07,9.526798e+09,8.604743e+07,9.713575e+07
+357020,San Jose,Chile-Argentina,True,False,15963,1.220337e+07,2.51141e+08,1.23443e+07,1.566027e+07
+357030,Tinguiririca,Chile,True,False,1883,2.393385e+07,7.576204e+08,2.437279e+07,3.011988e+07
+357041,Infiernillo,Argentina,False,False,1374,6.648864e+07,9.974511e+09,6.624674e+07,7.023855e+07
+357042,Calabozos,Chile,False,False,1023,1.484979e+08,2.351546e+10,1.33758e+08,1.652676e+08
+357040,Planchon-Peteroa,Chile,True,False,1345,4.976283e+07,2.674455e+09,5.013783e+07,5.939885e+07
+357050,Descabezado Grande,Chile,True,False,3454,1.116224e+08,1.739274e+10,1.108983e+08,1.208924e+08
 357061,"Maule, Laguna del",Chile,False,False,1521,inf,inf,inf,inf
-357062,San Pedro-Pellado,Chile,False,False,4155,1.239089e+08,2.059623e+10,1.242837e+08,1.373095e+08
-357063,"Longavi, Nevado de",Chile,False,False,3901,6.809092e+07,1.029557e+10,6.804702e+07,7.453094e+07
+357062,San Pedro-Pellado,Chile,False,False,4155,1.676999e+08,2.787521e+10,1.681302e+08,1.853219e+08
+357063,"Longavi, Nevado de",Chile,False,False,3901,8.099339e+07,1.229229e+10,8.097259e+07,8.906319e+07
 357064,"Blancas, Lomas",Chile,False,False,1980,inf,inf,inf,inf
 357065,"Resago, Volcan",Chile,False,False,2095,inf,inf,inf,inf
-357066,Payun Matru,Argentina,False,False,151,5.400426e+07,5.768192e+09,5.418129e+07,6.156638e+07
-357060,"Azul, Cerro",Chile,True,False,3832,7.623805e+07,1.294792e+10,7.588487e+07,1.171478e+08
+357066,Payun Matru,Argentina,False,False,151,6.218382e+07,6.641851e+09,6.237629e+07,7.090719e+07
+357060,"Azul, Cerro",Chile,True,False,3832,1.212835e+08,2.030335e+10,1.205954e+08,1.688045e+08
 357072,Tromen Volcanic Plateau,Argentina,False,False,2928,inf,inf,inf,inf
-357070,"Chillan, Nevados de",Chile,True,False,3733,4.370299e+07,2.782363e+09,4.376702e+07,4.909061e+07
-357080,Antuco,Chile,False,False,3872,4260912,2.93168e+07,4626475,6708023
-357091,Callaqui,Chile,True,False,4354,4.118536e+07,3.327233e+09,4.134408e+07,4.188584e+07
-357093,Tolhuaca,Chile,False,False,13873,1.859078e+07,3.371782e+08,1.916537e+07,2.477682e+07
-357090,Copahue,Chile-Argentina,True,False,3042,4.979652e+07,4.421005e+09,4.924858e+07,5.222743e+07
+357070,"Chillan, Nevados de",Chile,True,False,3733,6.091533e+07,4.063298e+09,5.989091e+07,6.746489e+07
+357080,Antuco,Chile,False,False,3872,5863862,4.032676e+07,6385917,9348850
+357091,Callaqui,Chile,True,False,4354,5.093831e+07,4.355019e+09,5.027907e+07,5.354136e+07
+357093,Tolhuaca,Chile,False,False,13873,1.786028e+07,3.222722e+08,1.838525e+07,2.395204e+07
+357090,Copahue,Chile-Argentina,True,False,3042,6.841689e+07,6.118824e+09,6.666708e+07,7.107043e+07
 357102,"Blanca, Laguna",Argentina,False,False,,inf,inf,inf,inf
-357100,Lonquimay,Chile,True,False,13635,1.090541e+07,1.050137e+08,1.132748e+07,1.622776e+07
-357111,Sollipulli,Chile,False,False,8904,4.69137e+07,3.669341e+09,4.550234e+07,5.468961e+07
-357112,Caburgua-Huelemolle,Chile,False,False,17774,1.447043e+07,5.935622e+08,1.482739e+07,1.843127e+07
-357110,Llaima,Chile,True,False,18568,3.108297e+07,1.190822e+09,3.115723e+07,3.523678e+07
-357121,Quetrupillan,Chile,False,False,11191,2757437,3.203502e+07,2933984,4000121
-357122,Lanin,Chile-Argentina,False,False,3007,850802.6,1134416,785340.6,2942108
-357123,Huanquihue Group,Argentina,False,False,3515,1.588453e+07,4.364804e+08,1.614375e+07,2.31939e+07
-357120,Villarrica,Chile,True,False,35118,8304366,3.165388e+08,8357272,9932468
-357130,Mocho-Choshuenco,Chile,True,False,16633,1.055606e+07,3.070408e+08,1.065823e+07,1.081061e+07
-357140,Carran-Los Venados,Chile,True,False,9001,3204304,1.502576e+07,3634403,5424267
-357153,Antillanca Volcanic Complex,Chile,False,False,5986,4.134143e+07,2.877245e+09,4.136039e+07,4.422054e+07
-357150,Puyehue-Cordon Caulle,Chile,True,False,7163,2.117571e+07,7.441809e+08,2.152402e+07,2.587244e+07
-357160,Puntiagudo-Cordon Cenizos,Chile,False,False,5666,2.635853e+07,2.937003e+08,2.736911e+07,3.514641e+07
-358011,Tronador,Chile-Argentina,False,False,1293,1.182286e+08,4.539005e+09,1.109603e+08,1.463791e+08
-358012,Cayutue-La Vigueria,Chile,False,False,5482,2.633298e+07,2.488417e+08,2.725544e+07,3.909178e+07
-358010,Osorno,Chile,False,False,11964,6753365,1.353055e+07,7954904,1.274996e+07
-358022,Yate,Chile,False,False,6135,1.039927e+08,1.597977e+10,1.040012e+08,2.737207e+08
-358023,Hornopiren,Chile,False,False,5345,3.507013e+08,4.706824e+10,2.208236e+08,3.946357e+08
-358024,Apagado,Chile,False,False,4474,5.713205e+07,9.927021e+09,5.725711e+07,6.326318e+07
+357100,Lonquimay,Chile,True,False,13635,9626061,9.249681e+07,1.012633e+07,1.402231e+07
+357111,Sollipulli,Chile,False,False,8904,5.972984e+07,4.644984e+09,5.80885e+07,6.899301e+07
+357112,Caburgua-Huelemolle,Chile,False,False,17774,3.042859e+07,1.379858e+09,3.077165e+07,3.656581e+07
+357110,Llaima,Chile,True,False,18568,3.263177e+07,1.204936e+09,3.290752e+07,3.829304e+07
+357121,Quetrupillan,Chile,False,False,11191,6961912,8.200018e+07,7358994,9895016
+357122,Lanin,Chile-Argentina,False,False,3007,1802516,2404407,1795586,4637080
+357123,Huanquihue Group,Argentina,False,False,3515,2.488388e+07,8.01036e+08,2.42615e+07,2.988221e+07
+357120,Villarrica,Chile,True,False,35118,1.693671e+07,6.502134e+08,1.638968e+07,1.962411e+07
+357130,Mocho-Choshuenco,Chile,True,False,16633,1.224697e+07,3.106678e+08,1.249062e+07,1.37041e+07
+357140,Carran-Los Venados,Chile,True,False,9001,3144351,1.473128e+07,3588379,5338117
+357153,Antillanca Volcanic Complex,Chile,False,False,5986,4.037161e+07,2.830757e+09,4.038228e+07,4.333588e+07
+357150,Puyehue-Cordon Caulle,Chile,True,False,7163,2.061689e+07,7.246582e+08,2.096851e+07,2.517778e+07
+357160,Puntiagudo-Cordon Cenizos,Chile,False,False,5666,2.650524e+07,2.966666e+08,2.773407e+07,3.533355e+07
+358011,Tronador,Chile-Argentina,False,False,1293,1.476566e+08,5.668798e+09,1.373078e+08,1.828486e+08
+358012,Cayutue-La Vigueria,Chile,False,False,5482,2.660074e+07,2.513719e+08,2.803194e+07,3.979236e+07
+358010,Osorno,Chile,False,False,11964,7843194,1.571493e+07,8918356,1.538418e+07
+358022,Yate,Chile,False,False,6135,1.311345e+08,1.800183e+10,1.309249e+08,2.640592e+08
+358023,Hornopiren,Chile,False,False,5345,3.382009e+08,4.539054e+10,2.321325e+08,3.805635e+08
+358024,Apagado,Chile,False,False,4474,8.497891e+07,1.455538e+10,8.472809e+07,9.197555e+07
 358025,Crater Basalt Volcanic Field,Argentina,False,False,1140,inf,inf,inf,inf
-358020,Calbuco,Chile,True,False,32265,3.484619e+07,7.231399e+08,3.548213e+07,3.962151e+07
-358030,Huequi,Chile,True,False,1076,7.623339e+07,1.196681e+10,7.621364e+07,8.572682e+07
-358041,Chaiten,Chile,True,False,9280,1.315011e+08,1.544102e+10,1.319819e+08,1.489776e+08
-358040,Michinmahuida,Chile,False,False,7989,8.787672e+07,7.528476e+09,8.853595e+07,1.015586e+08
-358049,Yanteles,Chile,False,False,1348,9.428356e+07,1.448742e+10,9.424723e+07,9.731242e+07
-358052,Melimoyu,Chile,False,False,211,7.33321e+07,7.775932e+09,7.367864e+07,8.33161e+07
+358020,Calbuco,Chile,True,False,32265,3.939868e+07,7.538369e+08,4.028985e+07,4.648368e+07
+358030,Huequi,Chile,True,False,1076,9.263044e+07,1.454075e+10,9.304585e+07,1.029851e+08
+358041,Chaiten,Chile,True,False,9280,1.214126e+08,1.425642e+10,1.218702e+08,1.379049e+08
+358040,Michinmahuida,Chile,False,False,7989,8.008952e+07,6.86134e+09,8.073017e+07,9.253739e+07
+358049,Yanteles,Chile,False,False,1348,7.671604e+07,1.20203e+10,7.685459e+07,8.09004e+07
+358052,Melimoyu,Chile,False,False,211,5.180334e+07,5.493082e+09,5.214877e+07,5.865068e+07
 358053,Puyuhuapi,Chile,False,False,1063,inf,inf,inf,inf
 358054,Mentolat,Chile,False,False,183,inf,inf,inf,inf
 358055,Cay,Chile,False,False,104,inf,inf,inf,inf
 358056,Maca,Chile,False,False,375,inf,inf,inf,inf
-358057,"Hudson, Cerro",Chile,True,False,28,2.023099e+08,1.836986e+10,2.028386e+08,2.338814e+08
-358050,Corcovado,Chile,False,False,5546,1.584927e+08,1.880855e+10,1.586404e+08,1.796727e+08
+358057,"Hudson, Cerro",Chile,True,False,28,7.049731e+07,6.401198e+09,7.100328e+07,8.073798e+07
+358050,Corcovado,Chile,False,False,5546,1.516259e+08,1.799365e+10,1.516447e+08,1.718891e+08
 358062,Aguilera,Chile,False,False,103,inf,inf,inf,inf
-358063,Reclus,Chile,True,False,420,2.030482e+08,3.63396e+10,2.036665e+08,2.241136e+08
-358060,Lautaro,Chile,True,False,46,3.183027e+08,5.524673e+10,3.192189e+08,3.531488e+08
-358070,"Burney, Monte",Chile,True,False,0,1.535624e+08,2.781799e+10,1.539889e+08,inf
-358080,Pali-Aike Volcanic Field,Chile-Argentina,False,False,651,2.260023e+08,3.213926e+10,2.271077e+08,2.581067e+08
+358063,Reclus,Chile,True,False,420,2.474349e+08,4.42835e+10,2.481213e+08,2.723219e+08
+358060,Lautaro,Chile,True,False,46,3.714854e+08,6.447746e+10,3.725866e+08,4.119907e+08
+358070,"Burney, Monte",Chile,True,False,0,8.915377e+07,1.61503e+10,8.946924e+07,inf
+358080,Pali-Aike Volcanic Field,Chile-Argentina,False,False,651,2.348967e+08,3.34041e+10,2.360389e+08,2.682424e+08
 358090,Fueguino,Chile,False,False,294,inf,inf,inf,inf
-360010,Saba,Netherlands,False,False,1752,661342,386358.5,716006.8,923715.3
-360020,"Quill, The",Netherlands,False,False,8361,643171.6,378894,643610.9,817555
-360030,Liamuiga,Saint Kitts and Nevis,False,False,35138,4317100,4.144426e+07,4565027,6318784
-360040,Nevis Peak,Saint Kitts and Nevis,False,False,35673,1.123326e+07,3.872505e+08,1.137764e+07,1.255329e+07
-360050,Soufriere Hills,United Kingdom,True,False,9458,335327.2,332930,458661.2,539639.8
-360060,Soufriere Guadeloupe,France,True,True,256899,1215129,1789160,1373112,1651958
-360080,"Diables, Morne aux",Dominica,False,False,33148,4697525,4.937157e+07,4554340,5166391
-360090,"Diablotins, Morne",Dominica,False,False,69935,1643685,2740541,2239892,3184111
-360101,"Watt, Morne",Dominica,True,False,63178,7265159,6.174303e+07,7758706,1.025592e+07
-360100,"Trois Pitons, Morne",Dominica,False,False,62348,3995913,1.475804e+07,4473400,6851772
-360110,"Plat Pays, Morne",Dominica,False,False,57856,8285117,9.287514e+07,8687166,1.097594e+07
-360120,Pelee,France,True,True,382633,1095059,1350683,1414871,2037247
-360140,Qualibou,Saint Lucia,False,True,172439,3343233,2.400048e+07,3387977,4601137
-360150,Soufriere St. Vincent,Saint Vincent and the Grenadines,True,True,103882,2.744469e+07,1.424277e+09,2.768566e+07,3.289118e+07
-360170,St. Catherine,Grenada,False,False,84210,3.532607e+07,1.492056e+09,3.576669e+07,4.390461e+07
-370010,Snaefellsjokull,Iceland,False,False,2264,3484842,1.209908e+07,3885117,6240532
-370020,Helgrindur,Iceland,False,False,2312,1.278755e+07,2.668221e+08,1.301094e+07,1.532922e+07
-370030,Ljosufjoll,Iceland,False,False,1511,1.112327e+07,1.915711e+08,1.148211e+07,1.494036e+07
-371020,Reykjanes,Iceland,True,False,15542,4076930,2.266646e+07,3958073,5894940
-371030,Krysuvik-Trolladyngja,Iceland,False,True,164484,3051367,2.559578e+07,2671939,3678134
-371040,Brennisteinsfjoll,Iceland,False,True,163469,1221407,3050464,1458117,1898346
-371051,Hromundartindur,Iceland,False,False,26028,8048883,1.675236e+08,8052596,1.022984e+07
-371050,Hengill,Iceland,False,True,124106,6689261,1.135482e+08,6654206,8799159
-371060,Grimsnes,Iceland,False,False,11236,8825463,8.840121e+07,9180240,1.141324e+07
-371070,Prestahnukur,Iceland,False,False,233,2.03907e+07,1.265291e+09,2.040819e+07,2.177396e+07
-371080,Oddnyjarhnjukur-Langjokull,Iceland,False,False,5,836948.3,1253850,1275921,1744542
-371090,Hofsjokull,Iceland,False,False,0,1.175787e+07,3.497607e+08,1.195594e+07,1.364008e+07
-372010,Vestmannaeyjar,Iceland,True,False,2188,793326.9,450730.6,766061.5,980248.1
-372020,Eyjafjallajokull,Iceland,True,False,786,1.601096e+07,5.693146e+08,1.599822e+07,1.858288e+07
-372030,Katla,Iceland,True,False,473,2.349346e+07,1.154321e+09,2.346152e+07,2.453621e+07
-372040,Tindfjallajokull,Iceland,False,False,833,1.532489e+07,5.360253e+08,1.483093e+07,1.689851e+07
-372050,Torfajokull,Iceland,False,False,7,2.147913e+07,8.403081e+08,2.15814e+07,2.394296e+07
-372070,Hekla,Iceland,True,False,298,4237297,2.320056e+07,4677240,6727736
-373010,Grimsvotn,Iceland,True,False,0,4.454191e+07,3.271345e+09,4.370341e+07,4.725467e+07
-373030,Bardarbunga,Iceland,True,False,0,3.08588e+07,8.92106e+08,3.037017e+07,3.711881e+07
-373040,Tungnafellsjokull,Iceland,False,False,0,6207833,2.971763e+07,6905058,1.005628e+07
-373050,Kverkfjoll,Iceland,True,False,0,3.339364e+07,2.02217e+09,3.359446e+07,3.809254e+07
-373060,Askja,Iceland,True,False,0,2.434928e+07,1.281011e+09,2.439583e+07,2.727946e+07
-373070,Fremrinamar,Iceland,False,False,476,9185412,1.457771e+08,9528943,1.216276e+07
-373080,Krafla,Iceland,True,False,1258,2194293,6460409,2676379,4077137
-373090,Theistareykir,Iceland,False,False,3711,8829992,1.348237e+08,9215859,1.207013e+07
-374010,Oraefajokull,Iceland,False,False,367,1.070472e+07,5.002286e+07,8161057,1.673187e+07
-374020,Esjufjoll,Iceland,False,False,0,3.817856e+07,2.375774e+09,3.748461e+07,4.1002e+07
-374801,Snaefell,Iceland,False,False,,6448008,5.084302e+07,6805126,9812381
+360010,Saba,Netherlands,False,False,1752,707015.2,413141.5,808983.3,982942.8
+360020,"Quill, The",Netherlands,False,False,8361,704827.8,418269,728618.9,826481.4
+360030,Liamuiga,Saint Kitts and Nevis,False,False,35138,5137052,5.018186e+07,5379680,7463420
+360040,Nevis Peak,Saint Kitts and Nevis,False,False,35673,1.493198e+07,5.280871e+08,1.511731e+07,1.625299e+07
+360050,Soufriere Hills,United Kingdom,True,False,9458,560755.7,540350,681866.3,844500.2
+360060,Soufriere Guadeloupe,France,True,True,256899,1297550,1930282,1407043,1542066
+360080,"Diables, Morne aux",Dominica,False,False,33148,5750361,5.42165e+07,6056535,6484049
+360090,"Diablotins, Morne",Dominica,False,False,69935,1776067,2946523,2456532,3529124
+360101,"Watt, Morne",Dominica,True,False,63178,7849610,6.669107e+07,8420901,1.07634e+07
+360100,"Trois Pitons, Morne",Dominica,False,False,62348,4382620,1.60938e+07,4930216,7641930
+360110,"Plat Pays, Morne",Dominica,False,False,57856,8797752,9.952257e+07,9227778,1.121386e+07
+360120,Pelee,France,True,True,382633,1429076,1890703,1438799,2432790
+360140,Qualibou,Saint Lucia,False,True,172439,5147298,3.767951e+07,5152929,6748476
+360150,Soufriere St. Vincent,Saint Vincent and the Grenadines,True,True,103882,4.114114e+07,2.172166e+09,4.145391e+07,4.847126e+07
+360170,St. Catherine,Grenada,False,False,84210,4.103037e+07,1.732986e+09,4.150875e+07,5.071151e+07
+370010,Snaefellsjokull,Iceland,False,False,2264,3054569,1.059805e+07,3450787,5345289
+370020,Helgrindur,Iceland,False,False,2312,1.341122e+07,2.774637e+08,1.359002e+07,1.621083e+07
+370030,Ljosufjoll,Iceland,False,False,1511,1.187854e+07,2.037975e+08,1.223502e+07,1.595553e+07
+371020,Reykjanes,Iceland,True,False,15542,3162920,1.774885e+07,3210852,4763511
+371030,Krysuvik-Trolladyngja,Iceland,False,True,164484,2939801,2.37785e+07,2581755,3244060
+371040,Brennisteinsfjoll,Iceland,False,True,163469,1197500,2985876,1467929,1895869
+371051,Hromundartindur,Iceland,False,False,26028,8037809,1.671528e+08,8079172,1.026648e+07
+371050,Hengill,Iceland,False,True,124106,6608559,1.123238e+08,6607775,8721429
+371060,Grimsnes,Iceland,False,False,11236,9350349,9.236341e+07,9754201,1.213906e+07
+371070,Prestahnukur,Iceland,False,False,233,2.428099e+07,1.529346e+09,2.465989e+07,2.617267e+07
+371080,Oddnyjarhnjukur-Langjokull,Iceland,False,False,5,1197428,1794764,1745941,2473066
+371090,Hofsjokull,Iceland,False,False,0,7701287,2.120892e+08,7889516,8739939
+372010,Vestmannaeyjar,Iceland,True,False,2188,818133.8,464813.4,881995.9,1084591
+372020,Eyjafjallajokull,Iceland,True,False,786,1.861699e+07,6.506462e+08,1.884568e+07,2.168977e+07
+372030,Katla,Iceland,True,False,473,3.146811e+07,1.771522e+09,3.096516e+07,3.20539e+07
+372040,Tindfjallajokull,Iceland,False,False,833,1.907658e+07,6.798023e+08,1.848e+07,2.079765e+07
+372050,Torfajokull,Iceland,False,False,7,2.912716e+07,1.250266e+09,2.913823e+07,3.149863e+07
+372070,Hekla,Iceland,True,False,298,5540609,3.040113e+07,6226909,8787161
+373010,Grimsvotn,Iceland,True,False,0,3.387943e+07,2.542909e+09,3.391131e+07,3.589581e+07
+373030,Bardarbunga,Iceland,True,False,0,1.219401e+07,3.203437e+08,1.248907e+07,1.626527e+07
+373040,Tungnafellsjokull,Iceland,False,False,0,4635332,2.205449e+07,5298322,1.155739e+07
+373050,Kverkfjoll,Iceland,True,False,0,2.4346e+07,1.77361e+09,2.398706e+07,2.680535e+07
+373060,Askja,Iceland,True,False,0,1.816853e+07,1.090081e+09,1.765645e+07,1.9245e+07
+373070,Fremrinamar,Iceland,False,False,476,1.274605e+07,2.055889e+08,1.310291e+07,1.657513e+07
+373080,Krafla,Iceland,True,False,1258,2807092,8267615,3273682,5236323
+373090,Theistareykir,Iceland,False,False,3711,1.266089e+07,1.952021e+08,1.310605e+07,1.724898e+07
+374010,Oraefajokull,Iceland,False,False,367,1.035046e+07,4.760363e+07,8350736,1.651993e+07
+374020,Esjufjoll,Iceland,False,False,0,3.746703e+07,2.385483e+09,3.829022e+07,4.06714e+07
+374801,Snaefell,Iceland,False,False,,6799277,5.330749e+07,7186255,1.045381e+07
 375010,Kolbeinsey Ridge,Iceland,False,False,282,inf,inf,inf,inf
-376010,Jan Mayen,Norway,True,False,0,2730168,8621395,3195357,5054090
+376010,Jan Mayen,Norway,True,False,0,2482150,7845370,2954575,4623899
 382001,Flores,Portugal,False,False,5825,inf,inf,inf,inf
-382010,Fayal,Portugal,True,False,24414,1411910,3058076,1685437,2959609
-382020,Pico,Portugal,False,False,31521,1802203,2264818,2101472,2880430
-382030,Sao Jorge,Portugal,True,False,16290,1561547,4189452,1678323,2863863
-382040,Graciosa,Portugal,False,False,6153,1195558,2665106,1387734,2309967
-382050,Terceira,Portugal,True,False,55425,2456867,1.044244e+07,2768289,4366287
-382081,Picos Fissural Volcanic System,Portugal,False,True,123990,698994.9,536953.2,984758.9,1270172
-382080,Sete Cidades,Portugal,False,True,102848,3778893,2.394891e+07,4073405,5980289
-382090,Agua de Pau,Portugal,False,True,113131,1287903,1983880,1465423,2190419
-382100,Furnas,Portugal,False,False,87865,1527879,943958.2,1490620,1847606
-382120,Madeira,Portugal,False,True,215730,2308173,7607161,2650870,4167256
-383010,La Palma,Spain,True,False,55922,829015.6,1334227,951724.8,1431531
-383020,Hierro,Spain,True,False,20321,828843.2,627733.4,935868.6,1284700
-383030,Tenerife,Spain,True,True,337660,1959464,1.289998e+07,1769331,2571073
-383040,Gran Canaria,Spain,False,True,697199,1244918,2132937,1501049,1998364
-383050,Fuerteventura,Spain,False,False,52038,512545.8,801881.3,749607.3,1005916
-383060,Lanzarote,Spain,False,True,164123,1368130,3405607,1331766,2199683
+382010,Fayal,Portugal,True,False,24414,2136772,4646217,2497495,4217332
+382020,Pico,Portugal,False,False,31521,1211624,1431676,1821893,2233762
+382030,Sao Jorge,Portugal,True,False,16290,1953913,5295365,2025405,3568786
+382040,Graciosa,Portugal,False,False,6153,1223488,2725349,1450307,2287725
+382050,Terceira,Portugal,True,False,55425,2032104,9023305,2301024,3490761
+382081,Picos Fissural Volcanic System,Portugal,False,True,123990,481649.6,369090.3,842692,913642.2
+382080,Sete Cidades,Portugal,False,True,102848,2846718,1.781948e+07,3164994,4571062
+382090,Agua de Pau,Portugal,False,True,113131,2054053,3467765,1941650,3197699
+382100,Furnas,Portugal,False,False,87865,1637723,984010.7,1693039,2156742
+382120,Madeira,Portugal,False,True,215730,2440936,8044609,2784435,4394036
+383010,La Palma,Spain,True,False,55922,931550.9,1415230,973937.1,1451417
+383020,Hierro,Spain,True,False,20321,893623.9,712097.3,930363.8,1246077
+383030,Tenerife,Spain,True,True,337660,2251000,1.468286e+07,1993256,2827820
+383040,Gran Canaria,Spain,False,True,697199,1461301,2525575,1770255,2210577
+383050,Fuerteventura,Spain,False,False,52038,614341.3,961707.6,895383.7,1202173
+383060,Lanzarote,Spain,False,True,164123,1613300,4195507,1502876,2484370
 384010,Fogo,Cabo Verde,True,False,37650,inf,inf,inf,inf
 384020,Brava,Cabo Verde,False,False,25852,inf,inf,inf,inf
-385050,Ascension,United Kingdom,False,False,1149,537841.9,534599.5,775966.4,1248016
+385050,Ascension,United Kingdom,False,False,1149,672635.4,668580.4,1060770,1352938
 386011,Nightingale Island,United Kingdom,True,False,27,inf,inf,inf,inf
 386010,Tristan da Cunha,United Kingdom,True,False,12,inf,inf,inf,inf
 386020,Bouvet,Norway,False,False,0,inf,inf,inf,inf
@@ -1069,10 +1069,10 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 390021,Royal Society Range,Antarctica,False,False,0,inf,inf,inf,inf
 390022,Berlin,Antarctica,False,False,0,inf,inf,inf,inf
 390023,Andrus,Antarctica,False,False,0,inf,inf,inf,inf
-390027,Takahe,Antarctica,False,False,0,5650218,4.557877e+07,6136266,8523637
-390028,Hudson Mountains,Antarctica,False,False,0,1.255026e+08,2.159484e+10,1.260051e+08,1.391055e+08
+390027,Takahe,Antarctica,False,False,0,7370348,5.953422e+07,7796384,1.116652e+07
+390028,Hudson Mountains,Antarctica,False,False,0,1.22238e+08,2.103312e+10,1.227019e+08,1.355069e+08
 390020,Erebus,Antarctica,True,False,0,inf,inf,inf,inf
-390031,Penguin Island,Antarctica,True,False,0,5.695527e+07,3.473702e+09,5.751894e+07,6.734302e+07
+390031,Penguin Island,Antarctica,True,False,0,8.247238e+07,5.02999e+09,8.320475e+07,9.758046e+07
 390030,Deception Island,Antarctica,True,False,0,inf,inf,inf,inf
 390041,Paulet,Antarctica,False,False,0,inf,inf,inf,inf
 390040,Bridgeman Island,Antarctica,False,False,0,inf,inf,inf,inf
@@ -1084,18 +1084,18 @@ vnum,name,country,active,exposed,pop30,dv_mogi,dv_sill,dv_off_med,dv_off_max
 390110,Hodson,United Kingdom,False,False,0,inf,inf,inf,inf
 390120,Leskov Island,United Kingdom,False,False,0,inf,inf,inf,inf
 390130,Zavodovski,United Kingdom,True,False,0,inf,inf,inf,inf
-390847,Melville,Antarctica,False,False,,9.374465e+07,9.339372e+09,9.431452e+07,1.066248e+08
+390847,Melville,Antarctica,False,False,,1.350143e+08,1.345089e+10,1.357481e+08,1.537526e+08
 390829,Mount Haddington Volcanic Field,Antarctica,False,False,,inf,inf,inf,inf
 290072,Odamoisan [Tebenkov],Japan - administered by Russia,False,False,,inf,inf,inf,inf
-285083,Tenchozan,Japan,False,False,,788775.5,1428179,686182.6,1107188
-283069,Akandanayama,Japan,False,False,,1788894,6209714,1614642,2301079
+285083,Tenchozan,Japan,False,False,,756328.7,1334100,913154.4,1144604
+283069,Akandanayama,Japan,False,False,,1971979,6560139,1827240,2572231
 358064,Meullin,Chile,False,False,,inf,inf,inf,inf
-373082,Heidarspordar,Iceland,False,False,,1166956,1878681,1618338,2438029
-371022,Eldey,Iceland,True,False,,1.175506e+07,2.300269e+08,1.196929e+07,1.536455e+07
-373012,Thordarhyrna,Iceland,True,False,,2.695773e+07,7.949124e+08,2.673924e+07,3.323323e+07
+373082,Heidarspordar,Iceland,False,False,,1568219,2525190,2035576,3258514
+371022,Eldey,Iceland,True,False,,1.008572e+07,1.987034e+08,1.038001e+07,1.33698e+07
+373012,Thordarhyrna,Iceland,True,False,,3.175286e+07,9.890776e+08,3.144789e+07,3.736351e+07
 221294,Northern Lake Abaya Volcanic Field,Ethiopia,False,False,,inf,inf,inf,inf
 221330,Mega Volcanic Field,Ethiopia,False,False,,inf,inf,inf,inf
-312055,Stepovak Bay Group,United States,False,False,,6.321446e+07,4.463476e+09,6.211239e+07,6.994899e+07
-371032,Fagradalsfjall,Iceland,True,False,,3044176,9050463,2511514,3960085
+312055,Stepovak Bay Group,United States,False,False,,6.737302e+07,4.758692e+09,6.599759e+07,7.471984e+07
+371032,Fagradalsfjall,Iceland,True,False,,1747317,3842098,1917907,2758861
 303015,Khoid Naiman Nuur,Mongolia,False,False,,inf,inf,inf,inf
-223045,Mugogo,DR Congo,True,False,,1.367808e+07,3.936468e+08,1.389622e+07,1.701122e+07
+223045,Mugogo,DR Congo,True,False,,7852898,2.034924e+08,8025729,1.000037e+07

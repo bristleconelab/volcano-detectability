@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import csv
 import sys
+import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -25,12 +26,19 @@ OUT = V.DATA / "station_noise.csv"
 FIELDS = ["site", "lat", "lon", "start", "end", "first_mjd", "last_mjd", "ndays", "npairs",
           "sig_e_mm", "sig_n_mm", "sig_u_mm", "npairs30", "sig30_e_mm", "sig30_n_mm", "sig30_u_mm",
           "status"]
+_TLS = threading.local()
 
 
-def candidate_stations():
+def _session() -> requests.Session:
+    if not hasattr(_TLS, "session"):
+        _TLS.session = requests.Session()
+    return _TLS.session
+
+
+def candidate_stations(active_since: str = ACTIVE_SINCE):
     vol = V.load_volcanoes()
     st = V.load_holdings()
-    st = st[st["end"] >= ACTIVE_SINCE].reset_index(drop=True)
+    st = st[st["end"] >= active_since].reset_index(drop=True)
     keep = np.zeros(len(st), bool)
     for _, v in vol.iterrows():
         near = (np.abs(st["lat"] - v.lat) < 1.0) & (np.abs(((st["lon"] - v.lon + 180) % 360) - 180) < V.lon_window_deg(v.lat, MAX_KM))
@@ -43,10 +51,11 @@ def candidate_stations():
     return st[keep].reset_index(drop=True)
 
 
-def fetch(site: str, session: requests.Session) -> str:
+def fetch(site: str, session: requests.Session | None = None) -> str:
+    sess = session or _session()
     for attempt in range(4):
         try:
-            r = session.get(V.NGL_TENV3.format(site=site), headers={"Range": f"bytes=-{TAIL_BYTES}"}, timeout=60)
+            r = sess.get(V.NGL_TENV3.format(site=site), headers={"Range": f"bytes=-{TAIL_BYTES}"}, timeout=60)
             if r.status_code in (200, 206):
                 return r.text
             if r.status_code == 404:
@@ -57,7 +66,7 @@ def fetch(site: str, session: requests.Session) -> str:
     raise RuntimeError(f"{site}: download failed")
 
 
-def process(row, session):
+def process(row, session: requests.Session | None = None):
     text = fetch(row.site, session)
     base = dict(site=row.site, lat=row.lat, lon=row.lon, start=row.start, end=row.end)
     if not text:
@@ -78,31 +87,47 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--active-since", default=ACTIVE_SINCE)
+    ap.add_argument("--overwrite", action="store_true")
     a = ap.parse_args()
-    st = candidate_stations()
+    st = candidate_stations(a.active_since)
     done = set()
-    if OUT.exists():
+    if OUT.exists() and not a.overwrite:
         with OUT.open() as f:
             done = {r["site"] for r in csv.DictReader(f)}
     todo = st[~st["site"].isin(done)]
     if a.limit:
         todo = todo.head(a.limit)
     print(f"{len(st)} candidate stations, {len(done)} done, {len(todo)} to fetch", flush=True)
-    new = not OUT.exists()
-    with OUT.open("a", newline="") as f, requests.Session() as s:
+    target = OUT.with_suffix(".csv.tmp") if a.overwrite else OUT
+    new = a.overwrite or not OUT.exists()
+    failed = []
+    with target.open("w" if a.overwrite else "a", newline="") as f:
         w = csv.DictWriter(f, fieldnames=FIELDS)
         if new:
             w.writeheader()
         with ThreadPoolExecutor(a.workers) as ex:
-            futs = {ex.submit(process, r, s): r.site for r in todo.itertuples()}
+            futs = {ex.submit(process, r): r.site for r in todo.itertuples()}
             for i, fu in enumerate(as_completed(futs), 1):
                 try:
                     w.writerow(fu.result())
-                except Exception as e:  # keep going; the site is retried on the next run
+                except Exception as e:  # keep going; retried on next run or checked below
+                    failed.append(futs[fu])
                     print(f"  {futs[fu]}: {e}", file=sys.stderr, flush=True)
                 if i % 100 == 0:
                     f.flush()
                     print(f"  {i}/{len(todo)}", flush=True)
+    if a.overwrite:
+        if len(failed) > max(1, int(0.01 * len(todo))):
+            raise RuntimeError(f"Aborted overwrite: {len(failed)}/{len(todo)} stations failed")
+        target.replace(OUT)
+        if failed:
+            print(f"Retrying {len(failed)} transient failures...", flush=True)
+            rem = st[st["site"].isin(failed)]
+            with OUT.open("a", newline="") as f:
+                w = csv.DictWriter(f, fieldnames=FIELDS)
+                for r in rem.itertuples():
+                    w.writerow(process(r))
 
 
 if __name__ == "__main__":

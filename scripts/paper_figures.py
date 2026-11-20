@@ -76,9 +76,10 @@ def mh_ci(df: pd.DataFrame, group: str, outcome: str, strata: str) -> dict:
         n = a + b + c + d
         if n < 2 or (a + b) == 0 or (c + d) == 0:
             continue
-        used += 1
         r, q = a * d / n, b * c / n
         p_, q_ = (a + d) / n, (b + c) / n
+        if (a + c) > 0 and (b + d) > 0:
+            used += 1
         sr += r
         ss += q
         spr += p_ * r
@@ -166,7 +167,7 @@ def fig1(rk: pd.DataFrame):
     land(ax)
     scatter_cats(ax, rk, cat, 6)
     ax.set_xlim(-180, 180)
-    ax.set_ylim(-60, 78)
+    ax.set_ylim(-80, 78)
     ax.set_aspect("equal")
     boxes = {"b": (-106.5, -82.0, 8.0, 22.5), "c": (94.0, 129.0, -11.5, 19.5)}
     for key, (x0, x1, y0, y1) in boxes.items():
@@ -264,7 +265,7 @@ def fig3(rk: pd.DataFrame, blind: pd.DataFrame, mh: dict):
             rows.append((g.replace("\n", " "), lab, k, n, lo, hi))
     ax.set_xticks(range(len(GROUPS)))
     ax.set_xticklabels(GROUPS, fontsize=6.8)
-    ax.set_ylim(-14, 104)
+    ax.set_ylim(-14, 118)
     ax.set_yticks(range(0, 101, 20))
     ax.set_xlim(-0.5, len(GROUPS) - 0.5)
     ax.set_ylabel("Blind to open GNSS at 10$^7$ m$^3$ (%, 95 % CI)")
@@ -344,7 +345,7 @@ def japan_station_check(rk: pd.DataFrame, ok: pd.DataFrame):
         x, y = V.local_km(ok["lon"].to_numpy(), ok["lat"].to_numpy(), v.lon, v.lat)
         near |= set(ok["site"].to_numpy()[np.hypot(x, y) <= 100])
     geonet = [s for s in near if names.get(s, "").isdigit() and len(names.get(s, "")) == 4]
-    print(f"  Japan: active NGL stations within 100 km of the 21 active and exposed volcanoes {len(near)}; with a "
+    print(f"  Japan: active NGL stations within 100 km of the {len(jp)} active and exposed volcanoes {len(near)}; with a "
           f"4-digit GEONET-style original name {len(geonet)} ({len(geonet) / max(len(near), 1):.0%})")
 
 
@@ -393,8 +394,9 @@ def main():
                    (rk["main_d5"], "GNSS or S1 area, best season"), (worst_main, "GNSS or S1 area, worst season")):
         print(f"  {lab:32s} {counts(v)}")
     no_reach = np.isinf(rk["net_d5"])
-    print(f"  no active open station within 100 km: {no_reach.sum()} (first-pass daily-noise set: "
-          f"{np.isinf(rk['dv_d5_k1']).sum()})")
+    no_active = rk["n_100km"] == 0 if "n_100km" in rk.columns else np.isinf(rk["dv_d5_k1"])
+    print(f"  no active open station within 100 km: {no_active.sum()}; no 30-day open GNSS within 100 km: {no_reach.sum()} "
+          f"(first-pass daily-noise set: {np.isinf(rk['dv_d5_k1']).sum()})")
     fin = rk.loc[~no_reach, "net_d5"]
     print(f"  median GNSS network dV_min where a station exists: {fin.median():.3g} m^3")
     agree = ((rk["net_d5"] > DV) == (rk["n_50km"] == 0)).mean()
@@ -427,14 +429,19 @@ def main():
     bb = ae[ae["gnss_blind"] & ~ae["s1_sees_best"]]
     print(f"  GNSS-blind and S1-area-blind in the best season too: {share(ae['gnss_blind'] & ~ae['s1_sees_best'])}; "
           f"people {bounds_str(bb)}")
-    print(f"  all 70 first-pass blind are also main-blind: {bool((ae.gnss_blind_1s <= ae.gnss_blind).all())}; added "
+    print(f"  all {int(ae.gnss_blind_1s.sum())} first-pass blind are also main-blind: {bool((ae.gnss_blind_1s <= ae.gnss_blind).all())}; added "
           f"by the main criterion: {', '.join(ae[ae.gnss_blind & ~ae.gnss_blind_1s].name)}")
     print(f"  of the {len(blind)}: S1 area sees 1e7 best {int(blind.s1_sees_best.sum())}, worst "
           f"{int(blind.s1_sees_worst.sum())}; S1 single pixel best {(blind.ins_d5_t59_best <= DV).sum()}, worst "
           f"{(blind.ins_d5_t59_worst <= DV).sum()}; coherent share within 5 km median "
           f"{blind.frac_coh_5km_best.median():.1%} best, {blind.frac_coh_5km_worst.median():.1%} worst")
-    print(f"  of the {len(blind)}: no station within 20 km {(blind.n_20km == 0).sum()}, 50 km {(blind.n_50km == 0).sum()},"
-          f" 100 km {np.isinf(blind.net_d5).sum()}")
+    n100_0 = (blind.n_100km == 0).sum() if "n_100km" in blind.columns else np.isinf(blind.dv_d5_k1).sum()
+    print(f"  of the {len(blind)}: no active station within 20 km {(blind.n_20km == 0).sum()}, 50 km {(blind.n_50km == 0).sum()}, "
+          f"100 km {n100_0} (no 30-day station within 100 km {np.isinf(blind.net_d5).sum()})")
+    if "pop_eq_summary" in stj:
+        peq = stj["pop_eq_summary"]
+        print(f"  pop30 == pop100: {peq['total']} total ({peq['zero']} zero-pop, {peq['positive']} positive: "
+              f"{peq['positive_volcanic_fields']} volcanic fields, {peq['positive_islands_or_other']} islands/other)")
     print(f"  volcanic fields among the {len(blind)}: {int(blind.field.sum())} ({', '.join(blind[blind.field].name)}); "
           f"without fields {share(ae[~ae.field]['gnss_blind'])}; people {bounds_str(blind[~blind.field])}")
     print(f"  active and exposed seen by GNSS at 1e6: {(ae.net_d5 <= 1e6).sum()}; at 1e8 blind: "
