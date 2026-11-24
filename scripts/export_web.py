@@ -1,4 +1,4 @@
-"""Export compact GeoJSON for the web atlas (docs/atlas/): volcanoes with detectability & context fields, NGL stations.
+"""Export compact GeoJSON for the web atlas (docs/index.html): volcanoes with detectability & context fields, NGL stations.
     python scripts/export_web.py
 """
 from __future__ import annotations
@@ -10,7 +10,7 @@ import pandas as pd
 
 import vdlib as V
 
-OUT = V.ROOT / "docs" / "atlas" / "data"
+OUT = V.ROOT / "docs" / "data"
 
 
 def num(x, nd=4):

@@ -7,7 +7,7 @@ How much magma can collect beneath each of the world's Holocene volcanoes before
 For every Smithsonian GVP Holocene volcano this repository computes the smallest volume change of a source at 2, 5 and
 10 km depth that open GNSS (Nevada Geodetic Laboratory, NGL) and open Sentinel-1 coherence would detect.
 
-**Interactive atlas:** https://volcano.bristleconelab.org/atlas/
+**Interactive atlas:** https://volcano.bristleconelab.org/
 
 ![Globe](docs/img/atlas_globe.png)
 

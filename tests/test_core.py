@@ -284,7 +284,7 @@ class TestPipelineHelpers(unittest.TestCase):
         import json
 
         rk = pd.read_csv(V.DATA / "ranking.csv").set_index("vnum")
-        vj = json.loads((V.ROOT / "docs" / "atlas" / "data" / "volcanoes.geojson").read_text())["features"]
+        vj = json.loads((V.ROOT / "docs" / "data" / "volcanoes.geojson").read_text())["features"]
         self.assertEqual(len(vj), len(rk))
         comb5_det = 0
         merapi_f5b = None

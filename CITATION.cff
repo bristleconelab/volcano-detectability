@@ -8,7 +8,7 @@ authors:
     orcid: "https://orcid.org/0009-0008-2785-3691"
 doi: "10.5281/zenodo.24308318"
 repository-code: "https://github.com/ismoilovdevml/volcano-detectability"
-url: "https://volcano.bristleconelab.org/atlas/"
+url: "https://volcano.bristleconelab.org/"
 license: MIT
 version: 1.0.0
 date-released: 2026-11-17
