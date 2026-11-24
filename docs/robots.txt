@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://volcano.bristleconelab.org/sitemap.xml
