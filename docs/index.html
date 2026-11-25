@@ -19,6 +19,133 @@
 <meta name="twitter:image" content="https://volcano.bristleconelab.org/img/og-image.jpg">
 <meta property="og:url" content="https://volcano.bristleconelab.org/">
 <link rel="canonical" href="https://volcano.bristleconelab.org/">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebApplication",
+   "@id": "https://volcano.bristleconelab.org/#app",
+   "name": "Volcano Detectability Atlas",
+   "alternateName": "Volcano Blind Spots",
+   "url": "https://volcano.bristleconelab.org/",
+   "applicationCategory": "ScientificApplication",
+   "operatingSystem": "Any (web browser)",
+   "description": "Interactive globe showing, for every Holocene volcano, how much magma could collect underground before open GNSS stations and Sentinel-1 radar would detect it.",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "author": {
+    "@type": "Person",
+    "name": "Otabek Ismoilov",
+    "sameAs": "https://orcid.org/0009-0008-2785-3691"
+   },
+   "sameAs": "https://github.com/ismoilovdevml/volcano-detectability"
+  },
+  {
+   "@type": "Dataset",
+   "@id": "https://volcano.bristleconelab.org/#dataset",
+   "name": "Volcano Detectability Atlas: smallest magma volume change detectable by open GNSS and Sentinel-1 beneath every Holocene volcano",
+   "description": "For each of the 1,214 Smithsonian GVP Holocene volcanoes, the smallest volume change of a Mogi point source at 2, 5 and 10 km depth that open GNSS (Nevada Geodetic Laboratory daily IGS20 solutions) and open Sentinel-1 seasonal 12-day coherence would detect, with station noise estimates, coherence summaries, threat and population-exposure rankings and national-network classes. It measures what open data can see, not what volcano observatories see: many national networks are not in NGL.",
+   "url": "https://volcano.bristleconelab.org/",
+   "identifier": [
+    "https://doi.org/10.5281/zenodo.24308318"
+   ],
+   "sameAs": "https://doi.org/10.5281/zenodo.24308318",
+   "license": "https://creativecommons.org/licenses/by/4.0/",
+   "isAccessibleForFree": true,
+   "creator": {
+    "@type": "Person",
+    "name": "Otabek Ismoilov",
+    "sameAs": "https://orcid.org/0009-0008-2785-3691"
+   },
+   "keywords": [
+    "volcano monitoring",
+    "geodetic detectability",
+    "GNSS",
+    "InSAR",
+    "Sentinel-1",
+    "magma accumulation",
+    "volcanic unrest",
+    "Holocene volcanoes",
+    "open data"
+   ],
+   "variableMeasured": [
+    "minimum detectable volume change at 2, 5 and 10 km source depth (GNSS)",
+    "GNSS station noise (daily and 30-day)",
+    "usable Sentinel-1 coherence within 5 km",
+    "population within 30 km",
+    "national monitoring network class"
+   ],
+   "measurementTechnique": [
+    "Mogi point source in an elastic half-space",
+    "GNSS daily position noise",
+    "Sentinel-1 interferometric coherence"
+   ],
+   "spatialCoverage": {
+    "@type": "Place",
+    "name": "Earth",
+    "geo": {
+     "@type": "GeoShape",
+     "box": "-90 -180 90 180"
+    }
+   },
+   "isBasedOn": [
+    "https://volcano.si.edu/",
+    "https://geodesy.unr.edu/"
+   ],
+   "citation": "https://doi.org/10.31223/X5C23N",
+   "includedInDataCatalog": {
+    "@type": "DataCatalog",
+    "name": "Zenodo",
+    "url": "https://zenodo.org"
+   },
+   "distribution": [
+    {
+     "@type": "DataDownload",
+     "encodingFormat": "text/csv",
+     "contentUrl": "https://volcano.bristleconelab.org/data/volcano_detectability.csv"
+    },
+    {
+     "@type": "DataDownload",
+     "encodingFormat": "text/csv",
+     "contentUrl": "https://volcano.bristleconelab.org/data/ranking.csv"
+    },
+    {
+     "@type": "DataDownload",
+     "encodingFormat": "application/geo+json",
+     "contentUrl": "https://volcano.bristleconelab.org/data/stations.geojson"
+    }
+   ]
+  },
+  {
+   "@type": "ScholarlyArticle",
+   "@id": "https://doi.org/10.31223/X5C23N",
+   "headline": "Where open geodetic data cannot check for magma accumulation beneath populated active volcanoes",
+   "name": "Where open geodetic data cannot check for magma accumulation beneath populated active volcanoes",
+   "author": {
+    "@type": "Person",
+    "name": "Otabek Ismoilov",
+    "sameAs": "https://orcid.org/0009-0008-2785-3691"
+   },
+   "datePublished": "2026",
+   "identifier": "https://doi.org/10.31223/X5C23N",
+   "url": "https://doi.org/10.31223/X5C23N",
+   "publisher": {
+    "@type": "Organization",
+    "name": "EarthArXiv"
+   },
+   "creativeWorkStatus": "Preprint, submitted to Geophysical Research Letters",
+   "about": {
+    "@id": "https://volcano.bristleconelab.org/#dataset"
+   }
+  }
+ ]
+}
+</script>
 <script>if (location.search) history.replaceState(null, '', location.pathname + location.hash);</script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230b1324' stroke='%23ffb35c' stroke-width='2'/%3E%3Cpath d='M8 23L14 11h4l6 12z' fill='%23f97316'/%3E%3Ccircle cx='16' cy='9' r='2.2' fill='%23facc15'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6.18.0/dist/maplibre-gl.css" crossorigin="anonymous">
