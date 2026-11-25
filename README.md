@@ -110,3 +110,15 @@ The code and derived data:
 
 Ismoilov, O. (2026). volcano-detectability: open-data geodetic detectability of Holocene volcanoes (GNSS,
 Sentinel-1), version 1.0.0. Zenodo. https://doi.org/10.5281/zenodo.24308319
+
+---
+
+<p align="center">
+  <sub>Powered by</sub><br>
+  <a href="https://github.com/bristleconelab">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="docs/img/brand/bristleconelab-horizontal-on-dark.svg">
+      <img src="docs/img/brand/bristleconelab-horizontal-on-light.svg" alt="bristlecone lab" height="36">
+    </picture>
+  </a>
+</p>

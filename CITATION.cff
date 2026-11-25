@@ -7,7 +7,7 @@ authors:
     given-names: Otabek
     orcid: "https://orcid.org/0009-0008-2785-3691"
 doi: "10.5281/zenodo.24308318"
-repository-code: "https://github.com/ismoilovdevml/volcano-detectability"
+repository-code: "https://github.com/bristleconelab/volcano-detectability"
 url: "https://volcano.bristleconelab.org/"
 license: MIT
 version: 1.0.0
